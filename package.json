@@ -1,6 +1,6 @@
 {
     "homepage": "https://railmapgen.github.io/rmg-components",
-    "name": "rmg-components",
+    "name": "@railmapgen/rmg-components",
     "repository": "github:railmapgen/rmg-components",
     "bugs": {
         "url": "https://github.com/railmapgen/rmg-components/issues"
@@ -10,9 +10,7 @@
         "@chakra-ui/react": "^1.8.6",
         "@emotion/react": "^11.8.1",
         "@emotion/styled": "^11.8.1",
-        "framer-motion": "^6.2.8",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "framer-motion": "^6.2.8"
     },
     "devDependencies": {
         "@chakra-ui/storybook-addon": "^1.0.3",
@@ -30,19 +28,19 @@
         "@types/jest": "^27.4.1",
         "@types/node": "^16.11.26",
         "@types/react": "^17.0.39",
-        "@types/react-dom": "^17.0.12",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
         "cross-env": "^7.0.3",
         "enzyme": "^3.11.0",
         "eslint-plugin-prettier": "^4.0.0",
         "prettier": "^2.5.1",
+        "react": "^17.0.2",
         "react-scripts": "^5.0.0",
         "typescript": "^4.6.2",
         "webpack": "^5.70.0"
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "npx tsc",
+        "build": "npx tsc -p ./tsconfig.prd.json",
         "test": "react-scripts test",
         "test:no-watch": "cross-env CI=true react-scripts test --env=jsdom",
         "lint": "eslint ./src",
@@ -69,5 +67,13 @@
         "transformIgnorePatterns": [
             "/node_modules/(?!(@railmapgen/.*))"
         ]
-    }
+    },
+    "main": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./": "./dist"
+    },
+    "files": [
+        "dist"
+    ]
 }

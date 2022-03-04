@@ -1,5 +1,5 @@
 import React from 'react';
-import { RmgCard } from './card';
+import { RmgCard } from './rmg-card';
 
 export default {
     title: 'RmgCard',

@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import chakraTheme from '../src/theme/theme';
+import { rmgTheme } from '../src';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -10,13 +10,13 @@ export const parameters = {
         },
     },
     chakra: {
-        theme: chakraTheme,
+        theme: rmgTheme,
     },
 };
 
 const withChakra = (StoryFn: Function) => {
     return (
-        <ChakraProvider theme={chakraTheme}>
+        <ChakraProvider theme={rmgTheme}>
             <div id="story-wrapper">
                 <StoryFn />
             </div>

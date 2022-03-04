@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Flex, FlexProps, useStyleConfig } from '@chakra-ui/react';
 
-interface RmgCardProps extends FlexProps {
+export interface RmgCardProps extends FlexProps {
     children: ReactNode;
 }
 

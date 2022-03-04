@@ -17,15 +17,13 @@
         "module": "esnext",
         "moduleResolution": "node",
         "declaration": true,
-        "resolveJsonModule": true,
+        "resolveJsonModule": false,
         "isolatedModules": true,
         "jsx": "react-jsx",
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "allowUnusedLabels": false
     },
     "include": [
-        "src"
-    ],
-    "exclude": [
-        "**/*.stories.tsx"
+        "src/**/*"
     ]
 }
