@@ -7,13 +7,12 @@
     },
     "license": "GPL-3.0-only",
     "dependencies": {
-        "@chakra-ui/react": "^1.8.6",
-        "@emotion/react": "^11.8.1",
-        "@emotion/styled": "^11.8.1",
-        "framer-motion": "^6.2.8"
     },
     "devDependencies": {
+        "@chakra-ui/react": "^1.8.6",
         "@chakra-ui/storybook-addon": "^1.0.3",
+        "@emotion/react": "^11.8.1",
+        "@emotion/styled": "^11.8.1",
         "@storybook/addon-actions": "^6.4.19",
         "@storybook/addon-essentials": "^6.4.19",
         "@storybook/addon-interactions": "^6.4.19",
@@ -32,11 +31,19 @@
         "cross-env": "^7.0.3",
         "enzyme": "^3.11.0",
         "eslint-plugin-prettier": "^4.0.0",
+        "framer-motion": "^6.2.8",
         "prettier": "^2.5.1",
         "react": "^17.0.2",
         "react-scripts": "^5.0.0",
         "typescript": "^4.6.2",
         "webpack": "^5.70.0"
+    },
+    "peerDependencies": {
+        "@chakra-ui/react": ">=1.8.5",
+        "@emotion/react": "11.x",
+        "@emotion/styled": "11.x",
+        "framer-motion": "3.x || 4.x || 5.x || 6.x",
+        "react": ">=16.8.6"
     },
     "scripts": {
         "start": "npm run storybook",
