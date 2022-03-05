@@ -22,3 +22,10 @@ jobs:
         run: |
           chmod +x ./scripts/build.sh
           ./scripts/build.sh
+
+      - name: Publish
+        if: ${{ github.ref == 'refs/heads/master'  }}
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.RMG_NPM_PUBLISH }}
