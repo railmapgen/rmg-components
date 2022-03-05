@@ -56,3 +56,10 @@ git push --force
 
 
 echo "Build Success: $APP_NAME-$RMG_VER"
+
+# Set up .npmrc for publishing
+cat > ./.npmrc << EOF
+//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}
+registry=https://registry.npmjs.org/
+always-auth=true
+EOF
