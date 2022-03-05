@@ -16,6 +16,22 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             boxShadow: 'lg',
         }),
     },
+
+    RmgLabel: {
+        baseStyle: {
+            m: 1,
+            w: 'unset',
+
+            '& label': {
+                overflow: 'hidden',
+                fontSize: 12,
+                mr: 0,
+                mb: -0.5,
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+            },
+        },
+    },
 };
 
-export const rmgTheme = extendTheme({ config, components });
+export const rmgChakraTheme = extendTheme({ config, components });

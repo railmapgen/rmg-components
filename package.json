@@ -39,7 +39,7 @@
         "webpack": "^5.70.0"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "npm run storybook",
         "build": "npx tsc -p ./tsconfig.prd.json",
         "test": "react-scripts test",
         "test:no-watch": "cross-env CI=true react-scripts test --env=jsdom",
