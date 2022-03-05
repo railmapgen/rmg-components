@@ -30,4 +30,5 @@ jobs:
         run: |
           npm publish --access public
         env:
+          NPM_CONFIG_USERCONFIG: './.npmrc'
           NODE_AUTH_TOKEN: ${{ secrets.RMG_NPM_PUBLISH }}
