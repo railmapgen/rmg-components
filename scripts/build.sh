@@ -4,10 +4,6 @@ set -eux
 # run tests
 npm run test:no-watch
 
-# git config
-git config --global user.name "RMG Build Agent"
-git config --global user.email rmg.build.agent@users.noreply.github.com
-
 # variables
 export APP_NAME=rmg-components
 BRANCH=$(git branch | grep \* | cut -d ' ' -f2 | tr '/' '.')
