@@ -9,7 +9,7 @@ git config --global user.name "RMG Build Agent"
 git config --global user.email rmg.build.agent@users.noreply.github.com
 
 # variables
-export APP_NAME=$(node -p "require('./package.json').name")
+export APP_NAME=rmg-components
 BRANCH=$(git branch | grep \* | cut -d ' ' -f2 | tr '/' '.')
 UAT_REPO_NAME=rmg-repositories
 
