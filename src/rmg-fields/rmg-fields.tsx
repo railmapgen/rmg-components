@@ -24,6 +24,7 @@ type sliderField = {
     value: number;
     min: number;
     max: number;
+    step?: number;
     onChange?: (value: number) => void;
 };
 
@@ -94,6 +95,7 @@ export const RmgFields = (props: RmgFieldsProps) => {
                                             defaultValue={field.value}
                                             min={field.min}
                                             max={field.max}
+                                            step={field.step ?? 1}
                                             onChangeEnd={field.onChange}
                                         >
                                             <SliderTrack>

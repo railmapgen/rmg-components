@@ -10,12 +10,33 @@ const mockInputField: RmgFieldsField = {
     onChange: jest.fn(),
 };
 
-const mockSliderField: RmgFieldsField = {
+const mockSelectField: RmgFieldsField = {
+    type: 'select',
+    label: 'Mock select',
+    value: 'opt1',
+    options: {
+        opt1: 'Option 1',
+        opt2: 'Option 2',
+    },
+    onChange: jest.fn(),
+};
+
+const mockIntSliderField: RmgFieldsField = {
     type: 'slider',
-    label: 'Mock slider',
+    label: 'Mock integer slider',
     value: 40,
     min: 30,
     max: 50,
+    onChange: jest.fn(),
+};
+
+const mockSliderField: RmgFieldsField = {
+    type: 'slider',
+    label: 'Mock slider',
+    value: 5,
+    min: 0,
+    max: 10,
+    step: 0.1,
     onChange: jest.fn(),
 };
 
@@ -34,15 +55,44 @@ describe('Unit tests for RmgFields component', () => {
         expect(mockInputField.onChange).toBeCalledWith('test input');
     });
 
+    it('Can render select field as expected', () => {
+        const wrapper = mount(<RmgFields fields={[mockSelectField]} />);
+
+        const label = wrapper.find('label');
+        expect(label.text()).toBe('Mock select');
+
+        const selectEl = wrapper.find('select');
+        selectEl.simulate('change', { target: { value: 'opt2' } });
+        expect(mockSelectField.onChange).toBeCalledTimes(1);
+        expect(mockSelectField.onChange).toBeCalledWith('opt2');
+    });
+
+    it('Can render integer slider field as expected', () => {
+        const wrapper = mount(<RmgFields fields={[mockIntSliderField]} />);
+
+        const label = wrapper.find('label');
+        expect(label.text()).toBe('Mock integer slider');
+
+        const sliderThumb = wrapper.find('div.chakra-slider__thumb');
+        expect(sliderThumb.props()['aria-valuemin']).toBe(30);
+        expect(sliderThumb.props()['aria-valuemax']).toBe(50);
+        expect(sliderThumb.props()['aria-valuenow']).toBe(40);
+
+        sliderThumb.simulate('keydown', { key: 'ArrowRight' });
+        expect(mockIntSliderField.onChange).toBeCalledTimes(1);
+        expect(mockIntSliderField.onChange).toBeCalledWith(41);
+    });
+
     it('Can render slider field as expected', () => {
         const wrapper = mount(<RmgFields fields={[mockSliderField]} />);
 
         const label = wrapper.find('label');
         expect(label.text()).toBe('Mock slider');
 
-        const sliderTrack = wrapper.find('div.chakra-slider__thumb');
-        expect(sliderTrack.props()['aria-valuemin']).toBe(30);
-        expect(sliderTrack.props()['aria-valuemax']).toBe(50);
-        expect(sliderTrack.props()['aria-valuenow']).toBe(40);
+        const sliderThumb = wrapper.find('div.chakra-slider__thumb');
+        sliderThumb.simulate('keydown', { key: 'ArrowRight' });
+
+        expect(mockSliderField.onChange).toBeCalledTimes(1);
+        expect(mockSliderField.onChange).toBeCalledWith(5.1);
     });
 });
