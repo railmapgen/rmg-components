@@ -1,4 +1,5 @@
 export * from './rmg-card';
+export * from './rmg-data-table';
 export * from './rmg-debounced-input';
 export * from './rmg-debounced-textarea';
 export * from './rmg-fields';
