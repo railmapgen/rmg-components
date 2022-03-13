@@ -28,11 +28,12 @@ type sliderField = {
     onChange?: (value: number) => void;
 };
 
-type selectField = {
+type selectField<T extends string | number> = {
     type: 'select';
-    value?: string;
-    options: Record<string, string>; // { value: displayText }
-    onChange?: (value: string) => void;
+    value?: T;
+    options: Record<T, string>; // { value: displayText }
+    onChange?: (value: T) => void;
+    disabledOptions?: T[];
 };
 
 type customField = {
@@ -40,18 +41,24 @@ type customField = {
     component: ReactNode;
 };
 
-export type RmgFieldsField = (inputField | textareaField | sliderField | selectField | customField) & {
+export type RmgFieldsField<T extends string | number = string | number> = (
+    | inputField
+    | textareaField
+    | sliderField
+    | selectField<T>
+    | customField
+) & {
     label: string;
     minW?: `${number}px` | number | 'full';
     hidden?: boolean;
 };
 
-export interface RmgFieldsProps {
-    fields: RmgFieldsField[];
+export interface RmgFieldsProps<T extends string | number> {
+    fields: RmgFieldsField<T>[];
     noLabel?: boolean;
 }
 
-export const RmgFields = (props: RmgFieldsProps) => {
+export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
     const { fields, noLabel } = props;
 
     return (
@@ -110,12 +117,25 @@ export const RmgFields = (props: RmgFieldsProps) => {
                                             variant="flushed"
                                             size="sm"
                                             h={6}
-                                            defaultValue={field.value}
-                                            onChange={({ target: { value } }) => field.onChange?.(value)}
+                                            value={field.value}
+                                            onChange={({ target: { value } }) =>
+                                                field.onChange?.(
+                                                    (typeof field.value === 'number'
+                                                        ? Number(value)
+                                                        : value.toString()) as T
+                                                )
+                                            }
                                         >
                                             {Object.entries(field.options).map(([value, displayText]) => (
-                                                <option key={value} value={value}>
-                                                    {displayText}
+                                                <option
+                                                    key={value}
+                                                    value={value}
+                                                    disabled={
+                                                        field.disabledOptions?.find(opt => opt.toString() === value) !==
+                                                        undefined
+                                                    }
+                                                >
+                                                    {displayText as any}
                                                 </option>
                                             ))}
                                         </Select>
@@ -131,4 +151,4 @@ export const RmgFields = (props: RmgFieldsProps) => {
             })}
         </Flex>
     );
-};
+}

@@ -21,6 +21,19 @@ const mockSelectField: RmgFieldsField = {
     onChange: jest.fn(),
 };
 
+const mockNumberSelectField: RmgFieldsField = {
+    type: 'select',
+    label: 'Mock number select',
+    value: 0,
+    options: {
+        0: 'Please select...',
+        1: 'One',
+        2: 'Two',
+    },
+    disabledOptions: [0],
+    onChange: jest.fn(),
+};
+
 const mockIntSliderField: RmgFieldsField = {
     type: 'slider',
     label: 'Mock integer slider',
@@ -65,6 +78,22 @@ describe('Unit tests for RmgFields component', () => {
         selectEl.simulate('change', { target: { value: 'opt2' } });
         expect(mockSelectField.onChange).toBeCalledTimes(1);
         expect(mockSelectField.onChange).toBeCalledWith('opt2');
+    });
+
+    it('Can render number select field as expected', () => {
+        const wrapper = mount(<RmgFields fields={[mockNumberSelectField]} />);
+
+        const selectEl = wrapper.find('select');
+        expect(selectEl.props().value).toBe(0);
+
+        const options = selectEl.find('option');
+        expect(options).toHaveLength(3);
+        expect(options.at(0).text()).toBe('Please select...');
+        expect(options.at(0).props().disabled).toBeTruthy();
+
+        selectEl.simulate('change', { target: { value: '1' } });
+        expect(mockNumberSelectField.onChange).toBeCalledTimes(1);
+        expect(mockNumberSelectField.onChange).toBeCalledWith(1);
     });
 
     it('Can render integer slider field as expected', () => {
