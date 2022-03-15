@@ -74,16 +74,20 @@ export const Basic = () => {
 export const TwoWayControlledSelects = () => {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(0);
+    const [minError, setMinError] = useState(false);
+    const [maxError, setMaxError] = useState(false);
 
     useEffect(() => {
+        setMinError(false);
         if (min && max && min > max) {
-            setMax(0);
+            setMaxError(true);
         }
     }, [min]);
 
     useEffect(() => {
+        setMaxError(false);
         if (min && max && min > max) {
-            setMin(0);
+            setMinError(true);
         }
     }, [max]);
 
@@ -105,6 +109,7 @@ export const TwoWayControlledSelects = () => {
             options: options,
             disabledOptions: [0],
             onChange: value => setMin(value as number),
+            isInvalid: minError,
         },
         {
             type: 'select',
@@ -113,6 +118,7 @@ export const TwoWayControlledSelects = () => {
             options: options,
             disabledOptions: [0],
             onChange: value => setMax(value as number),
+            isInvalid: maxError,
         },
     ];
     return (
@@ -120,7 +126,7 @@ export const TwoWayControlledSelects = () => {
             <Text>Please select a range</Text>
             <RmgFields fields={fields} />
 
-            <Text>Your range: {min && max ? `from ${min} to ${max}` : 'invalid'}</Text>
+            <Text>Your range: {min && max && !minError && !maxError ? `from ${min} to ${max}` : 'invalid'}</Text>
         </Box>
     );
 };

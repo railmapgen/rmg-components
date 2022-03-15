@@ -1,8 +1,9 @@
 import React, { Fragment, ReactNode } from 'react';
 import { RmgLabel } from '../rmg-label';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
-import { Flex, InputProps, Select, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/react';
+import { Flex, InputProps, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/react';
 import { RmgDebouncedTextarea } from '../rmg-debounced-textarea';
+import { RmgSelect } from '../rmg-select';
 
 type inputField = {
     type: 'input';
@@ -34,6 +35,7 @@ type selectField<T extends string | number> = {
     options: Record<T, string>; // { value: displayText }
     onChange?: (value: T) => void;
     disabledOptions?: T[];
+    isInvalid?: boolean;
 };
 
 type customField = {
@@ -113,10 +115,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                     );
                                 case 'select':
                                     return (
-                                        <Select
-                                            variant="flushed"
-                                            size="sm"
-                                            h={6}
+                                        <RmgSelect
                                             value={field.value}
                                             onChange={({ target: { value } }) =>
                                                 field.onChange?.(
@@ -125,20 +124,10 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                                         : value.toString()) as T
                                                 )
                                             }
-                                        >
-                                            {Object.entries(field.options).map(([value, displayText]) => (
-                                                <option
-                                                    key={value}
-                                                    value={value}
-                                                    disabled={
-                                                        field.disabledOptions?.find(opt => opt.toString() === value) !==
-                                                        undefined
-                                                    }
-                                                >
-                                                    {displayText as any}
-                                                </option>
-                                            ))}
-                                        </Select>
+                                            options={field.options}
+                                            disabledOptions={field.disabledOptions}
+                                            isInvalid={field.isInvalid}
+                                        />
                                     );
                                 case 'custom':
                                     return field.component;
