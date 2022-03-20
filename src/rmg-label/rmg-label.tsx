@@ -5,16 +5,21 @@ export interface RmgLabelProps extends FormControlProps {
     label: string;
     children: ReactNode;
     noLabel?: boolean;
+    oneLine?: boolean;
 }
 
 export const RmgLabel = (props: RmgLabelProps) => {
-    const { label, children, width, noLabel, ...others } = props;
+    const { label, children, width, noLabel, oneLine, ...others } = props;
 
     const styles = useStyleConfig('RmgLabel');
 
     return (
-        <FormControl sx={styles} {...others}>
-            {!noLabel && <FormLabel size="xs">{label}</FormLabel>}
+        <FormControl sx={styles} display={oneLine ? 'flex' : 'block'} {...others}>
+            {!noLabel && (
+                <FormLabel size="xs" marginRight={oneLine ? 'auto !important' : 'unset'}>
+                    {label}
+                </FormLabel>
+            )}
 
             {children}
         </FormControl>

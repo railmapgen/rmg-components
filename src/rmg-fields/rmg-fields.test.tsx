@@ -53,6 +53,13 @@ const mockSliderField: RmgFieldsField = {
     onChange: jest.fn(),
 };
 
+const mockSwitchField: RmgFieldsField = {
+    type: 'switch',
+    label: 'Mock switch',
+    isChecked: false,
+    onChange: jest.fn(),
+};
+
 describe('Unit tests for RmgFields component', () => {
     it('Can render input field as expected', () => {
         const wrapper = mount(<RmgFields fields={[mockInputField]} />);
@@ -123,5 +130,18 @@ describe('Unit tests for RmgFields component', () => {
 
         expect(mockSliderField.onChange).toBeCalledTimes(1);
         expect(mockSliderField.onChange).toBeCalledWith(5.1);
+    });
+
+    it('Can render switch field as expected', () => {
+        const wrapper = mount(<RmgFields fields={[mockSwitchField]} />);
+
+        const label = wrapper.find('label').at(0);
+        expect(label.text()).toBe('Mock switch');
+
+        const inputEl = wrapper.find('input');
+        inputEl.simulate('change', { target: { checked: true } });
+
+        expect(mockSwitchField.onChange).toBeCalledTimes(1);
+        expect(mockSwitchField.onChange).toBeCalledWith(true);
     });
 });

@@ -1,7 +1,7 @@
 import React, { Fragment, ReactNode } from 'react';
 import { RmgLabel } from '../rmg-label';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
-import { Flex, InputProps, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/react';
+import { Flex, InputProps, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch } from '@chakra-ui/react';
 import { RmgDebouncedTextarea } from '../rmg-debounced-textarea';
 import { RmgSelect } from '../rmg-select';
 
@@ -38,6 +38,12 @@ type selectField<T extends string | number> = {
     isInvalid?: boolean;
 };
 
+type switchField = {
+    type: 'switch';
+    isChecked: boolean;
+    onChange: (value: boolean) => void;
+};
+
 type customField = {
     type: 'custom';
     component: ReactNode;
@@ -48,6 +54,7 @@ export type RmgFieldsField<T extends string | number = string | number> = (
     | textareaField
     | sliderField
     | selectField<T>
+    | switchField
     | customField
 ) & {
     label: string;
@@ -69,15 +76,17 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                 if (field.hidden) {
                     return <Fragment key={i} />;
                 }
+                const isMwFull = field.minW === 'full' || field.type === 'switch';
                 return (
                     <RmgLabel
                         key={i}
                         label={field.label}
                         flex={1}
-                        minW={field.minW === 'full' ? undefined : field.minW || 100}
-                        w={field.minW === 'full' ? '100%' : undefined}
-                        flexBasis={field.minW === 'full' ? '100%' : undefined}
+                        minW={isMwFull ? undefined : field.minW || 100}
+                        w={isMwFull ? '100%' : undefined}
+                        flexBasis={isMwFull ? '100%' : undefined}
                         noLabel={noLabel}
+                        oneLine={field.type === 'switch'}
                     >
                         {(field => {
                             switch (field.type) {
@@ -127,6 +136,13 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             options={field.options}
                                             disabledOptions={field.disabledOptions}
                                             isInvalid={field.isInvalid}
+                                        />
+                                    );
+                                case 'switch':
+                                    return (
+                                        <Switch
+                                            isChecked={field.isChecked}
+                                            onChange={({ target: { checked } }) => field.onChange(checked)}
                                         />
                                     );
                                 case 'custom':

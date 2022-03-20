@@ -13,6 +13,7 @@ export const Basic = () => {
     const [intSliderValue, setIntSliderValue] = useState(5);
     const [sliderValue, setSliderValue] = useState(5);
     const [textareaValue, setTextareaValue] = useState('');
+    const [switchValue, setSwitchValue] = useState(false);
 
     const fields: RmgFieldsField<string>[] = [
         {
@@ -56,6 +57,12 @@ export const Basic = () => {
             value: textareaValue,
             onChange: setTextareaValue,
         },
+        {
+            type: 'switch',
+            label: 'Switch field',
+            isChecked: switchValue,
+            onChange: setSwitchValue,
+        },
     ];
 
     return (
@@ -67,6 +74,7 @@ export const Basic = () => {
             <Text>Integer slider field: {intSliderValue}</Text>
             <Text>Slider field: {sliderValue}</Text>
             <Text>Debounced multiline field: {JSON.stringify(textareaValue)}</Text>
+            <Text>Switch field: {switchValue.toString()}</Text>
         </Box>
     );
 };
