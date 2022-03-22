@@ -34,12 +34,8 @@ fi
 ### BUILD
 mkdir -p $UAT_REPO_NAME/"$APP_NAME"/
 
-# PRD
-if [ "$BRANCH" = "master" ]
-then
-  CI='' npm run build
-  cp -r storybook-static/ $UAT_REPO_NAME/"$APP_NAME"/"$RMG_VER"/
-fi
+CI='' npm run build
+cp -r storybook-static/ $UAT_REPO_NAME/"$APP_NAME"/"$RMG_VER"/
 
 ### PUSH TAG AND COMMIT
 if [ "$BRANCH" = "master" ]
@@ -47,6 +43,12 @@ then
   git push --atomic origin HEAD "${APP_NAME}-${RMG_VER}"
 fi
 
+### WRITE INFO.JSON
+cat >>$UAT_REPO_NAME/"$APP_NAME"/"$RMG_VER"/info.json <<EOF
+{
+  "version": "$RMG_VER"
+}
+EOF
 
 ### UPLOAD ARTIFACTS
 cd $UAT_REPO_NAME/
