@@ -1,6 +1,6 @@
 import React from 'react';
 import { RmgFields, RmgFieldsField } from './rmg-fields';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 
 const mockInputField: RmgFieldsField = {
     type: 'input',
@@ -60,6 +60,13 @@ const mockSwitchField: RmgFieldsField = {
     onChange: jest.fn(),
 };
 
+const mockFullWidthTextField: RmgFieldsField = {
+    type: 'input',
+    label: 'Mock full width text field',
+    value: '',
+    minW: 'full',
+};
+
 describe('Unit tests for RmgFields component', () => {
     it('Can render input field as expected', () => {
         const wrapper = mount(<RmgFields fields={[mockInputField]} />);
@@ -91,7 +98,7 @@ describe('Unit tests for RmgFields component', () => {
         const wrapper = mount(<RmgFields fields={[mockNumberSelectField]} />);
 
         const selectEl = wrapper.find('select');
-        expect(selectEl.props().value).toBe(0);
+        expect(selectEl.getDOMNode<HTMLSelectElement>().value).toBe('0');
 
         const options = selectEl.find('option');
         expect(options).toHaveLength(3);
@@ -143,5 +150,20 @@ describe('Unit tests for RmgFields component', () => {
 
         expect(mockSwitchField.onChange).toBeCalledTimes(1);
         expect(mockSwitchField.onChange).toBeCalledWith(true);
+    });
+
+    it('Can set full width for specific field as expected', () => {
+        // global minW to be 100
+        const wrapper = mount(<RmgFields fields={[mockFullWidthTextField, mockInputField]} minW={100} />);
+
+        const rmgLabel1 = wrapper.find('RmgLabel').at(0) as ReactWrapper<any>;
+        expect(rmgLabel1.props().minW).toBeUndefined();
+        expect(rmgLabel1.props().w).toBe('100%');
+        expect(rmgLabel1.props().flexBasis).toBe('100%');
+
+        const rmgLabel2 = wrapper.find('RmgLabel').at(1) as ReactWrapper<any>;
+        expect(rmgLabel2.props().minW).toBe(100);
+        expect(rmgLabel2.props().w).toBeUndefined();
+        expect(rmgLabel2.props().flexBasis).toBeUndefined();
     });
 });

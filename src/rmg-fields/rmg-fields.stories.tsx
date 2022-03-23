@@ -1,5 +1,5 @@
 import { RmgFields, RmgFieldsField } from './rmg-fields';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 export default {
@@ -9,7 +9,7 @@ export default {
 
 export const Basic = () => {
     const [inputValue, setInputValue] = useState('');
-    const [selectValue, setSelectValue] = useState('opt1');
+    const [selectValue, setSelectValue] = useState('');
     const [intSliderValue, setIntSliderValue] = useState(5);
     const [sliderValue, setSliderValue] = useState(5);
     const [textareaValue, setTextareaValue] = useState('');
@@ -27,9 +27,11 @@ export const Basic = () => {
             type: 'select',
             label: 'Select field',
             options: {
+                '': 'Please select...',
                 opt1: 'Option 1',
                 opt2: 'Option 2',
             },
+            disabledOptions: [''],
             value: selectValue,
             onChange: setSelectValue,
         },
@@ -62,12 +64,23 @@ export const Basic = () => {
             label: 'Switch field',
             isChecked: switchValue,
             onChange: setSwitchValue,
+            oneLine: true,
+            minW: 'full',
         },
     ];
 
+    const handleReset = () => {
+        setInputValue('');
+        setSelectValue('');
+        setIntSliderValue(5);
+        setSliderValue(5);
+        setTextareaValue('');
+        setSwitchValue(false);
+    };
+
     return (
         <Box w={320}>
-            <RmgFields fields={fields} />
+            <RmgFields fields={fields} minW={100} />
 
             <Text>Debounced input field: {inputValue}</Text>
             <Text>Select field: {selectValue}</Text>
@@ -75,6 +88,8 @@ export const Basic = () => {
             <Text>Slider field: {sliderValue}</Text>
             <Text>Debounced multiline field: {JSON.stringify(textareaValue)}</Text>
             <Text>Switch field: {switchValue.toString()}</Text>
+
+            <Button onClick={() => handleReset()}>Reset all</Button>
         </Box>
     );
 };

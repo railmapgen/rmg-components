@@ -60,15 +60,17 @@ export type RmgFieldsField<T extends string | number = string | number> = (
     label: string;
     minW?: `${number}px` | number | 'full';
     hidden?: boolean;
+    oneLine?: boolean;
 };
 
 export interface RmgFieldsProps<T extends string | number> {
     fields: RmgFieldsField<T>[];
     noLabel?: boolean;
+    minW?: `${number}px` | number | 'full';
 }
 
 export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
-    const { fields, noLabel } = props;
+    const { fields, noLabel, minW } = props;
 
     return (
         <Flex wrap="wrap">
@@ -76,17 +78,19 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                 if (field.hidden) {
                     return <Fragment key={i} />;
                 }
-                const isMwFull = field.minW === 'full' || field.type === 'switch';
+                const actualMinW = field.minW || minW;
+                const isMwFull = actualMinW === 'full';
+
                 return (
                     <RmgLabel
                         key={i}
                         label={field.label}
                         flex={1}
-                        minW={isMwFull ? undefined : field.minW || 100}
+                        minW={isMwFull ? undefined : actualMinW}
                         w={isMwFull ? '100%' : undefined}
                         flexBasis={isMwFull ? '100%' : undefined}
                         noLabel={noLabel}
-                        oneLine={field.type === 'switch'}
+                        oneLine={field.oneLine}
                     >
                         {(field => {
                             switch (field.type) {
@@ -125,7 +129,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                 case 'select':
                                     return (
                                         <RmgSelect
-                                            value={field.value}
+                                            defaultValue={field.value}
                                             onChange={({ target: { value } }) =>
                                                 field.onChange?.(
                                                     (typeof field.value === 'number'
