@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box, useColorMode, useStyleConfig } from '@chakra-ui/react';
-import { ColDef } from "ag-grid-community";
+import { ColDef } from 'ag-grid-community';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
