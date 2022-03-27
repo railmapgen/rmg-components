@@ -75,6 +75,47 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             },
         },
     },
+
+    RmgSidePanel: {
+        baseStyle: {
+            height: '100%',
+            position: 'relative',
+            boxShadow: 'lg',
+            flexShrink: 0,
+            flexDirection: 'column',
+            transition: '0.3s',
+
+            '& .rmg-side-panel__inner': {
+                flexDirection: 'column',
+                h: '100%',
+            },
+
+            '& .rmg-side-panel__header': {
+                flexShrink: 0,
+                pl: 3,
+                pr: 1,
+                py: 0,
+
+                '& button': {
+                    ml: 'auto',
+                },
+            },
+
+            '& .rmg-side-panel__body': {
+                display: 'flex',
+                flexDirection: 'column',
+                flex: 1,
+                overflowY: 'auto',
+                p: 1,
+            },
+
+            '& .rmg-side-panel__footer': {
+                display: 'flex',
+                justifyContent: 'flex-end',
+                p: 1,
+            },
+        },
+    },
 };
 
 export const rmgChakraTheme = extendTheme({ config, components });

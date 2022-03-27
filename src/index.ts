@@ -6,5 +6,7 @@ export * from './rmg-debounced-textarea';
 export * from './rmg-fields';
 export * from './rmg-label';
 export * from './rmg-line-badge';
+export * from './rmg-select';
+export * from './rmg-side-panel';
 
 export * from './theme';
