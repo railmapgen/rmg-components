@@ -6,6 +6,19 @@ const config = {
 };
 
 const components: Record<string, ComponentSingleStyleConfig> = {
+    RmgAgGrid: {
+        baseStyle: {
+            w: '100%',
+            h: '100%',
+
+            '& .ag-cell': {
+                display: 'flex',
+                lineHeight: 'unset',
+                alignItems: 'center',
+            },
+        },
+    },
+
     RmgCard: {
         baseStyle: ({ colorMode }) => ({
             p: 1,

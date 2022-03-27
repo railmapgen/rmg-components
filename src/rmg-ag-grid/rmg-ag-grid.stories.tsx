@@ -1,4 +1,4 @@
-import { RmgAgGrid } from './rmg-ag-grid';
+import { RmgAgGrid, RmgAgGridColDef } from './rmg-ag-grid';
 import { AgGridReact } from 'ag-grid-react';
 import { Badge, Box } from '@chakra-ui/react';
 
@@ -7,19 +7,26 @@ export default {
     component: RmgAgGrid,
 };
 
+interface RowDataType {
+    id: string;
+    name: string;
+    age: number;
+    nationality: string;
+}
+
 export const Basic = () => {
-    const rowData = [
+    const rowData: RowDataType[] = [
         { id: '001', name: 'Alice', age: 18, nationality: 'Great Britain' },
         { id: '002', name: 'Benjamin', age: 20, nationality: 'United States' },
         { id: '003', name: 'Charlie', age: 19, nationality: 'Australia' },
     ];
 
-    const columnDefs = [
+    const columnDefs: RmgAgGridColDef<RowDataType>[] = [
         {
             headerName: 'ID',
             field: 'id',
             pinned: 'left',
-            cellRenderer: ({ value }: any) => <Badge lineHeight="initial">{value}</Badge>,
+            cellRenderer: ({ value }: { value: string }) => <Badge>{value}</Badge>,
         },
         { field: 'name' },
         { field: 'age' },
