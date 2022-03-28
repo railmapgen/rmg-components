@@ -41,7 +41,8 @@ type selectField<T extends string | number> = {
 type switchField = {
     type: 'switch';
     isChecked: boolean;
-    onChange: (value: boolean) => void;
+    isDisabled?: boolean;
+    onChange?: (value: boolean) => void;
 };
 
 type customField = {
@@ -146,7 +147,8 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                     return (
                                         <Switch
                                             isChecked={field.isChecked}
-                                            onChange={({ target: { checked } }) => field.onChange(checked)}
+                                            isDisabled={field.isDisabled}
+                                            onChange={({ target: { checked } }) => field.onChange?.(checked)}
                                         />
                                     );
                                 case 'custom':

@@ -1,6 +1,7 @@
 import { RmgFields, RmgFieldsField } from './rmg-fields';
 import { Box, Button, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { RmgMultiLineString } from '../rmg-multi-line-string';
 
 export default {
     title: 'RmgFields',
@@ -67,6 +68,14 @@ export const Basic = () => {
             oneLine: true,
             minW: 'full',
         },
+        {
+            type: 'switch',
+            label: 'Disabled switch field',
+            isChecked: false,
+            isDisabled: true,
+            oneLine: true,
+            minW: 'full',
+        },
     ];
 
     const handleReset = () => {
@@ -86,8 +95,9 @@ export const Basic = () => {
             <Text>Select field: {selectValue}</Text>
             <Text>Integer slider field: {intSliderValue}</Text>
             <Text>Slider field: {sliderValue}</Text>
-            <Text>Debounced multiline field: {JSON.stringify(textareaValue)}</Text>
+            <Text>Debounced multiline field: {<RmgMultiLineString text={textareaValue} delimiter={'\n'} />}</Text>
             <Text>Switch field: {switchValue.toString()}</Text>
+            <Text>Disabled switch field: false</Text>
 
             <Button onClick={() => handleReset()}>Reset all</Button>
         </Box>

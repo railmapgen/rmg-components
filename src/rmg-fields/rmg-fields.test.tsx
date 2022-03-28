@@ -60,6 +60,14 @@ const mockSwitchField: RmgFieldsField = {
     onChange: jest.fn(),
 };
 
+const mockDisabledSwitchField: RmgFieldsField = {
+    type: 'switch',
+    label: 'Mock disabled switch',
+    isChecked: false,
+    isDisabled: true,
+    onChange: jest.fn(),
+};
+
 const mockFullWidthTextField: RmgFieldsField = {
     type: 'input',
     label: 'Mock full width text field',
@@ -150,6 +158,15 @@ describe('Unit tests for RmgFields component', () => {
 
         expect(mockSwitchField.onChange).toBeCalledTimes(1);
         expect(mockSwitchField.onChange).toBeCalledWith(true);
+    });
+
+    it('Can render disabled switch field as expected', () => {
+        const wrapper = mount(<RmgFields fields={[mockDisabledSwitchField]} />);
+
+        const inputEl = wrapper.find('input');
+        inputEl.simulate('change', { target: { checked: true } });
+
+        expect(mockSwitchField.onChange).toBeCalledTimes(0);
     });
 
     it('Can set full width for specific field as expected', () => {
