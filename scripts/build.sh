@@ -51,6 +51,7 @@ git push --force
 
 
 echo "Build Success: $APP_NAME-$RMG_VER"
+echo "RMG_VER=${RMG_VER}" >> "$GITHUB_ENV"
 
 # Set up .npmrc for publishing
 cd ../
