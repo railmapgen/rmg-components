@@ -2,7 +2,7 @@ name: Build
 
 on:
   workflow_dispatch:
-    input:
+    inputs:
       auto_deploy:
         description: Auto deploy to (NONE/UAT/PRD)
         default: NONE
