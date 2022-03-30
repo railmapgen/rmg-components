@@ -29,6 +29,7 @@ jobs:
         run: |
           chmod +x ./scripts/build.sh
           ./scripts/build.sh
+        id: build
 
       - name: Publish
         if: ${{ github.ref == 'refs/heads/master' }}
@@ -44,4 +45,4 @@ jobs:
             -H "Accept: application/vnd.github.everest-preview+json" \
             -H "Content-Type: application/json" \
             https://api.github.com/repos/uat-railmapgen/rmg-repositories/actions/workflows/release.yml/dispatches \
-            --data '{"ref": "master", "inputs": {"app_name": "rmg-components", "version": "${{ github.env.RMG_VER }}", "environment": "${{ github.event.inputs.auto_deploy }}"}}'
+            --data '{"ref": "master", "inputs": {"app_name": "rmg-components", "version": "${{ steps.build.outputs.RMG_VER }}", "environment": "${{ github.event.inputs.auto_deploy }}"}}'
