@@ -23,6 +23,12 @@ export const Basic = () => {
 
     const columnDefs: RmgAgGridColDef<RowDataType>[] = [
         {
+            headerName: ' ',
+            checkboxSelection: true,
+            pinned: 'left',
+            width: 36,
+        },
+        {
             headerName: 'ID',
             field: 'id',
             pinned: 'left',
@@ -36,7 +42,14 @@ export const Basic = () => {
     return (
         <Box h={400} maxW={500}>
             <RmgAgGrid>
-                <AgGridReact rowData={rowData} columnDefs={columnDefs} suppressCellFocus={true} debug={true} />
+                <AgGridReact
+                    rowData={rowData}
+                    columnDefs={columnDefs}
+                    headerHeight={36}
+                    rowHeight={36}
+                    suppressCellFocus={true}
+                    debug={true}
+                />
             </RmgAgGrid>
         </Box>
     );
