@@ -41,6 +41,24 @@ const components: Record<string, ComponentSingleStyleConfig> = {
                 boxShadow: 'var(--chakra-shadows-lg)',
                 zIndex: 1,
             },
+
+            '&.ag-theme-alpine': {
+                '& .ag-row .rmg-ag-grid--spanned-cell': {
+                    backgroundColor: 'var(--ag-background-color, #fff)',
+                },
+                '& .ag-row-odd .rmg-ag-grid--spanned-cell': {
+                    backgroundColor: 'var(--ag-odd-row-background-color, #fcfcfc)',
+                },
+            },
+
+            '&.ag-theme-alpine-dark': {
+                '& .ag-row .rmg-ag-grid--spanned-cell': {
+                    backgroundColor: 'var(--ag-background-color, #181d1f)',
+                },
+                '& .ag-row-odd .rmg-ag-grid--spanned-cell': {
+                    backgroundColor: 'var(--ag-odd-row-background-color, #222628)',
+                },
+            },
         },
     },
 
