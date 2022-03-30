@@ -6,6 +6,7 @@ on:
       auto_deploy:
         description: Auto deploy to (NONE/UAT/PRD)
         default: NONE
+        required: true
 
 jobs:
   build:
