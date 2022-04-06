@@ -14,7 +14,7 @@ export const RmgLabel = (props: RmgLabelProps) => {
     const styles = useStyleConfig('RmgLabel');
 
     return (
-        <FormControl sx={styles} display={oneLine ? 'flex' : 'block'} {...others}>
+        <FormControl className={oneLine ? 'rmg-label__one-line' : ''} sx={styles} {...others}>
             {!noLabel && (
                 <FormLabel size="xs" marginRight={oneLine ? 'auto !important' : 'unset'}>
                     {label}

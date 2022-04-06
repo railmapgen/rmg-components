@@ -116,6 +116,11 @@ const components: Record<string, ComponentSingleStyleConfig> = {
                 whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
             },
+
+            '&.rmg-label__one-line': {
+                display: 'flex',
+                alignItems: 'center',
+            },
         },
     },
 
