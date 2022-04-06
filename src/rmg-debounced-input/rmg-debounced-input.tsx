@@ -3,10 +3,11 @@ import { Input, InputProps, useMergeRefs } from '@chakra-ui/react';
 
 export interface RmgDebouncedInputProps extends InputProps {
     onDebouncedChange?: (value: string) => void;
+    delay?: number;
 }
 
 const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInputElement>) => {
-    const { onDebouncedChange, defaultValue, onChange, ...others } = props;
+    const { onDebouncedChange, delay, defaultValue, onChange, ...others } = props;
 
     const inputElRef = useRef<HTMLInputElement>(null);
     const refs = useMergeRefs(inputElRef, ref);
@@ -24,7 +25,7 @@ const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInpu
 
         timeoutRef.current = window.setTimeout(() => {
             onDebouncedChange?.(value);
-        }, 500);
+        }, delay ?? 500);
     };
 
     return <Input ref={refs} variant="flushed" size="sm" h={6} onChange={handleChange} {...others} />;

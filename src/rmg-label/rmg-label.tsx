@@ -9,12 +9,12 @@ export interface RmgLabelProps extends FormControlProps {
 }
 
 export const RmgLabel = (props: RmgLabelProps) => {
-    const { label, children, width, noLabel, oneLine, ...others } = props;
+    const { label, children, width, noLabel, oneLine, className, ...others } = props;
 
     const styles = useStyleConfig('RmgLabel');
 
     return (
-        <FormControl className={oneLine ? 'rmg-label__one-line' : ''} sx={styles} {...others}>
+        <FormControl className={`${oneLine ? 'rmg-label__one-line' : ''} ${className ?? ''}`} sx={styles} {...others}>
             {!noLabel && (
                 <FormLabel size="xs" marginRight={oneLine ? 'auto !important' : 'unset'}>
                     {label}

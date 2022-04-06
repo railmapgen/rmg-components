@@ -11,6 +11,7 @@ type inputField = {
     placeholder?: string;
     onChange?: (value: string) => void;
     variant?: InputProps['type'];
+    debouncedDelay?: number;
 };
 
 type textareaField = {
@@ -85,11 +86,10 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                 return (
                     <RmgLabel
                         key={i}
+                        className={isMwFull ? 'mw-full' : ''}
                         label={field.label}
-                        flex={1}
+                        flex={isMwFull ? undefined : 1}
                         minW={isMwFull ? undefined : actualMinW}
-                        w={isMwFull ? '100%' : undefined}
-                        flexBasis={isMwFull ? '100%' : undefined}
                         noLabel={noLabel}
                         oneLine={field.oneLine}
                     >
@@ -102,6 +102,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             defaultValue={field.value}
                                             type={field.variant}
                                             onDebouncedChange={field.onChange}
+                                            delay={field.debouncedDelay}
                                         />
                                     );
                                 case 'textarea':

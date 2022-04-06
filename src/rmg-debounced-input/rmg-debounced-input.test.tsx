@@ -1,6 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { RmgDebouncedInput } from './rmg-debounced-input';
+import { render } from '../test-utils';
+import { fireEvent, screen } from '@testing-library/react';
 
 const mockCallbacks = {
     onDebouncedChange: jest.fn(),
@@ -13,15 +14,14 @@ describe('Unit tests for DebouncedInput component', () => {
     });
 
     it('Can debounce onChange event as expected', () => {
-        const wrapper = mount(<RmgDebouncedInput {...mockCallbacks} />);
+        render(<RmgDebouncedInput {...mockCallbacks} />);
 
-        const inputEl = wrapper.find('input');
         jest.useFakeTimers();
 
-        inputEl.simulate('change', { target: { value: 'te' } });
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'te' } });
         jest.advanceTimersByTime(200);
 
-        inputEl.simulate('change', { target: { value: 'test' } });
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'test' } });
         jest.advanceTimersByTime(1000);
 
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
@@ -29,26 +29,35 @@ describe('Unit tests for DebouncedInput component', () => {
     });
 
     it('Can re-render input field with new defaultValue without firing onChange event', () => {
-        const wrapper = mount(<RmgDebouncedInput defaultValue="value-1" {...mockCallbacks} />);
-
-        const inputEl = wrapper.find('input');
-        expect(inputEl.getDOMNode<HTMLInputElement>().value).toBe('value-1');
+        const { rerender } = render(<RmgDebouncedInput defaultValue="value-1" {...mockCallbacks} />);
+        expect(screen.getByDisplayValue('value-1')).not.toBeNull();
 
         jest.useFakeTimers();
-        wrapper.setProps({ defaultValue: 'value-2' }); // update prop
-        expect(inputEl.getDOMNode<HTMLInputElement>().value).toBe('value-2');
+
+        rerender(<RmgDebouncedInput defaultValue="value-2" {...mockCallbacks} />);
+        expect(screen.queryByDisplayValue('value-1')).toBeNull();
+        expect(screen.getByDisplayValue('value-2')).not.toBeNull();
 
         jest.advanceTimersByTime(1000);
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(0);
     });
 
     it('Can clear input field when defaultValue is changed to undefined', () => {
-        const wrapper = mount(<RmgDebouncedInput defaultValue="value-1" {...mockCallbacks} />);
+        const { rerender } = render(<RmgDebouncedInput defaultValue="value-1" {...mockCallbacks} />);
+        expect(screen.getByDisplayValue('value-1')).not.toBeNull();
 
-        const inputEl = wrapper.find('input');
-        expect(inputEl.getDOMNode<HTMLInputElement>().value).toBe('value-1');
+        rerender(<RmgDebouncedInput {...mockCallbacks} />);
+        expect(screen.queryByDisplayValue('value-1')).toBeNull();
+    });
 
-        wrapper.setProps({ defaultValue: undefined }); // update prop
-        expect(inputEl.getDOMNode<HTMLInputElement>().value).toBe('');
+    it('Can set debounce delay to 0 as expected', async () => {
+        render(<RmgDebouncedInput delay={0} {...mockCallbacks} />);
+
+        jest.useFakeTimers();
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'value-1' } });
+        jest.advanceTimersByTime(0);
+
+        expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
+        expect(mockCallbacks.onDebouncedChange).toBeCalledWith('value-1');
     });
 });

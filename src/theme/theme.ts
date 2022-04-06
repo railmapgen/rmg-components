@@ -1,8 +1,18 @@
 import { ComponentSingleStyleConfig, extendTheme } from '@chakra-ui/react';
+import { Styles } from '@chakra-ui/theme-tools';
 
 const config = {
     initialColorMode: 'light',
     useSystemColorMode: true,
+};
+
+const styles: Styles = {
+    global: {
+        '.mw-full': {
+            w: '100%',
+            flexBasis: '100%',
+        },
+    },
 };
 
 const components: Record<string, ComponentSingleStyleConfig> = {
@@ -166,4 +176,4 @@ const components: Record<string, ComponentSingleStyleConfig> = {
     },
 };
 
-export const rmgChakraTheme = extendTheme({ config, components });
+export const rmgChakraTheme = extendTheme({ config, styles, components });
