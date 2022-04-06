@@ -1,5 +1,5 @@
 import { RmgFields, RmgFieldsField } from './rmg-fields';
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { RmgMultiLineString } from '../rmg-multi-line-string';
 
@@ -10,6 +10,7 @@ export default {
 
 export const Basic = () => {
     const [inputValue, setInputValue] = useState('');
+    const [numberValue, setNumberValue] = useState('');
     const [selectValue, setSelectValue] = useState('');
     const [intSliderValue, setIntSliderValue] = useState(5);
     const [sliderValue, setSliderValue] = useState(5);
@@ -23,6 +24,14 @@ export const Basic = () => {
             placeholder: 'Enter text',
             value: inputValue,
             onChange: setInputValue,
+        },
+        {
+            type: 'input',
+            label: 'Debounced number field',
+            placeholder: 'Enter number',
+            value: inputValue,
+            validator: value => !isNaN(Number(value)),
+            onChange: setNumberValue,
         },
         {
             type: 'select',
@@ -59,6 +68,7 @@ export const Basic = () => {
             placeholder: 'Please enter multiline text...',
             value: textareaValue,
             onChange: setTextareaValue,
+            minW: 'full',
         },
         {
             type: 'switch',
@@ -80,6 +90,7 @@ export const Basic = () => {
 
     const handleReset = () => {
         setInputValue('');
+        setNumberValue('');
         setSelectValue('');
         setIntSliderValue(5);
         setSliderValue(5);
@@ -88,19 +99,24 @@ export const Basic = () => {
     };
 
     return (
-        <Box w={320}>
-            <RmgFields fields={fields} minW={100} />
+        <Flex>
+            <Box w={320}>
+                <RmgFields fields={fields} minW={100} />
+            </Box>
 
-            <Text>Debounced input field: {inputValue}</Text>
-            <Text>Select field: {selectValue}</Text>
-            <Text>Integer slider field: {intSliderValue}</Text>
-            <Text>Slider field: {sliderValue}</Text>
-            <Text>Debounced multiline field: {<RmgMultiLineString text={textareaValue} delimiter={'\n'} />}</Text>
-            <Text>Switch field: {switchValue.toString()}</Text>
-            <Text>Disabled switch field: false</Text>
+            <Box>
+                <Text>Debounced input field: {inputValue}</Text>
+                <Text>Debounced number field: {numberValue}</Text>
+                <Text>Select field: {selectValue}</Text>
+                <Text>Integer slider field: {intSliderValue}</Text>
+                <Text>Slider field: {sliderValue}</Text>
+                <Text>Debounced multiline field: {<RmgMultiLineString text={textareaValue} delimiter={'\n'} />}</Text>
+                <Text>Switch field: {switchValue.toString()}</Text>
+                <Text>Disabled switch field: false</Text>
 
-            <Button onClick={() => handleReset()}>Reset all</Button>
-        </Box>
+                <Button onClick={() => handleReset()}>Reset all</Button>
+            </Box>
+        </Flex>
     );
 };
 

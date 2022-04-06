@@ -1,6 +1,8 @@
 import React from 'react';
 import { RmgFields, RmgFieldsField } from './rmg-fields';
-import { mount, ReactWrapper } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../test-utils';
+import { screen } from '@testing-library/react';
 
 const mockInputField: RmgFieldsField = {
     type: 'input',
@@ -171,16 +173,12 @@ describe('Unit tests for RmgFields component', () => {
 
     it('Can set full width for specific field as expected', () => {
         // global minW to be 100
-        const wrapper = mount(<RmgFields fields={[mockFullWidthTextField, mockInputField]} minW={100} />);
+        render(<RmgFields fields={[mockFullWidthTextField, mockInputField]} minW={100} />);
 
-        const rmgLabel1 = wrapper.find('RmgLabel').at(0) as ReactWrapper<any>;
-        expect(rmgLabel1.props().minW).toBeUndefined();
-        expect(rmgLabel1.props().w).toBe('100%');
-        expect(rmgLabel1.props().flexBasis).toBe('100%');
+        expect(screen.getAllByRole('group')[0]).toHaveClass('mw-full');
+        expect(screen.getAllByRole('group')[0]).not.toHaveStyle({ minWidth: '100px' });
 
-        const rmgLabel2 = wrapper.find('RmgLabel').at(1) as ReactWrapper<any>;
-        expect(rmgLabel2.props().minW).toBe(100);
-        expect(rmgLabel2.props().w).toBeUndefined();
-        expect(rmgLabel2.props().flexBasis).toBeUndefined();
+        expect(screen.getAllByRole('group')[1]).not.toHaveClass('mw-full');
+        expect(screen.getAllByRole('group')[1]).toHaveStyle({ minWidth: '100px' });
     });
 });

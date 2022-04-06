@@ -11,6 +11,7 @@ export default {
 export const Basic = () => {
     const [value0, setValue0] = useState('');
     const [value500, setValue500] = useState('');
+    const [digitValue, setDigitValue] = useState('');
 
     return (
         <Box>
@@ -31,8 +32,18 @@ export const Basic = () => {
                 />
             </RmgLabel>
 
+            <RmgLabel label="With validator">
+                <RmgDebouncedInput
+                    placeholder="Enter digits only"
+                    defaultValue={digitValue}
+                    validator={value => !isNaN(Number(value))}
+                    onDebouncedChange={setDigitValue}
+                />
+            </RmgLabel>
+
             <Text>Delay=0ms: {value0}</Text>
             <Text>Delay=500ms: {value500}</Text>
+            <Text>With validator: {digitValue}</Text>
         </Box>
     );
 };

@@ -60,4 +60,16 @@ describe('Unit tests for DebouncedInput component', () => {
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
         expect(mockCallbacks.onDebouncedChange).toBeCalledWith('value-1');
     });
+
+    it('Can set input field as invalid as expected with validator', () => {
+        // accept number only
+        render(<RmgDebouncedInput validator={value => !isNaN(Number(value))} {...mockCallbacks} />);
+        expect(screen.getByRole('textbox')).toBeValid();
+
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'abc' } });
+        expect(screen.getByRole('textbox')).not.toBeValid();
+
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: '123' } });
+        expect(screen.getByRole('textbox')).toBeValid();
+    });
 });

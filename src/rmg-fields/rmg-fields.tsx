@@ -11,6 +11,7 @@ type inputField = {
     placeholder?: string;
     onChange?: (value: string) => void;
     variant?: InputProps['type'];
+    validator?: (value: string) => boolean;
     debouncedDelay?: number;
 };
 
@@ -101,6 +102,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             placeholder={field.placeholder}
                                             defaultValue={field.value}
                                             type={field.variant}
+                                            validator={field.validator}
                                             onDebouncedChange={field.onChange}
                                             delay={field.debouncedDelay}
                                         />
