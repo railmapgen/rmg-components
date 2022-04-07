@@ -135,17 +135,28 @@ const components: Record<string, ComponentSingleStyleConfig> = {
     },
 
     RmgSidePanel: {
-        baseStyle: {
+        baseStyle: ({ colorMode, width }) => ({
             height: '100%',
-            position: 'relative',
+            position: { base: 'absolute', lg: 'relative' },
+            right: { base: 0, lg: 'unset' },
+            background: colorMode === 'light' ? 'white' : 'gray.800',
             boxShadow: 'lg',
             flexShrink: 0,
             flexDirection: 'column',
-            transition: '0.3s',
+            transition: { base: 'unset', sm: '0.3s' },
+            maxW: 0,
+            visibility: 'hidden',
+
+            '&.show-side-panel': {
+                maxW: { base: '100%', sm: width },
+                w: { base: '100%', sm: 'unset' },
+                visibility: 'initial',
+            },
 
             '& .rmg-side-panel__inner': {
                 flexDirection: 'column',
                 h: '100%',
+                w: { base: '100%', sm: width },
             },
 
             '& .rmg-side-panel__header': {
@@ -172,7 +183,7 @@ const components: Record<string, ComponentSingleStyleConfig> = {
                 justifyContent: 'flex-end',
                 p: 1,
             },
-        },
+        }),
     },
 };
 

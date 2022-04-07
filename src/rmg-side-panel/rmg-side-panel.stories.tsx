@@ -11,7 +11,7 @@ export const Basic = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <Flex w="100%" h={400}>
+        <Flex w="100%" h={400} position="relative">
             <Box flex={1}>
                 <Text>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida lorem id diam finibus

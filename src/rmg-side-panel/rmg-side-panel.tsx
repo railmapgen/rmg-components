@@ -13,13 +13,11 @@ export const RmgSidePanel = (props: RmgSidePanelProps) => {
     const { isOpen, children } = props;
     const width = props.width ?? 320;
 
-    const styles = useStyleConfig('RmgSidePanel');
+    const styles = useStyleConfig('RmgSidePanel', { width });
 
     return (
-        <Flex as="section" maxW={isOpen ? width : 0} visibility={isOpen ? 'initial' : 'hidden'} sx={styles}>
-            <Flex className="rmg-side-panel__inner" w={width}>
-                {children}
-            </Flex>
+        <Flex as="section" className={isOpen ? 'show-side-panel' : ''} sx={styles} data-testid="side-panel-root">
+            <Flex className="rmg-side-panel__inner">{children}</Flex>
         </Flex>
     );
 };
