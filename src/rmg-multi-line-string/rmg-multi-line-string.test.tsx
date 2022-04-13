@@ -1,12 +1,15 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { RmgMultiLineString } from './rmg-multi-line-string';
+import { render } from '../test-utils';
+import { screen } from '@testing-library/react';
 
 const mockText = 'First line\nSecond line\nThird line';
 
-describe('Unit tests for RmgMultiLineString component', () => {
-    it('Can', () => {
-        const wrapper = mount(<RmgMultiLineString text={mockText} delimiter={'\n'} />);
-        expect(wrapper.find('span').children()).toHaveLength(5);
+describe('RmgMultiLineString', () => {
+    it('Can separate lines of text by kbd element', () => {
+        render(<RmgMultiLineString text={mockText} delimiter={'\n'} />);
+
+        expect(screen.getAllByText('⏎')).toHaveLength(2);
+        expect(document.body.textContent).toBe('First line⏎Second line⏎Third line');
     });
 });

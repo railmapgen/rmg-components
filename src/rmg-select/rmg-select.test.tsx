@@ -1,6 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { RmgSelect } from './rmg-select';
+import { render } from '../test-utils';
+import { screen } from '@testing-library/react';
 
 const mockSelectProps = {
     defaultValue: 'opt1',
@@ -13,26 +14,28 @@ const mockSelectProps = {
     onChange: jest.fn(),
 };
 
-const wrapper = mount(<RmgSelect {...mockSelectProps} />);
+const setup = () => render(<RmgSelect {...mockSelectProps} />);
 
 describe('Unit tests for RmgSelect component', () => {
     afterEach(() => {
-        jest.resetAllMocks();
+        jest.clearAllMocks();
     });
 
     it('Can render select with disabled options as expected', () => {
-        const options = wrapper.find('select option');
-        expect(options).toHaveLength(3);
-        expect(options.at(0).text()).toBe('Please select...');
-        expect(options.at(0).props().disabled).toBeTruthy();
+        setup();
+
+        expect(screen.getAllByRole('option')).toHaveLength(3);
+        expect(screen.getByText('Please select...')).toBeDisabled();
     });
 
     it('Can re-render input field with new defaultValue without firing onChange event', () => {
-        expect(wrapper.find('select').getDOMNode<HTMLSelectElement>().value).toBe('opt1');
+        const { rerender } = setup();
+        expect(screen.getByDisplayValue('Option 1')).toBeInTheDocument();
+        expect(screen.queryByDisplayValue('Option 2')).not.toBeInTheDocument();
 
-        wrapper.setProps({ defaultValue: 'opt2' });
-
-        expect(wrapper.find('select').getDOMNode<HTMLSelectElement>().value).toBe('opt2');
+        rerender(<RmgSelect {...mockSelectProps} defaultValue="opt2" />);
+        expect(screen.queryByDisplayValue('Option 1')).not.toBeInTheDocument();
+        expect(screen.getByDisplayValue('Option 2')).toBeInTheDocument();
         expect(mockSelectProps.onChange).toBeCalledTimes(0);
     });
 });
