@@ -1,5 +1,5 @@
 import { Box, Menu, MenuButton, MenuItem, MenuList, useOutsideClick } from '@chakra-ui/react';
-import { RmgDebouncedInput } from '../rmg-debounced-input';
+import { RmgDebouncedInput } from '../../rmg-debounced-input';
 import React, { Fragment, ReactElement, useEffect, useRef, useState } from 'react';
 
 export interface RmgAutoCompleteProps<T> {

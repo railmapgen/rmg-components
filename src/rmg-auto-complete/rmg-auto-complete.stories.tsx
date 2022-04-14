@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { RmgAutoComplete } from './rmg-auto-complete';
+import { RmgAutoComplete } from '.';
 
 export default {
     title: 'RmgAutoComplete',

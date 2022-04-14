@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../test-utils';
+import { render } from '../../test-utils';
 import { RmgAutoComplete } from './rmg-auto-complete';
 import { act, fireEvent, screen } from '@testing-library/react';
 
@@ -26,7 +26,7 @@ const setup = () =>
         />
     );
 
-describe('RmgAutoComplete', () => {
+describe('RmgAutoComplete - menu implementation', () => {
     afterEach(() => {
         jest.clearAllMocks();
     });
