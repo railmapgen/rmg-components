@@ -4,6 +4,7 @@ export * from './rmg-card';
 export * from './rmg-data-table';
 export * from './rmg-debounced-input';
 export * from './rmg-debounced-textarea';
+export * from './rmg-env-badge';
 export * from './rmg-fields';
 export * from './rmg-label';
 export * from './rmg-line-badge';
