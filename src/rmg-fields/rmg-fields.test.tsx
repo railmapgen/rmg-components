@@ -1,8 +1,7 @@
 import React from 'react';
 import { RmgFields, RmgFieldsField } from './rmg-fields';
-import { mount } from 'enzyme';
 import { render } from '../test-utils';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 const mockInputField: RmgFieldsField = {
     type: 'input',
@@ -77,96 +76,86 @@ const mockFullWidthTextField: RmgFieldsField = {
     minW: 'full',
 };
 
-describe('Unit tests for RmgFields component', () => {
+describe('RmgFields', () => {
     it('Can render input field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockInputField]} />);
+        render(<RmgFields fields={[mockInputField]} />);
 
-        const label = wrapper.find('label');
-        expect(label.text()).toBe('Mock input');
+        const inputEl = screen.getByRole('textbox', { name: 'Mock input' });
+        expect(inputEl).toBeInTheDocument();
 
-        const inputEl = wrapper.find('input');
         jest.useFakeTimers();
-        inputEl.simulate('change', { target: { value: 'test input' } });
+        fireEvent.change(inputEl, { target: { value: 'test input' } });
         jest.advanceTimersByTime(1000);
+
         expect(mockInputField.onChange).toBeCalledTimes(1);
         expect(mockInputField.onChange).toBeCalledWith('test input');
     });
 
     it('Can render select field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockSelectField]} />);
+        render(<RmgFields fields={[mockSelectField]} />);
 
-        const label = wrapper.find('label');
-        expect(label.text()).toBe('Mock select');
+        const selectEl = screen.getByRole('combobox', { name: 'Mock select' });
+        expect(selectEl).toBeInTheDocument();
 
-        const selectEl = wrapper.find('select');
-        selectEl.simulate('change', { target: { value: 'opt2' } });
+        fireEvent.change(selectEl, { target: { value: 'opt2' } });
+
         expect(mockSelectField.onChange).toBeCalledTimes(1);
         expect(mockSelectField.onChange).toBeCalledWith('opt2');
     });
 
     it('Can render number select field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockNumberSelectField]} />);
+        render(<RmgFields fields={[mockNumberSelectField]} />);
 
-        const selectEl = wrapper.find('select');
-        expect(selectEl.getDOMNode<HTMLSelectElement>().value).toBe('0');
+        expect(screen.getByDisplayValue('Please select...')).toBeInTheDocument();
 
-        const options = selectEl.find('option');
-        expect(options).toHaveLength(3);
-        expect(options.at(0).text()).toBe('Please select...');
-        expect(options.at(0).props().disabled).toBeTruthy();
+        expect(screen.getAllByRole('option')).toHaveLength(3);
+        expect(screen.getByRole('option', { name: 'Please select...' })).toBeDisabled();
 
-        selectEl.simulate('change', { target: { value: '1' } });
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: '1' } });
+
         expect(mockNumberSelectField.onChange).toBeCalledTimes(1);
         expect(mockNumberSelectField.onChange).toBeCalledWith(1);
     });
 
     it('Can render integer slider field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockIntSliderField]} />);
+        render(<RmgFields fields={[mockIntSliderField]} />);
 
-        const label = wrapper.find('label');
-        expect(label.text()).toBe('Mock integer slider');
+        const sliderEl = screen.getByRole('slider');
+        expect(sliderEl.getAttribute('aria-valuemin')).toBe('30');
+        expect(sliderEl.getAttribute('aria-valuemax')).toBe('50');
+        expect(sliderEl.getAttribute('aria-valuenow')).toBe('40');
 
-        const sliderThumb = wrapper.find('div.chakra-slider__thumb');
-        expect(sliderThumb.props()['aria-valuemin']).toBe(30);
-        expect(sliderThumb.props()['aria-valuemax']).toBe(50);
-        expect(sliderThumb.props()['aria-valuenow']).toBe(40);
+        fireEvent.keyDown(sliderEl, { key: 'ArrowRight' });
 
-        sliderThumb.simulate('keydown', { key: 'ArrowRight' });
         expect(mockIntSliderField.onChange).toBeCalledTimes(1);
         expect(mockIntSliderField.onChange).toBeCalledWith(41);
     });
 
     it('Can render slider field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockSliderField]} />);
+        render(<RmgFields fields={[mockSliderField]} />);
 
-        const label = wrapper.find('label');
-        expect(label.text()).toBe('Mock slider');
-
-        const sliderThumb = wrapper.find('div.chakra-slider__thumb');
-        sliderThumb.simulate('keydown', { key: 'ArrowRight' });
+        fireEvent.keyDown(screen.getByRole('slider'), { key: 'ArrowRight' });
 
         expect(mockSliderField.onChange).toBeCalledTimes(1);
         expect(mockSliderField.onChange).toBeCalledWith(5.1);
     });
 
     it('Can render switch field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockSwitchField]} />);
+        render(<RmgFields fields={[mockSwitchField]} />);
 
-        const label = wrapper.find('label').at(0);
-        expect(label.text()).toBe('Mock switch');
+        const switchEl = screen.getByRole('checkbox', { name: 'Mock switch' });
+        expect(switchEl).toBeInTheDocument();
 
-        const inputEl = wrapper.find('input');
-        inputEl.simulate('change', { target: { checked: true } });
+        fireEvent.click(switchEl);
 
         expect(mockSwitchField.onChange).toBeCalledTimes(1);
         expect(mockSwitchField.onChange).toBeCalledWith(true);
     });
 
     it('Can render disabled switch field as expected', () => {
-        const wrapper = mount(<RmgFields fields={[mockDisabledSwitchField]} />);
+        render(<RmgFields fields={[mockDisabledSwitchField]} />);
 
-        const inputEl = wrapper.find('input');
-        inputEl.simulate('change', { target: { checked: true } });
+        fireEvent.click(screen.getByRole('checkbox'));
 
         expect(mockSwitchField.onChange).toBeCalledTimes(0);
     });

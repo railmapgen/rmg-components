@@ -1,26 +1,21 @@
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
 import { RmgLineBadge } from './rmg-line-badge';
 import { MonoColour } from '../util/constants';
+import { render } from '../test-utils';
+import { screen } from '@testing-library/react';
 
-describe('Unit test for RmgLineBadge component', () => {
+describe('RmgLineBadge', () => {
     it('Can render badge with short name as expected', () => {
-        const wrapper = mount(
-            <RmgLineBadge name={['18号线', 'Line 18']} fg={MonoColour.white} bg="#000000" showShortName />
-        );
+        render(<RmgLineBadge name={['18号线', 'Line 18']} fg={MonoColour.white} bg="#000000" showShortName />);
 
-        const badge = wrapper.find('Badge') as ReactWrapper<any>;
-        expect(badge.text()).toBe('18');
-        expect(badge.props().color).toBe(MonoColour.white);
-        expect(badge.props().bg).toBe('#000000');
+        expect(screen.getByText('18')).toBeInTheDocument();
+        expect(screen.getByText('18')).toHaveStyle({ color: '#FFFFFF', background: '#000000' });
     });
 
     it('Can render badge with long name as expected', () => {
-        const wrapper = mount(<RmgLineBadge name="Tsuen Wan Line" fg={MonoColour.black} bg="#ffffff" />);
+        render(<RmgLineBadge name="Tsuen Wan Line" fg={MonoColour.black} bg="#ffffff" />);
 
-        const badge = wrapper.find('Badge') as ReactWrapper<any>;
-        expect(badge.text()).toBe('Tsuen Wan Line');
-        expect(badge.props().color).toBe(MonoColour.black);
-        expect(badge.props().bg).toBe('#ffffff');
+        expect(screen.getByText('Tsuen Wan Line')).toBeInTheDocument();
+        expect(screen.getByText('Tsuen Wan Line')).toHaveStyle({ color: '#000000', background: '#FFFFFF' });
     });
 });

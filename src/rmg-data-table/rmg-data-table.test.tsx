@@ -1,17 +1,17 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { RmgDataTable, RmgDataTableDataType, RmgDataTableFieldType } from './rmg-data-table';
+import { render } from '../test-utils';
+import { screen, within } from '@testing-library/react';
 
 const mockData: RmgDataTableDataType[] = [{ id: '001', field1: 'Value 1' }];
 
-describe('Unit tests for DataTable component', () => {
+describe('RmgDataTable', () => {
     it('Can display column header and cell value as expected', () => {
         const fields: RmgDataTableFieldType<RmgDataTableDataType>[] = [{ label: 'Field 1', key: 'field1' }];
+        render(<RmgDataTable data={mockData} fields={fields} />);
 
-        const wrapper = mount(<RmgDataTable data={mockData} fields={fields} />);
-
-        expect(wrapper.find('th').text()).toBe('Field 1');
-        expect(wrapper.find('td').text()).toBe('Value 1');
+        expect(screen.getByRole('columnheader', { name: 'Field 1' })).toBeInTheDocument();
+        expect(screen.getByRole('gridcell', { name: 'Value 1' })).toBeInTheDocument();
     });
 
     it('Can display customised component in cell as expected', () => {
@@ -21,20 +21,18 @@ describe('Unit tests for DataTable component', () => {
                 displayHandler: item => <button>{item.field1}</button>,
             },
         ];
+        render(<RmgDataTable data={mockData} fields={fields} />);
 
-        const wrapper = mount(<RmgDataTable data={mockData} fields={fields} />);
-
-        expect(wrapper.find('button').text()).toBe('Value 1');
+        expect(within(screen.getByRole('gridcell')).getByRole('button', { name: 'Value 1' })).toBeInTheDocument();
     });
 
     it('Can hide column if defined as hidden', () => {
         const fields: RmgDataTableFieldType<RmgDataTableDataType>[] = [
             { label: 'Field 1', key: 'field1', hidden: true },
         ];
+        render(<RmgDataTable data={mockData} fields={fields} />);
 
-        const wrapper = mount(<RmgDataTable data={mockData} fields={fields} />);
-
-        expect(wrapper.find('thead tr').isEmptyRender()).toBeTruthy();
-        expect(wrapper.find('tbody tr').isEmptyRender()).toBeTruthy();
+        expect(screen.queryByRole('columnheader')).not.toBeInTheDocument();
+        expect(screen.queryByRole('gridcell')).not.toBeInTheDocument();
     });
 });
