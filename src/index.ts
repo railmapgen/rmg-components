@@ -11,5 +11,6 @@ export * from './rmg-line-badge';
 export * from './rmg-multi-line-string';
 export * from './rmg-select';
 export * from './rmg-side-panel';
+export * from './rmg-throttled-slider';
 
 export * from './theme';
