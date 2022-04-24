@@ -1,9 +1,10 @@
 import React, { Fragment, ReactNode } from 'react';
 import { RmgLabel } from '../rmg-label';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
-import { Flex, InputProps, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Switch } from '@chakra-ui/react';
+import { Flex, InputProps, Switch } from '@chakra-ui/react';
 import { RmgDebouncedTextarea } from '../rmg-debounced-textarea';
 import { RmgSelect } from '../rmg-select';
+import { RmgThrottledSlider } from '../rmg-throttled-slider';
 
 type inputField = {
     type: 'input';
@@ -117,18 +118,13 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                     );
                                 case 'slider':
                                     return (
-                                        <Slider
+                                        <RmgThrottledSlider
                                             defaultValue={field.value}
                                             min={field.min}
                                             max={field.max}
-                                            step={field.step ?? 1}
-                                            onChangeEnd={field.onChange}
-                                        >
-                                            <SliderTrack>
-                                                <SliderFilledTrack />
-                                            </SliderTrack>
-                                            <SliderThumb />
-                                        </Slider>
+                                            step={field.step}
+                                            onThrottledChange={field.onChange}
+                                        />
                                     );
                                 case 'select':
                                     return (
