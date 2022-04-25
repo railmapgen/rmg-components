@@ -2,6 +2,7 @@ import { RmgFields, RmgFieldsField } from './rmg-fields';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { RmgMultiLineString } from '../rmg-multi-line-string';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 export default {
     title: 'RmgFields',
@@ -61,6 +62,8 @@ export const Basic = () => {
             max: 10,
             step: 0.1,
             onChange: setSliderValue,
+            leftIcon: <ArrowBackIcon />,
+            rightIcon: <ArrowForwardIcon />,
         },
         {
             type: 'textarea',

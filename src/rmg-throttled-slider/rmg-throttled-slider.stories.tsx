@@ -1,6 +1,7 @@
 import { RmgThrottledSlider } from './rmg-throttled-slider';
 import { Box, Text } from '@chakra-ui/react';
 import { useState } from 'react';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 export default {
     title: 'RmgThrottledSlider',
@@ -12,7 +13,14 @@ export const Basic = () => {
 
     return (
         <Box>
-            <RmgThrottledSlider defaultValue={value} min={0} max={10} onThrottledChange={setValue} />
+            <RmgThrottledSlider
+                defaultValue={value}
+                min={0}
+                max={10}
+                onThrottledChange={setValue}
+                leftIcon={<ArrowBackIcon />}
+                rightIcon={<ArrowForwardIcon />}
+            />
             <Text>Slider value: {value}</Text>
         </Box>
     );

@@ -185,6 +185,21 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             },
         }),
     },
+
+    RmgThrottledSlider: {
+        baseStyle: {
+            h: 6,
+            alignItems: 'center',
+
+            '& svg:first-of-type': {
+                mr: 1,
+            },
+
+            '& svg:last-of-type': {
+                ml: 1,
+            },
+        },
+    },
 };
 
 export const rmgChakraTheme = extendTheme({ config, styles, components });

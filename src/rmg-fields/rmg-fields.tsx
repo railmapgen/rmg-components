@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { Fragment, ReactElement, ReactNode } from 'react';
 import { RmgLabel } from '../rmg-label';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
 import { Flex, InputProps, Switch } from '@chakra-ui/react';
@@ -30,6 +30,8 @@ type sliderField = {
     max: number;
     step?: number;
     onChange?: (value: number) => void;
+    leftIcon?: ReactElement;
+    rightIcon?: ReactElement;
 };
 
 type selectField<T extends string | number> = {
@@ -124,6 +126,8 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             max={field.max}
                                             step={field.step}
                                             onThrottledChange={field.onChange}
+                                            leftIcon={field.leftIcon}
+                                            rightIcon={field.rightIcon}
                                         />
                                     );
                                 case 'select':
