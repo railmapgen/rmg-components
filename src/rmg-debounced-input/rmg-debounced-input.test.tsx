@@ -18,10 +18,10 @@ describe('Unit tests for DebouncedInput component', () => {
 
         jest.useFakeTimers();
 
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'te' } });
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'te' } });
         jest.advanceTimersByTime(200);
 
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'test' } });
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'test' } });
         jest.advanceTimersByTime(1000);
 
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
@@ -54,7 +54,7 @@ describe('Unit tests for DebouncedInput component', () => {
         render(<RmgDebouncedInput delay={0} {...mockCallbacks} />);
 
         jest.useFakeTimers();
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'value-1' } });
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'value-1' } });
         jest.advanceTimersByTime(0);
 
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
@@ -64,12 +64,12 @@ describe('Unit tests for DebouncedInput component', () => {
     it('Can set input field as invalid as expected with validator', () => {
         // accept number only
         render(<RmgDebouncedInput validator={value => !isNaN(Number(value))} {...mockCallbacks} />);
-        expect(screen.getByRole('textbox')).toBeValid();
+        expect(screen.getByRole('combobox')).toBeValid();
 
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'abc' } });
-        expect(screen.getByRole('textbox')).not.toBeValid();
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'abc' } });
+        expect(screen.getByRole('combobox')).not.toBeValid();
 
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: '123' } });
-        expect(screen.getByRole('textbox')).toBeValid();
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: '123' } });
+        expect(screen.getByRole('combobox')).toBeValid();
     });
 });

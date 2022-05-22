@@ -5,13 +5,16 @@ export interface RmgDebouncedInputProps extends InputProps {
     validator?: (value: string) => boolean;
     onDebouncedChange?: (value: string) => void;
     delay?: number;
+    optionList?: string[];
 }
 
 const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInputElement>) => {
-    const { validator, onDebouncedChange, delay, defaultValue, onChange, ...others } = props;
+    const { validator, onDebouncedChange, delay, optionList, defaultValue, onChange, ...others } = props;
 
     const inputElRef = useRef<HTMLInputElement>(null);
     const refs = useMergeRefs(inputElRef, ref);
+
+    const datalistRef = useRef('datalist-' + new Date().valueOf());
 
     const [isInvalid, setIsInvalid] = useState(false);
     const timeoutRef = useRef<number>();
@@ -35,7 +38,26 @@ const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInpu
     };
 
     return (
-        <Input ref={refs} variant="flushed" size="sm" h={6} onChange={handleChange} isInvalid={isInvalid} {...others} />
+        <>
+            <Input
+                ref={refs}
+                list={datalistRef.current}
+                variant="flushed"
+                size="sm"
+                h={6}
+                onChange={handleChange}
+                isInvalid={isInvalid}
+                {...others}
+            />
+
+            {optionList && (
+                <datalist id={datalistRef.current}>
+                    {optionList?.map(opt => (
+                        <option>{opt}</option>
+                    ))}
+                </datalist>
+            )}
+        </>
     );
 };
 

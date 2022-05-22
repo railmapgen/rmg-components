@@ -14,6 +14,7 @@ type inputField = {
     variant?: InputProps['type'];
     validator?: (value: string) => boolean;
     debouncedDelay?: number;
+    optionList?: string[];
 };
 
 type textareaField = {
@@ -108,6 +109,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             validator={field.validator}
                                             onDebouncedChange={field.onChange}
                                             delay={field.debouncedDelay}
+                                            optionList={field.optionList}
                                         />
                                     );
                                 case 'textarea':

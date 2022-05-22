@@ -43,7 +43,7 @@ describe('RmgAutoComplete - popover implementation', () => {
         setup();
 
         jest.useFakeTimers();
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'hong' } });
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'hong' } });
         await act(async () => {
             jest.advanceTimersByTime(501);
         });
@@ -57,7 +57,7 @@ describe('RmgAutoComplete - popover implementation', () => {
         setup();
 
         jest.useFakeTimers();
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: '廣' } });
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: '廣' } });
         await act(async () => {
             jest.advanceTimersByTime(501);
         });

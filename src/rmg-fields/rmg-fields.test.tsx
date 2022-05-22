@@ -80,7 +80,7 @@ describe('RmgFields', () => {
     it('Can render input field as expected', () => {
         render(<RmgFields fields={[mockInputField]} />);
 
-        const inputEl = screen.getByRole('textbox', { name: 'Mock input' });
+        const inputEl = screen.getByRole('combobox', { name: 'Mock input' });
         expect(inputEl).toBeInTheDocument();
 
         jest.useFakeTimers();

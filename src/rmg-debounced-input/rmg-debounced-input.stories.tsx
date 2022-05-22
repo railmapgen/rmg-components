@@ -13,6 +13,8 @@ export const Basic = () => {
     const [value500, setValue500] = useState('');
     const [digitValue, setDigitValue] = useState('');
 
+    const optionList = ['Guangzhou', 'Hong Kong', 'Shanghai'];
+
     return (
         <Box>
             <RmgLabel label="Delay=0ms">
@@ -21,6 +23,7 @@ export const Basic = () => {
                     defaultValue={value0}
                     onDebouncedChange={setValue0}
                     delay={0}
+                    optionList={optionList}
                 />
             </RmgLabel>
 
@@ -29,6 +32,7 @@ export const Basic = () => {
                     placeholder="Enter text in fast speed"
                     defaultValue={value500}
                     onDebouncedChange={setValue500}
+                    optionList={optionList}
                 />
             </RmgLabel>
 
@@ -38,6 +42,7 @@ export const Basic = () => {
                     defaultValue={digitValue}
                     validator={value => !isNaN(Number(value))}
                     onDebouncedChange={setDigitValue}
+                    optionList={optionList}
                 />
             </RmgLabel>
 
