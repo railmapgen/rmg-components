@@ -9,18 +9,18 @@
     "devDependencies": {
         "@chakra-ui/icons": "^1.1.7",
         "@chakra-ui/react": "^1.8.8",
-        "@chakra-ui/storybook-addon": "^1.0.3",
+        "@chakra-ui/storybook-addon": "^3.0.0",
         "@emotion/react": "^11.9.0",
         "@emotion/styled": "^11.8.1",
-        "@storybook/addon-actions": "^6.4.22",
-        "@storybook/addon-essentials": "^6.4.22",
-        "@storybook/addon-interactions": "^6.4.22",
-        "@storybook/addon-links": "^6.4.22",
-        "@storybook/builder-webpack5": "^6.4.22",
-        "@storybook/manager-webpack5": "^6.4.22",
-        "@storybook/node-logger": "^6.4.22",
+        "@storybook/addon-actions": "^6.5.3",
+        "@storybook/addon-essentials": "^6.5.3",
+        "@storybook/addon-interactions": "^6.5.3",
+        "@storybook/addon-links": "^6.5.3",
+        "@storybook/builder-webpack5": "^6.5.3",
+        "@storybook/manager-webpack5": "^6.5.3",
+        "@storybook/node-logger": "^6.5.3",
         "@storybook/preset-create-react-app": "^4.1.0",
-        "@storybook/react": "^6.4.22",
+        "@storybook/react": "^6.5.3",
         "@storybook/testing-library": "^0.0.11",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^12.1.5",
@@ -58,8 +58,8 @@
         "lint:dev": "eslint -c ./.eslintrc.dev.json ./src",
         "lint:fix": "eslint ./src --fix",
         "eject": "react-scripts eject",
-        "storybook": "start-storybook -p 6006 -s public",
-        "build:storybook": "build-storybook -s public"
+        "storybook": "start-storybook -p 6006",
+        "build:storybook": "build-storybook"
     },
     "browserslist": {
         "production": [
