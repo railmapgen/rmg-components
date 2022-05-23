@@ -7,7 +7,7 @@ export default function useThrottle(callback: Function, delay: number = 500) {
     const timeoutRef = useRef<number>();
 
     const throttledCallback = useCallback(
-        (...args) => {
+        (...args: any[]) => {
             if (!isReady) {
                 waitingArgs.current = args;
                 return;
