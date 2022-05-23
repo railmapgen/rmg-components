@@ -52,8 +52,8 @@ const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInpu
 
             {optionList && (
                 <datalist id={datalistRef.current}>
-                    {optionList?.map(opt => (
-                        <option>{opt}</option>
+                    {optionList?.map((opt, i) => (
+                        <option key={i}>{opt}</option>
                     ))}
                 </datalist>
             )}
