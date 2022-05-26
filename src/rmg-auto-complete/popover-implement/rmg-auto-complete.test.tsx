@@ -31,12 +31,15 @@ describe('RmgAutoComplete - popover implementation', () => {
         jest.clearAllMocks();
     });
 
-    it('Can render list of items as expected', () => {
+    it('Can render list of items as expected', async () => {
         setup();
 
-        expect(screen.getByText('Guangzhou (G)')).toBeInTheDocument();
-        expect(screen.getByText('Hong Kong (H)')).toBeInTheDocument();
-        expect(screen.getByText('Shanghai (S)')).toBeInTheDocument();
+        fireEvent.focus(screen.getByRole('combobox'));
+        await screen.findByRole('dialog');
+
+        expect(screen.getByRole('menuitem', { name: 'Guangzhou (G)' })).toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: 'Hong Kong (H)' })).toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: 'Shanghai (S)' })).toBeInTheDocument();
     });
 
     it('Can filter item as expected', async () => {
