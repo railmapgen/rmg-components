@@ -129,6 +129,10 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             '&.rmg-label__one-line': {
                 display: 'flex',
                 alignItems: 'center',
+
+                '& label:first-of-type': {
+                    mr: 'auto',
+                },
             },
         },
     },

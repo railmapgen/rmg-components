@@ -15,11 +15,7 @@ export const RmgLabel = (props: RmgLabelProps) => {
 
     return (
         <FormControl className={`${oneLine ? 'rmg-label__one-line' : ''} ${className ?? ''}`} sx={styles} {...others}>
-            {!noLabel && (
-                <FormLabel size="xs" marginRight={oneLine ? 'auto !important' : 'unset'}>
-                    {label}
-                </FormLabel>
-            )}
+            {!noLabel && <FormLabel size="xs">{label}</FormLabel>}
 
             {children}
         </FormControl>
