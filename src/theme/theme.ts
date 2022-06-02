@@ -1,8 +1,9 @@
-import { ComponentSingleStyleConfig, extendTheme } from '@chakra-ui/react';
+import { ComponentSingleStyleConfig, extendTheme, ThemeConfig } from '@chakra-ui/react';
 import { Styles } from '@chakra-ui/theme-tools';
 
-const config = {
+const config: ThemeConfig = {
     initialColorMode: 'system',
+    useSystemColorMode: true,
 };
 
 const styles: Styles = {
