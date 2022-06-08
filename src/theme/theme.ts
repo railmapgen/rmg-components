@@ -138,6 +138,17 @@ const components: Record<string, ComponentSingleStyleConfig> = {
         },
     },
 
+    RmgLineBadge: {
+        baseStyle: {
+            display: 'inline-flex',
+            alignItems: 'center',
+
+            '& > button:first-of-type': {
+                ml: 1,
+            },
+        },
+    },
+
     RmgPage: {
         baseStyle: {
             flexDirection: 'column',
