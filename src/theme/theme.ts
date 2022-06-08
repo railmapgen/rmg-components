@@ -138,6 +138,24 @@ const components: Record<string, ComponentSingleStyleConfig> = {
         },
     },
 
+    RmgPage: {
+        baseStyle: {
+            flexDirection: 'column',
+            flex: 1,
+            overflow: 'hidden',
+        },
+    },
+
+    RmgPageHeader: {
+        baseStyle: {
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            pl: 2,
+            pr: 3,
+            py: 1,
+        },
+    },
+
     RmgSidePanel: {
         baseStyle: ({ colorMode, width }) => ({
             height: '100%',
@@ -202,6 +220,21 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             '& svg:last-of-type': {
                 ml: 1,
             },
+        },
+    },
+
+    RmgWindow: {
+        baseStyle: {
+            flexDirection: 'column',
+            height: '100%',
+            overflow: 'hidden',
+        },
+    },
+
+    RmgWindowHeader: {
+        baseStyle: {
+            px: 2,
+            alignItems: 'center',
         },
     },
 };

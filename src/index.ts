@@ -7,6 +7,7 @@ export * from './rmg-debounced-textarea';
 export * from './rmg-env-badge';
 export * from './rmg-fields';
 export * from './rmg-label';
+export * from './rmg-layout';
 export * from './rmg-line-badge';
 export * from './rmg-multi-line-string';
 export * from './rmg-select';
