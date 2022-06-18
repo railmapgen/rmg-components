@@ -1,7 +1,8 @@
 import { RmgLineBadge } from './rmg-line-badge';
 import { MonoColour } from '../util/constants';
-import { HStack } from '@chakra-ui/react';
+import { HStack, IconButton } from '@chakra-ui/react';
 import { EditIcon, SmallCloseIcon } from '@chakra-ui/icons';
+import React from 'react';
 
 export default {
     title: 'RmgLineBadge',
@@ -17,30 +18,26 @@ export const Basic = () => {
                 fg={MonoColour.black}
                 bg="#F3D03E"
                 fontSize="1em"
-                onEdit={console.log}
-                editLabel="Edit Line 1"
-                editIcon={<EditIcon />}
-            />
-            <RmgLineBadge
-                name="1号线"
-                fg={MonoColour.black}
-                bg="#F3D03E"
-                fontSize="1em"
-                onRemove={console.log}
-                removeLabel="Remove Line 1"
-                removeIcon={<SmallCloseIcon />}
-            />
-            <RmgLineBadge
-                name="1号线"
-                fg={MonoColour.black}
-                bg="#F3D03E"
-                fontSize="1em"
-                onEdit={console.log}
-                editLabel="Edit Line 1"
-                editIcon={<EditIcon />}
-                onRemove={console.log}
-                removeLabel="Remove Line 1"
-                removeIcon={<SmallCloseIcon />}
+                actions={
+                    <>
+                        <IconButton
+                            size="xs"
+                            variant="ghost"
+                            color={MonoColour.black}
+                            aria-label="Edit Line 1"
+                            icon={<EditIcon />}
+                            onClick={console.log}
+                        />
+                        <IconButton
+                            size="xs"
+                            variant="ghost"
+                            color={MonoColour.black}
+                            aria-label="Remove Line 1"
+                            icon={<SmallCloseIcon />}
+                            onClick={console.log}
+                        />
+                    </>
+                }
             />
         </HStack>
     );
