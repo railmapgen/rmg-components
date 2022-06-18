@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { ColourHex, MonoColour, Name } from '../util/constants';
 import { Badge, BadgeProps, IconButton, useStyleConfig } from '@chakra-ui/react';
-import { EditIcon, SmallCloseIcon } from '@chakra-ui/icons';
 
 export interface RmgLineBadgeProps extends BadgeProps {
     name: Name | string;
@@ -10,12 +9,15 @@ export interface RmgLineBadgeProps extends BadgeProps {
     showShortName?: boolean;
     onEdit?: () => void;
     editLabel?: string;
+    editIcon?: ReactElement;
     onRemove?: () => void;
     removeLabel?: string;
+    removeIcon?: ReactElement;
 }
 
 export const RmgLineBadge = (props: RmgLineBadgeProps) => {
-    const { name, fg, bg, showShortName, onEdit, editLabel, onRemove, removeLabel, ...others } = props;
+    const { name, fg, bg, showShortName, onEdit, editLabel, editIcon, onRemove, removeLabel, removeIcon, ...others } =
+        props;
 
     const styles = useStyleConfig('RmgLineBadge');
 
@@ -37,7 +39,7 @@ export const RmgLineBadge = (props: RmgLineBadgeProps) => {
                     variant="ghost"
                     color={fg}
                     aria-label={editLabel ?? ''}
-                    icon={<EditIcon />}
+                    icon={editIcon}
                     onClick={onEdit}
                 />
             )}
@@ -47,7 +49,7 @@ export const RmgLineBadge = (props: RmgLineBadgeProps) => {
                     variant="ghost"
                     color={fg}
                     aria-label={removeLabel ?? ''}
-                    icon={<SmallCloseIcon />}
+                    icon={removeIcon}
                     onClick={onRemove}
                 />
             )}

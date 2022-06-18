@@ -1,6 +1,7 @@
 import { RmgLineBadge } from './rmg-line-badge';
 import { MonoColour } from '../util/constants';
 import { HStack } from '@chakra-ui/react';
+import { EditIcon, SmallCloseIcon } from '@chakra-ui/icons';
 
 export default {
     title: 'RmgLineBadge',
@@ -18,6 +19,7 @@ export const Basic = () => {
                 fontSize="1em"
                 onEdit={console.log}
                 editLabel="Edit Line 1"
+                editIcon={<EditIcon />}
             />
             <RmgLineBadge
                 name="1号线"
@@ -26,6 +28,7 @@ export const Basic = () => {
                 fontSize="1em"
                 onRemove={console.log}
                 removeLabel="Remove Line 1"
+                removeIcon={<SmallCloseIcon />}
             />
             <RmgLineBadge
                 name="1号线"
@@ -34,8 +37,10 @@ export const Basic = () => {
                 fontSize="1em"
                 onEdit={console.log}
                 editLabel="Edit Line 1"
+                editIcon={<EditIcon />}
                 onRemove={console.log}
                 removeLabel="Remove Line 1"
+                removeIcon={<SmallCloseIcon />}
             />
         </HStack>
     );
