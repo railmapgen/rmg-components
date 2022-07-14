@@ -179,6 +179,7 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             transition: { base: 'unset', sm: '0.3s' },
             maxW: 0,
             visibility: 'hidden',
+            zIndex: 10,
 
             '&.show-side-panel': {
                 maxW: { base: '100%', sm: width },
