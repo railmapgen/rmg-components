@@ -1,6 +1,11 @@
-import { RmgAgGrid, RmgAgGridColDef } from './rmg-ag-grid';
+import { RmgAgGrid } from './rmg-ag-grid';
 import { AgGridReact } from 'ag-grid-react';
 import { Badge, Box } from '@chakra-ui/react';
+import { ColDef } from 'ag-grid-community';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
 export default {
     title: 'RmgAgGrid',
@@ -22,7 +27,7 @@ export const Basic = () => {
         { id: '004', name: 'David', age: 23, nationality: 'New Zealand' },
     ];
 
-    const columnDefs: RmgAgGridColDef<RowDataType>[] = [
+    const columnDefs: ColDef<RowDataType>[] = [
         {
             headerName: ' ',
             checkboxSelection: true,
@@ -42,7 +47,7 @@ export const Basic = () => {
         {
             headerName: 'Row span 1',
             field: 'id',
-            rowSpan: ({ data }) => (data.id === '001' ? 3 : 0),
+            rowSpan: ({ data }) => (data?.id === '001' ? 3 : 0),
             cellClassRules: {
                 'rmg-ag-grid--spanned-cell': ({ value }) => value === '001',
             },
@@ -50,7 +55,7 @@ export const Basic = () => {
         {
             headerName: 'Row span 2',
             field: 'id',
-            rowSpan: ({ data }) => (data.id === '002' ? 3 : 0),
+            rowSpan: ({ data }) => (data?.id === '002' ? 3 : 0),
             cellClassRules: {
                 'rmg-ag-grid--spanned-cell': ({ value }) => value === '002',
             },
