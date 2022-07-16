@@ -164,6 +164,7 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             pl: 2,
             pr: 3,
             py: 1,
+            zIndex: 10,
         },
     },
 
@@ -179,7 +180,7 @@ const components: Record<string, ComponentSingleStyleConfig> = {
             transition: { base: 'unset', sm: '0.3s' },
             maxW: 0,
             visibility: 'hidden',
-            zIndex: 10,
+            zIndex: 5,
 
             '&.show-side-panel': {
                 maxW: { base: '100%', sm: width },
@@ -247,6 +248,7 @@ const components: Record<string, ComponentSingleStyleConfig> = {
         baseStyle: {
             px: 2,
             alignItems: 'center',
+            zIndex: 15,
         },
     },
 };
