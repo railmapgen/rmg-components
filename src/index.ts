@@ -1,5 +1,6 @@
 export * from './rmg-ag-grid';
 export * from './rmg-auto-complete';
+export * from './rmg-button-group';
 export * from './rmg-card';
 export * from './rmg-data-table';
 export * from './rmg-debounced-input';
