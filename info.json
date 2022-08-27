@@ -1,5 +1,6 @@
 {
   "component": "rmg-components",
-  "version": "2.0.2",
-  "environment": "PRD"
+  "version": "2.1.0",
+  "environment": "PRD",
+  "instance": "GitHub"
 }
