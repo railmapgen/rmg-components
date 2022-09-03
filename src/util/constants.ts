@@ -10,9 +10,3 @@ export enum MonoColour {
  * @property {string} 1 - Latin characters
  */
 export type Name = [string, string];
-
-export enum Environments {
-    DEV = 'DEV',
-    UAT = 'UAT',
-    PRD = 'PRD',
-}

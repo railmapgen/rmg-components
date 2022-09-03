@@ -1,15 +1,15 @@
 import React from 'react';
 import { render } from '../test-utils';
-import { Environments } from '../util/constants';
 import { RmgEnvBadge } from './rmg-env-badge';
 import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { RmgEnv } from '@railmapgen/rmg-runtime';
 
 describe('RmgEnvBadge', () => {
     it('Can show DEV badge as expected', () => {
         render(
             <RmgEnvBadge
-                environment={Environments.DEV}
+                environment={RmgEnv.DEV}
                 version="0.1.0"
                 popoverHeader="You're on DEV environment!"
                 popoverBody="Please visit PRD environment!"
@@ -24,7 +24,7 @@ describe('RmgEnvBadge', () => {
         jest.useFakeTimers();
         render(
             <RmgEnvBadge
-                environment={Environments.UAT}
+                environment={RmgEnv.UAT}
                 version="0.1.0"
                 popoverHeader="You're on UAT environment!"
                 popoverBody="Please visit PRD environment!"
@@ -45,7 +45,7 @@ describe('RmgEnvBadge', () => {
     });
 
     it('Can show PRD badge with version number as expected', () => {
-        render(<RmgEnvBadge environment={Environments.PRD} version="0.1.0" />);
+        render(<RmgEnvBadge environment={RmgEnv.PRD} version="0.1.0" />);
 
         expect(screen.queryByText('PRD')).not.toBeInTheDocument();
         expect(screen.getByText('0.1.0')).toBeInTheDocument();

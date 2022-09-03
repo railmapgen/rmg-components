@@ -1,6 +1,8 @@
 import { RmgEnvBadge } from './rmg-env-badge';
 import { Box } from '@chakra-ui/react';
-import { Environments } from '../util/constants';
+import { RmgEnv } from '@railmapgen/rmg-runtime';
+import useEnvironment from '../hook/useEnvironment';
+import useAppVersion from '../hook/useAppVersion';
 
 export default {
     title: 'RmgEnvBadge',
@@ -8,21 +10,25 @@ export default {
 };
 
 export const Basic = () => {
+    const environment = useEnvironment();
+    const appVersion = useAppVersion();
+
     return (
         <Box>
             <RmgEnvBadge
-                environment={Environments.DEV}
+                environment={RmgEnv.DEV}
                 version="0.1.0"
                 popoverHeader="You're on DEV environment!"
                 popoverBody="Please visit PRD environment!"
             />
             <RmgEnvBadge
-                environment={Environments.UAT}
+                environment={RmgEnv.UAT}
                 version="0.1.0"
                 popoverHeader="You're on UAT environment!"
                 popoverBody="Please visit PRD environment!"
             />
-            <RmgEnvBadge environment={Environments.PRD} version="0.1.0" />
+            <RmgEnvBadge environment={RmgEnv.PRD} version="0.1.0" />
+            <RmgEnvBadge environment={environment} version={appVersion} />
         </Box>
     );
 };
