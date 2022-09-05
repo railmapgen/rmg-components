@@ -15,4 +15,5 @@ export * from './rmg-select';
 export * from './rmg-side-panel';
 export * from './rmg-throttled-slider';
 
+export * from './hook';
 export * from './theme';

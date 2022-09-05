@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import rmgRuntime from '@railmapgen/rmg-runtime';
 
-export default function useAppVersion() {
+export const useAppVersion = () => {
     const [appVersion, setAppVersion] = useState('unknown');
 
     useEffect(() => {
@@ -9,4 +9,4 @@ export default function useAppVersion() {
     }, []);
 
     return appVersion;
-}
+};

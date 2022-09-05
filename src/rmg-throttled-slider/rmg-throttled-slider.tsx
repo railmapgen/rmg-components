@@ -8,7 +8,7 @@ import {
     SliderTrack,
     useStyleConfig,
 } from '@chakra-ui/react';
-import useThrottle from '../hook/useThrottle';
+import { useThrottle } from '../hook/useThrottle';
 
 export interface RmgThrottledSliderProps extends SliderProps {
     onThrottledChange?: (value: number) => void;

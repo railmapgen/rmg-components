@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import rmgRuntime, { RmgEnv } from '@railmapgen/rmg-runtime';
 
-export default function useEnvironment() {
+export const useEnvironment = () => {
     const [environment, setEnvironment] = useState(RmgEnv.PRD);
 
     useEffect(() => {
@@ -9,4 +9,4 @@ export default function useEnvironment() {
     }, []);
 
     return environment;
-}
+};

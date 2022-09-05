@@ -1,8 +1,8 @@
 import { RmgEnvBadge } from './rmg-env-badge';
 import { Box } from '@chakra-ui/react';
 import { RmgEnv } from '@railmapgen/rmg-runtime';
-import useEnvironment from '../hook/useEnvironment';
-import useAppVersion from '../hook/useAppVersion';
+import { useEnvironment } from '../hook/useEnvironment';
+import { useAppVersion } from '../hook/useAppVersion';
 
 export default {
     title: 'RmgEnvBadge',

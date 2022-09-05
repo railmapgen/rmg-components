@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import rmgRuntime, { RmgInstance } from '@railmapgen/rmg-runtime';
 
-export default function useInstance() {
+export const useInstance = () => {
     const [instance, setInstance] = useState(RmgInstance.UNKNOWN);
 
     useEffect(() => {
@@ -9,4 +9,4 @@ export default function useInstance() {
     }, []);
 
     return instance;
-}
+};
