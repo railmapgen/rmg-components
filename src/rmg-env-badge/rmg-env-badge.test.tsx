@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '../test-utils';
 import { RmgEnvBadge } from './rmg-env-badge';
 import { screen } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import { RmgEnv } from '@railmapgen/rmg-runtime';
 
 describe('RmgEnvBadge', () => {
@@ -20,8 +19,7 @@ describe('RmgEnvBadge', () => {
         expect(screen.queryByText('0.1.0')).not.toBeInTheDocument();
     });
 
-    it('Can show UAT badge as expected', async () => {
-        jest.useFakeTimers();
+    it('Can show UAT badge as expected', () => {
         render(
             <RmgEnvBadge
                 environment={RmgEnv.UAT}
@@ -33,15 +31,6 @@ describe('RmgEnvBadge', () => {
 
         expect(screen.getByText('UAT')).toBeInTheDocument();
         expect(screen.queryByText('0.1.0')).not.toBeInTheDocument();
-
-        expect(screen.getByText('UAT').getAttribute('aria-expanded')).toBe('false');
-
-        await act(async () => {
-            jest.advanceTimersByTime(2001);
-        });
-
-        // can show popover after 1 second
-        expect(screen.getByText('UAT').getAttribute('aria-expanded')).toBe('true');
     });
 
     it('Can show PRD badge with version number as expected', () => {

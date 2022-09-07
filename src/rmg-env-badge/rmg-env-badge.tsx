@@ -8,7 +8,7 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '@chakra-ui/react';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { RmgEnv } from '@railmapgen/rmg-runtime';
 
 const getBadgeColour = (env: RmgEnv) => {
@@ -34,27 +34,15 @@ export function RmgEnvBadge(props: RmgEnvBadgeProps) {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        let timeoutId: number;
-        if (environment === RmgEnv.UAT) {
-            timeoutId = window.setTimeout(() => {
-                setIsOpen(true);
-            }, 1000);
-        }
-
-        return () => {
-            clearTimeout(timeoutId);
-        };
-    }, []);
-
     return (
-        <Popover
-            isOpen={isOpen}
-            onOpen={() => environment !== RmgEnv.PRD && setIsOpen(true)}
-            onClose={() => setIsOpen(false)}
-        >
+        <Popover isOpen={isOpen} onOpen={() => popoverHeader && setIsOpen(true)} onClose={() => setIsOpen(false)}>
             <PopoverTrigger>
-                <Badge ml={1} colorScheme={getBadgeColour(environment)}>
+                <Badge
+                    ml={1}
+                    colorScheme={getBadgeColour(environment)}
+                    title={`${environment}: ${version}`}
+                    cursor={popoverHeader ? 'pointer' : 'help'}
+                >
                     {environment === RmgEnv.PRD ? version : environment}
                 </Badge>
             </PopoverTrigger>
