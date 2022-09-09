@@ -1,8 +1,7 @@
 import { RmgEnvBadge } from './rmg-env-badge';
 import { Box } from '@chakra-ui/react';
-import { RmgEnv } from '@railmapgen/rmg-runtime';
-import { useEnvironment } from '../hook/useEnvironment';
-import { useAppVersion } from '../hook/useAppVersion';
+import rmgRuntime, { RmgEnv } from '@railmapgen/rmg-runtime';
+import { useEffect, useState } from 'react';
 
 export default {
     title: 'RmgEnvBadge',
@@ -10,8 +9,15 @@ export default {
 };
 
 export const Basic = () => {
-    const environment = useEnvironment();
-    const appVersion = useAppVersion();
+    const [environment, setEnvironment] = useState(RmgEnv.PRD);
+    const [appVersion, setAppVersion] = useState('unknown');
+
+    useEffect(() => {
+        rmgRuntime.ready().then(() => {
+            setEnvironment(rmgRuntime.getEnv());
+            setAppVersion(rmgRuntime.getAppVersion());
+        });
+    }, []);
 
     return (
         <Box>
