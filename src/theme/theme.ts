@@ -1,9 +1,19 @@
-import { ComponentSingleStyleConfig, extendTheme, ThemeConfig } from '@chakra-ui/react';
+import { extendTheme, theme, ThemeConfig } from '@chakra-ui/react';
 import { Styles } from '@chakra-ui/theme-tools';
+import Switch from './components/switch';
+import { ComponentStyleConfig } from '@chakra-ui/theme';
+import Slider from './components/slider';
+import Input from './components/input';
 
 const config: ThemeConfig = {
     initialColorMode: 'system',
     useSystemColorMode: true,
+};
+
+const colors = {
+    primary: {
+        ...theme.colors.teal,
+    },
 };
 
 const styles: Styles = {
@@ -15,7 +25,13 @@ const styles: Styles = {
     },
 };
 
-const components: Record<string, ComponentSingleStyleConfig> = {
+const components: Record<string, ComponentStyleConfig> = {
+    Input,
+    Select: Input,
+    Slider,
+    Switch,
+    Textarea: Input,
+
     RmgAgGrid: {
         baseStyle: {
             w: '100%',
@@ -253,4 +269,4 @@ const components: Record<string, ComponentSingleStyleConfig> = {
     },
 };
 
-export const rmgChakraTheme = extendTheme({ config, styles, components });
+export const rmgChakraTheme = extendTheme({ config, colors, styles, components });

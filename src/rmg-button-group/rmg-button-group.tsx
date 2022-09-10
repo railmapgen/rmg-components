@@ -46,7 +46,7 @@ export function RmgButtonGroup<T extends string | boolean>(props: RmgButtonGroup
     };
 
     return (
-        <ButtonGroup size="xs" isAttached colorScheme="teal" variant="outline">
+        <ButtonGroup size="xs" isAttached colorScheme="primary" variant="outline">
             {selections.map((selection, i) => {
                 const isSelected =
                     (typeof value === 'object' && value.includes(selection.value)) || value === selection.value;
