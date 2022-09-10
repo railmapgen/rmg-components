@@ -4,7 +4,7 @@ import { getColor, StyleFunctionProps } from '@chakra-ui/theme-tools';
 const getFocusBorderColor = (colorMode: StyleFunctionProps['colorMode']) =>
     colorMode === 'dark' ? 'primary.300' : 'primary.500';
 
-const theme: ComponentStyleConfig = {
+export const inputTheme: ComponentStyleConfig = {
     variants: {
         flushed: ({ theme, colorMode }) => ({
             field: {
@@ -16,5 +16,3 @@ const theme: ComponentStyleConfig = {
         }),
     },
 };
-
-export default theme;

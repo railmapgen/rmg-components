@@ -1,9 +1,7 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 
-const theme: ComponentStyleConfig = {
+export const sliderTheme: ComponentStyleConfig = {
     defaultProps: {
         colorScheme: 'primary',
     },
 };
-
-export default theme;
