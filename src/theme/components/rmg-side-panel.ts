@@ -1,10 +1,10 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const rmgSidePanelTheme: ComponentStyleConfig = {
-    baseStyle: ({ colorMode, width }) => ({
+    baseStyle: ({ colorMode, width, alwaysOverlay }) => ({
         height: '100%',
-        position: { base: 'absolute', lg: 'relative' },
-        right: { base: 0, lg: 'unset' },
+        position: alwaysOverlay ? 'absolute' : { base: 'absolute', lg: 'relative' },
+        right: alwaysOverlay ? 0 : { base: 0, lg: 'unset' },
         background: colorMode === 'light' ? 'white' : 'gray.800',
         boxShadow: 'lg',
         flexShrink: 0,

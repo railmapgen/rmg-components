@@ -1,22 +1,26 @@
-import { Alert, AlertIcon, CloseButton, Flex, useStyleConfig } from '@chakra-ui/react';
+import { Alert, AlertIcon, CloseButton, Flex, FlexProps, useStyleConfig } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
-export interface RmgSidePanelProps {
+export interface RmgSidePanelProps extends FlexProps {
     isOpen: boolean;
     header: ReactNode;
-    // by default 320px
-    width?: number;
-    children?: ReactNode;
+    width?: number; // default 320px
+    alwaysOverlay?: boolean;
 }
 
 export const RmgSidePanel = (props: RmgSidePanelProps) => {
-    const { isOpen, children } = props;
-    const width = props.width ?? 320;
+    const { isOpen, alwaysOverlay, width, sx, children, ...others } = props;
 
-    const styles = useStyleConfig('RmgSidePanel', { width });
+    const styles = useStyleConfig('RmgSidePanel', { width: width ?? 320, alwaysOverlay });
 
     return (
-        <Flex as="section" className={isOpen ? 'show-side-panel' : ''} sx={styles} data-testid="side-panel-root">
+        <Flex
+            as="section"
+            className={isOpen ? 'show-side-panel' : ''}
+            sx={{ ...styles, ...sx }}
+            data-testid="side-panel-root"
+            {...others}
+        >
             <Flex className="rmg-side-panel__inner">{children}</Flex>
         </Flex>
     );
