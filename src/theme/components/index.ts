@@ -11,6 +11,7 @@ import { rmgCardTheme as RmgCard } from './rmg-card';
 import { rmgDataTableTheme as RmgDataTable } from './rmg-data-table';
 import { rmgLabelTheme as RmgLabel } from './rmg-label';
 import { rmgLineBadgeTheme as RmgLineBadge } from './rmg-line-badge';
+import { rmgMultiSelectTheme as RmgMultiSelect } from './rmg-multi-select';
 import { rmgPageTheme as RmgPage } from './rmg-page';
 import { rmgPageHeaderTheme as RmgPageHeader } from './rmg-page-header';
 import { rmgSidePanelTheme as RmgSidePanel } from './rmg-side-panel';
@@ -20,6 +21,7 @@ import { rmgWindowHeaderTheme as RmgWindowHeader } from './rmg-window-header';
 
 export const components: Record<string, ComponentStyleConfig> = {
     Input,
+    Checkbox: Switch,
     Select: Input,
     Slider,
     Switch,
@@ -30,6 +32,7 @@ export const components: Record<string, ComponentStyleConfig> = {
     RmgDataTable,
     RmgLabel,
     RmgLineBadge,
+    RmgMultiSelect,
     RmgPage,
     RmgPageHeader,
     RmgSidePanel,

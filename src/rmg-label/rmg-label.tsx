@@ -14,7 +14,12 @@ export const RmgLabel = (props: RmgLabelProps) => {
     const styles = useStyleConfig('RmgLabel');
 
     return (
-        <FormControl className={`${oneLine ? 'rmg-label__one-line' : ''} ${className ?? ''}`} sx={styles} {...others}>
+        <FormControl
+            className={`${oneLine ? 'rmg-label__one-line' : ''} ${className ?? ''}`}
+            aria-label={label}
+            sx={styles}
+            {...others}
+        >
             {!noLabel && <FormLabel size="xs">{label}</FormLabel>}
 
             {children}
