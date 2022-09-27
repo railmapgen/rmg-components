@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     Badge,
     Box,
@@ -23,12 +23,11 @@ export interface RmgMultiSelectProps {
     displayValue: string;
     selections: Selection[];
     defaultValue: string[];
-    rightIcon?: ReactElement;
     onChange?: (value: string[]) => void;
 }
 
 export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
-    const { displayValue, selections, defaultValue, rightIcon, onChange } = props;
+    const { displayValue, selections, defaultValue, onChange } = props;
 
     const styles = useStyleConfig('RmgMultiSelect');
 
@@ -60,23 +59,29 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
         <Box ref={wrapperRef} sx={styles}>
             <Popover placement="bottom-start" isOpen={isDropdownOpen} autoFocus={false}>
                 <PopoverAnchor>
-                    <Box
-                        className={`rmg-multi-select__field ${isDropdownOpen ? 'active' : ''}`}
+                    <div
+                        className="rmg-multi-select__wrapper"
                         role="combobox"
                         aria-expanded={isDropdownOpen}
                         aria-label={displayValue}
                         onClick={() => setIsDropdownOpen(prevState => !prevState)}
                     >
-                        <span>{displayValue}</span>
-                        {value.length ? (
-                            <Badge colorScheme="blue" role="status">
-                                {value.length}/{selections.length}
-                            </Badge>
-                        ) : (
-                            <></>
-                        )}
-                        {rightIcon}
-                    </Box>
+                        <div className={`rmg-multi-select__field ${isDropdownOpen ? 'active' : ''}`}>
+                            <span>{displayValue}</span>
+                            {value.length ? (
+                                <Badge colorScheme="blue" role="status">
+                                    {value.length}/{selections.length}
+                                </Badge>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                        <div className="rmg-multi-select__icon-wrapper">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                            </svg>
+                        </div>
+                    </div>
                 </PopoverAnchor>
 
                 <PopoverContent>

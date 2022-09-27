@@ -2,7 +2,6 @@ import { Box, Text } from '@chakra-ui/react';
 import { RmgMultiSelect } from './rmg-multi-select';
 import { useState } from 'react';
 import { RmgLabel } from '../rmg-label';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 
 export default {
     title: 'RmgMultiSelect',
@@ -25,7 +24,6 @@ export const Basic = () => {
                     displayValue="Select services"
                     selections={selections}
                     defaultValue={services}
-                    rightIcon={<ChevronDownIcon />}
                     onChange={setServices}
                 />
             </RmgLabel>

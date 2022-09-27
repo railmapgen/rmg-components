@@ -6,16 +6,22 @@ const getFocusBorderColor = (colorMode: StyleFunctionProps['colorMode']) =>
 
 export const rmgMultiSelectTheme: ComponentStyleConfig = {
     baseStyle: ({ theme, colorMode }) => ({
-        '& .rmg-multi-select__field': {
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            minWidth: 0,
-            outline: 0,
+        '& .rmg-multi-select__wrapper': {
             position: 'relative',
+            w: '100%',
+            h: '25.75px',
+            transform: 'translateY(1.75px)',
+        },
+
+        '& .rmg-multi-select__field': {
+            position: 'relative',
+            w: '100%',
+            minW: 0,
+            outline: 0,
             appearance: 'none',
             transitionProperty: 'common',
             transitionDuration: 'normal',
+            pb: '1px',
             fontSize: 'sm',
             h: '6',
             borderBottom: '1px solid',
@@ -41,8 +47,25 @@ export const rmgMultiSelectTheme: ComponentStyleConfig = {
                 boxShadow: `0px 1px 0px 0px ${getColor(theme, getFocusBorderColor(colorMode))}`,
             },
 
-            '& > span:first-of-type': {
-                flex: 1,
+            '& > span:last-of-type': {
+                position: 'absolute',
+                right: 8,
+            },
+        },
+
+        '& .rmg-multi-select__icon-wrapper': {
+            display: 'inline-flex',
+            justifyContent: 'center',
+            w: 6,
+            h: '100%',
+            position: 'absolute',
+            right: 2,
+            top: 0,
+            fontSize: 'xl',
+
+            '& svg': {
+                h: '1em',
+                w: '1em',
             },
         },
 
