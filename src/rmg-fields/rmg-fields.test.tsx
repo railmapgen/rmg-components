@@ -77,6 +77,21 @@ const mockFullWidthTextField: RmgFieldsField = {
 };
 
 describe('RmgFields', () => {
+    beforeEach(() => {
+        // @ts-ignore
+        delete window.ResizeObserver;
+        window.ResizeObserver = jest.fn().mockImplementation(() => ({
+            observe: jest.fn(),
+            unobserve: jest.fn(),
+            disconnect: jest.fn(),
+        }));
+    });
+
+    afterEach(() => {
+        window.ResizeObserver = ResizeObserver;
+        jest.restoreAllMocks();
+    });
+
     it('Can render input field as expected', () => {
         render(<RmgFields fields={[mockInputField]} />);
 

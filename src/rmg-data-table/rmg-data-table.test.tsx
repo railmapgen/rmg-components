@@ -11,7 +11,7 @@ describe('RmgDataTable', () => {
         render(<RmgDataTable data={mockData} fields={fields} />);
 
         expect(screen.getByRole('columnheader', { name: 'Field 1' })).toBeInTheDocument();
-        expect(screen.getByRole('gridcell', { name: 'Value 1' })).toBeInTheDocument();
+        expect(screen.getByRole('cell', { name: 'Value 1' })).toBeInTheDocument();
     });
 
     it('Can display customised component in cell as expected', () => {
@@ -23,7 +23,7 @@ describe('RmgDataTable', () => {
         ];
         render(<RmgDataTable data={mockData} fields={fields} />);
 
-        expect(within(screen.getByRole('gridcell')).getByRole('button', { name: 'Value 1' })).toBeInTheDocument();
+        expect(within(screen.getByRole('cell')).getByRole('button', { name: 'Value 1' })).toBeInTheDocument();
     });
 
     it('Can hide column if defined as hidden', () => {
@@ -33,6 +33,6 @@ describe('RmgDataTable', () => {
         render(<RmgDataTable data={mockData} fields={fields} />);
 
         expect(screen.queryByRole('columnheader')).not.toBeInTheDocument();
-        expect(screen.queryByRole('gridcell')).not.toBeInTheDocument();
+        expect(screen.queryByRole('cell')).not.toBeInTheDocument();
     });
 });
