@@ -41,6 +41,8 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
         defaultValue.toString() && setValue(defaultValue);
     }, [defaultValue.toString()]);
 
+    const selectedCount = value.filter(val => selections.some(selection => selection.value === val)).length;
+
     const handleCheck = (selection: Selection, checked: boolean) => {
         if (checked) {
             if (!value.includes(selection.value)) {
@@ -68,9 +70,9 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
                     >
                         <div className={`rmg-multi-select__field ${isDropdownOpen ? 'active' : ''}`}>
                             <span>{displayValue}</span>
-                            {value.length ? (
+                            {selectedCount ? (
                                 <Badge colorScheme="blue" role="status">
-                                    {value.length}/{selections.length}
+                                    {selectedCount}/{selections.length}
                                 </Badge>
                             ) : (
                                 <></>

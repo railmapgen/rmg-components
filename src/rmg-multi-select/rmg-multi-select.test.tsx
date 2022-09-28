@@ -54,4 +54,16 @@ describe('RmgMultiSelect', () => {
         expect(mockCallbacks.onChange).toBeCalledTimes(1);
         expect(mockCallbacks.onChange).lastCalledWith(['local', 'express']);
     });
+
+    it('Can show correct number of selected as expected', () => {
+        render(
+            <RmgMultiSelect
+                displayValue="Select services"
+                selections={mockSelections}
+                defaultValue={['local', 'special']}
+                {...mockCallbacks}
+            />
+        );
+        expect(screen.getByRole('status')).toHaveTextContent('1/3');
+    });
 });

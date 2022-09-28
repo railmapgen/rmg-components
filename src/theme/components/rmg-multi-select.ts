@@ -11,6 +11,7 @@ export const rmgMultiSelectTheme: ComponentStyleConfig = {
             w: '100%',
             h: '25.75px',
             transform: 'translateY(1.75px)',
+            cursor: 'default',
         },
 
         '& .rmg-multi-select__field': {
