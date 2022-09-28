@@ -1,5 +1,15 @@
 import React from 'react';
-import { Alert, AlertDescription, AlertIcon, AlertProps, AlertTitle, Text } from '@chakra-ui/react';
+import {
+    Alert,
+    AlertDescription,
+    AlertIcon,
+    AlertProps,
+    AlertTitle,
+    Link,
+    Text,
+    useColorModeValue,
+    useStyleConfig,
+} from '@chakra-ui/react';
 import rmgRuntime from '@railmapgen/rmg-runtime';
 
 interface ErrorDetailProps extends AlertProps {
@@ -8,26 +18,22 @@ interface ErrorDetailProps extends AlertProps {
 }
 
 export default function ErrorDetail(props: ErrorDetailProps) {
-    const { error, errorInfo, ...others } = props;
+    const { error, errorInfo, sx, ...others } = props;
+
+    const styles = useStyleConfig('RmgErrorBoundary');
+    const linkColour = useColorModeValue('primary.500', 'primary.300');
 
     const component = rmgRuntime.getAppName();
     const linkEl = (
-        <a
-            href={`https://github.com/railmapgen/${component}/issues`}
-            target="_blank"
-            rel="noreferrer"
-            style={{ textDecoration: 'underline' }}
-        >
+        <Link color={linkColour} href={`https://github.com/railmapgen/${component}/issues`} isExternal={true}>
             GitHub Issue
-        </a>
+        </Link>
     );
 
     return (
-        <Alert status="error" flexDirection="column" alignItems="center" justifyContent="center" {...others}>
-            <AlertIcon boxSize="40px" mr={0} />
-            <AlertTitle mt={4} mb={1} fontSize="lg">
-                Something went wrong!
-            </AlertTitle>
+        <Alert status="error" sx={{ ...styles, ...sx }} {...others}>
+            <AlertIcon />
+            <AlertTitle>Something went wrong!</AlertTitle>
 
             <AlertDescription>
                 <Text>
@@ -45,7 +51,7 @@ export default function ErrorDetail(props: ErrorDetailProps) {
                     并附上详细信息。
                 </Text>
 
-                <details style={{ whiteSpace: 'pre-wrap' }}>
+                <details>
                     {error?.toString()}
                     <br />
                     {errorInfo?.componentStack}
