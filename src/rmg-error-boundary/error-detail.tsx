@@ -38,7 +38,7 @@ export default function ErrorDetail(props: ErrorDetailProps) {
             <AlertDescription>
                 <Text>
                     Please try to refresh or re-import your configuration files. If the issue still persists, please
-                    consider upgrading your browser or submit an issue in {linkEl} with the detail shown above.
+                    consider upgrading your browser or submit an issue in {linkEl} with the detail shown below.
                 </Text>
 
                 <Text>
