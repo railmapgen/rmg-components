@@ -19,8 +19,18 @@ export const rmgErrorBoundaryTheme: ComponentStyleConfig = {
             fontSize: 'lg',
         },
 
-        '& details': {
-            whiteSpace: 'pre-wrap',
+        '& .chakra-alert__desc': {
+            w: '100%',
+
+            '& p': {
+                my: 1,
+            },
+
+            '& details': {
+                whiteSpace: 'pre-wrap',
+                fontFamily: 'monospace',
+                fontSize: 'sm',
+            },
         },
     },
 };
