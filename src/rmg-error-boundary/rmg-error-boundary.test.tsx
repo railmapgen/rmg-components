@@ -21,5 +21,25 @@ describe('RmgErrorBoundary', () => {
         fireEvent.click(screen.getByRole('heading'));
 
         expect(screen.getByRole('alert')).toHaveTextContent(/Something went wrong/);
+        expect(screen.queryByRole('button', { name: 'reset this app' })).not.toBeInTheDocument();
+    });
+
+    it('Can show reset app dialog as expected', async () => {
+        render(
+            <RmgErrorBoundary allowReset>
+                <BuggyCounter />
+            </RmgErrorBoundary>
+        );
+
+        fireEvent.click(screen.getByRole('heading'));
+        fireEvent.click(screen.getByRole('heading'));
+        fireEvent.click(screen.getByRole('heading'));
+        fireEvent.click(screen.getByRole('heading'));
+        fireEvent.click(screen.getByRole('heading'));
+
+        expect(screen.getByRole('button', { name: 'reset this app' })).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'reset this app' }));
+        await screen.findByRole('alertdialog', { name: 'Warning 警告' });
     });
 });

@@ -9,7 +9,7 @@ export default {
 
 export const Basic = () => {
     return (
-        <RmgErrorBoundary>
+        <RmgErrorBoundary allowReset>
             <BuggyCounter />
         </RmgErrorBoundary>
     );

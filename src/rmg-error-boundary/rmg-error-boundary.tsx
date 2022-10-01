@@ -5,6 +5,7 @@ import ErrorDetail from './error-detail';
 export interface RmgErrorBoundaryProps extends AlertProps {
     children?: ReactNode;
     suspenseFallback?: ReactNode; // for lazy loaded children
+    allowReset?: boolean;
 }
 
 export class RmgErrorBoundary extends React.Component<RmgErrorBoundaryProps, any> {
@@ -25,11 +26,18 @@ export class RmgErrorBoundary extends React.Component<RmgErrorBoundaryProps, any
     }
 
     render() {
-        const { children, suspenseFallback, ...others } = this.props;
+        const { children, suspenseFallback, allowReset, ...others } = this.props;
 
         if (this.state.hasError) {
             // You can render any custom fallback UI
-            return <ErrorDetail error={this.state.error} errorInfo={this.state.errorInfo} {...others} />;
+            return (
+                <ErrorDetail
+                    error={this.state.error}
+                    errorInfo={this.state.errorInfo}
+                    allowReset={allowReset}
+                    {...others}
+                />
+            );
         }
 
         return suspenseFallback ? <Suspense fallback={suspenseFallback}>{children}</Suspense> : children;
