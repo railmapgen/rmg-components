@@ -12,6 +12,7 @@ import { rmgDataTableTheme as RmgDataTable } from './rmg-data-table';
 import { rmgErrorBoundaryTheme as RmgErrorBoundary } from './rmg-error-boundary';
 import { rmgLabelTheme as RmgLabel } from './rmg-label';
 import { rmgLineBadgeTheme as RmgLineBadge } from './rmg-line-badge';
+import { rmgLoaderTheme as RmgLoader } from './rmg-loader';
 import { rmgMultiSelectTheme as RmgMultiSelect } from './rmg-multi-select';
 import { rmgPageTheme as RmgPage } from './rmg-page';
 import { rmgPageHeaderTheme as RmgPageHeader } from './rmg-page-header';
@@ -34,6 +35,7 @@ export const components: Record<string, ComponentStyleConfig> = {
     RmgErrorBoundary,
     RmgLabel,
     RmgLineBadge,
+    RmgLoader,
     RmgMultiSelect,
     RmgPage,
     RmgPageHeader,
