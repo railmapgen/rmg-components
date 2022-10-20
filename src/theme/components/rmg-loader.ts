@@ -4,17 +4,17 @@ export const rmgLoaderTheme: ComponentStyleConfig = {
     baseStyle: {
         w: '100%',
         h: '100%',
-        position: 'relative',
+        position: 'absolute',
+        top: 0,
+        right: 0,
         alignItems: 'center',
         justifyContent: 'center',
 
         '& .rmg-loader__backdrop': {
             position: 'absolute',
-            top: 0,
-            left: 0,
             w: '100%',
             h: '100%',
-            zIndex: 1400,
+            zIndex: 1500,
             bg: 'blackAlpha.400',
         },
 

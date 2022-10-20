@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RmgLoader } from './rmg-loader';
-import { Box } from '@chakra-ui/react';
+import { RmgPage } from '../rmg-layout';
 
 export default {
     title: 'RmgLoader',
@@ -9,9 +9,9 @@ export default {
 
 export const RmgLoaderIndeterminate = () => {
     return (
-        <Box w={400} h={300}>
+        <RmgPage w={400} h={300} border="1px">
             <RmgLoader isIndeterminate={true} />
-        </Box>
+        </RmgPage>
     );
 };
 
@@ -33,8 +33,8 @@ export const RmgLoaderDeterminate = () => {
     }, []);
 
     return (
-        <Box w={400} h={300}>
+        <RmgPage w={400} h={300} border="1px">
             <RmgLoader value={value} />
-        </Box>
+        </RmgPage>
     );
 };
