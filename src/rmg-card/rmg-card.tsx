@@ -6,12 +6,12 @@ export interface RmgCardProps extends FlexProps {
 }
 
 export const RmgCard = (props: RmgCardProps) => {
-    const { children, ...others } = props;
+    const { children, sx, ...others } = props;
 
     const styles = useStyleConfig('RmgCard');
 
     return (
-        <Flex sx={styles} {...others}>
+        <Flex sx={{ ...styles, ...sx }} {...others}>
             {children}
         </Flex>
     );
