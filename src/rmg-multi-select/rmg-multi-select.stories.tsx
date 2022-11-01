@@ -12,7 +12,7 @@ export const Basic = () => {
     const [services, setServices] = useState(['local']);
 
     const selections = [
-        { label: 'Local', value: 'local', disabled: true },
+        { label: 'Local', value: 'local' },
         { label: 'Express', value: 'express' },
         { label: 'Direct', value: 'direct' },
     ];

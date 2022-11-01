@@ -70,13 +70,9 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
                     >
                         <div className={`rmg-multi-select__field ${isDropdownOpen ? 'active' : ''}`}>
                             <span>{displayValue}</span>
-                            {selectedCount ? (
-                                <Badge colorScheme="blue" role="status">
-                                    {selectedCount}/{selections.length}
-                                </Badge>
-                            ) : (
-                                <></>
-                            )}
+                            <Badge colorScheme={selectedCount ? 'blue' : undefined} role="status">
+                                {selectedCount}/{selections.length}
+                            </Badge>
                         </div>
                         <div className="rmg-multi-select__icon-wrapper">
                             <svg viewBox="0 0 24 24">
