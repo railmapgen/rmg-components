@@ -9,6 +9,7 @@ import { switchTheme as Switch } from './switch';
 import { rmgAgGridTheme as RmgAgGrid } from './rmg-ag-grid';
 import { rmgCardTheme as RmgCard } from './rmg-card';
 import { rmgDataTableTheme as RmgDataTable } from './rmg-data-table';
+import { rmgEnrichedButtonTheme as RmgEnrichedButton } from './rmg-enriched-button';
 import { rmgErrorBoundaryTheme as RmgErrorBoundary } from './rmg-error-boundary';
 import { rmgLabelTheme as RmgLabel } from './rmg-label';
 import { rmgLineBadgeTheme as RmgLineBadge } from './rmg-line-badge';
@@ -32,6 +33,7 @@ export const components: Record<string, ComponentStyleConfig> = {
     RmgAgGrid,
     RmgCard,
     RmgDataTable,
+    RmgEnrichedButton,
     RmgErrorBoundary,
     RmgLabel,
     RmgLineBadge,
