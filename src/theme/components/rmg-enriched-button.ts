@@ -8,9 +8,10 @@ export const rmgEnrichedButtonTheme: ComponentStyleConfig = {
         alignItems: 'flex-start',
         h: 10,
 
-        '& span:first-of-type': {
+        '& span': {
             maxW: '100%',
             textOverflow: 'ellipsis',
+            overflow: 'hidden',
         },
 
         '& span:last-of-type': {
