@@ -5,6 +5,11 @@ export const rmgAgGridTheme: ComponentStyleConfig = {
         w: '100%',
         h: '100%',
 
+        // added since ag-grid-community@28.2.1
+        '& .ag-header-cell:not(.ag-header-cell-auto-height) .ag-header-cell-comp-wrapper': {
+            height: 'unset',
+        },
+
         '& .ag-cell': {
             display: 'flex',
             lineHeight: 'unset',
