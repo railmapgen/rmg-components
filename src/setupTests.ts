@@ -1,3 +1,5 @@
+import { TextEncoder } from 'util';
+
 global.window.matchMedia = query => ({
     matches: false,
     media: query,
@@ -35,4 +37,4 @@ global.fetch = (...args) => {
     }
 };
 
-export {};
+global.TextEncoder = TextEncoder;

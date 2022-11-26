@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { rmgChakraTheme } from './theme';

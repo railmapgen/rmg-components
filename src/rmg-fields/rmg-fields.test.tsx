@@ -89,7 +89,7 @@ describe('RmgFields', () => {
 
     afterEach(() => {
         window.ResizeObserver = ResizeObserver;
-        jest.restoreAllMocks();
+        jest.clearAllMocks();
     });
 
     it('Can render input field as expected', () => {
