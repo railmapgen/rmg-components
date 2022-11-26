@@ -34,6 +34,7 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
     const [value, setValue] = useState(defaultValue);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     useOutsideClick({ ref: wrapperRef, handler: () => setIsDropdownOpen(false) });
 
@@ -65,6 +66,7 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
                         className="rmg-multi-select__wrapper"
                         role="combobox"
                         aria-expanded={isDropdownOpen}
+                        aria-controls={dropdownRef.current?.id}
                         aria-label={displayValue}
                         onClick={() => setIsDropdownOpen(prevState => !prevState)}
                     >
@@ -82,7 +84,7 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
                     </div>
                 </PopoverAnchor>
 
-                <PopoverContent>
+                <PopoverContent ref={dropdownRef}>
                     <PopoverBody>
                         <List>
                             {selections.map(selection => (
