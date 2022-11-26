@@ -1,3 +1,5 @@
+const { mergeConfig } = require('vite')
+
 module.exports = {
     stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
     staticDirs: ['../public'],
@@ -15,4 +17,11 @@ module.exports = {
         storyStoreV7: true,
         emotionAlias: false,
     },
+    viteFinal: async config => {
+        return mergeConfig(config, {
+            // Use the same "resolve" configuration as your app
+            // resolve: (await import('../vite.config.ts')).default.resolve,
+            base: '/rmg-components/'
+        })
+    }
 };
