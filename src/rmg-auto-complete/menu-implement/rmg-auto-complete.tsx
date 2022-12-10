@@ -1,6 +1,6 @@
 import { Box, Menu, MenuButton, MenuItem, MenuList, useOutsideClick } from '@chakra-ui/react';
 import { RmgDebouncedInput } from '../../rmg-debounced-input';
-import React, { Fragment, ReactElement, useEffect, useRef, useState } from 'react';
+import { Fragment, ReactElement, useEffect, useRef, useState } from 'react';
 
 export interface RmgAutoCompleteProps<T> {
     data: T[];
@@ -42,7 +42,13 @@ export function RmgAutoComplete<T extends { id: string }>(props: RmgAutoComplete
 
     return (
         <Box ref={wrapperRef}>
-            <Menu isOpen={isDropdownOpen} onClose={() => {}} autoSelect={false}>
+            <Menu
+                isOpen={isDropdownOpen}
+                onClose={() => {
+                    // do nothing
+                }}
+                autoSelect={false}
+            >
                 <MenuButton />
                 <RmgDebouncedInput
                     defaultValue={inputValue}

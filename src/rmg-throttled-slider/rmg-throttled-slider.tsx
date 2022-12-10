@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import {
     Flex,
     Slider,
@@ -19,7 +19,13 @@ export interface RmgThrottledSliderProps extends SliderProps {
 export function RmgThrottledSlider(props: RmgThrottledSliderProps) {
     const { defaultValue, min, max, step, onThrottledChange, leftIcon, rightIcon } = props;
 
-    const handleChange = useThrottle(onThrottledChange ?? (() => {}), 500);
+    const handleChange = useThrottle(
+        onThrottledChange ??
+            (() => {
+                // do nothing
+            }),
+        500
+    );
     const styles = useStyleConfig('RmgThrottledSlider');
 
     return (

@@ -78,8 +78,7 @@ const mockFullWidthTextField: RmgFieldsField = {
 
 describe('RmgFields', () => {
     beforeEach(() => {
-        // @ts-ignore
-        delete window.ResizeObserver;
+        // delete window.ResizeObserver;
         window.ResizeObserver = vi.fn().mockImplementation(() => ({
             observe: vi.fn(),
             unobserve: vi.fn(),

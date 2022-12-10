@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export const useThrottle = (callback: Function, delay: number = 500) => {
+export const useThrottle = (callback: (...args: any[]) => void, delay = 500) => {
     const [isReady, setIsReady] = useState(true); // ready for next invocation
 
     const waitingArgs = useRef<any[]>([]);

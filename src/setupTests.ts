@@ -2,6 +2,7 @@ import { TextEncoder } from 'util';
 import ResizeObserver from 'resize-observer-polyfill';
 import { vi } from 'vitest';
 
+vi.stubGlobal('TextEncoder', TextEncoder);
 vi.stubGlobal('ResizeObserver', ResizeObserver);
 
 // global.window.ResizeObserver = ResizeObserver;
@@ -17,12 +18,16 @@ global.window.matchMedia = query => ({
 });
 
 class BroadcastChannel {
-    postMessage() {}
+    postMessage() {
+        // mocked
+    }
 
-    onmessage() {}
+    onmessage() {
+        // mocked
+    }
 }
 
-global.BroadcastChannel = BroadcastChannel as any;
+vi.stubGlobal('BroadcastChannel', BroadcastChannel);
 
 const originalFetch = global.fetch;
 global.fetch = (...args) => {
@@ -42,5 +47,3 @@ global.fetch = (...args) => {
         return originalFetch(...args);
     }
 };
-
-global.TextEncoder = TextEncoder;

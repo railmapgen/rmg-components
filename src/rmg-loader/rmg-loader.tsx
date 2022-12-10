@@ -1,7 +1,7 @@
 import React from 'react';
 import { CircularProgress, CircularProgressProps, Flex, useColorModeValue, useStyleConfig } from '@chakra-ui/react';
 
-export interface RmgLoaderProps extends CircularProgressProps {}
+export type RmgLoaderProps = CircularProgressProps;
 
 export const RmgLoader = (props: RmgLoaderProps) => {
     const { isIndeterminate, value, sx, ...others } = props;
