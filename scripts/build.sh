@@ -14,6 +14,7 @@ BRANCH=$(git branch | grep \* | cut -d ' ' -f2 | tr '/' '.')
 UAT_REPO_NAME=rmg-repositories
 
 # npm config
+export NODE_OPTIONS=--openssl-legacy-provider
 npm config set tag-version-prefix "${APP_NAME}-"
 
 ### BUMP VERSION
