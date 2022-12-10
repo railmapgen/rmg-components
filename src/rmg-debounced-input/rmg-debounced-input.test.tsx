@@ -1,28 +1,28 @@
-import React from 'react';
 import { RmgDebouncedInput } from './rmg-debounced-input';
 import { render } from '../test-utils';
 import { fireEvent, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const mockCallbacks = {
-    onDebouncedChange: jest.fn(),
+    onDebouncedChange: vi.fn(),
 };
 
 describe('Unit tests for DebouncedInput component', () => {
     afterEach(() => {
-        jest.clearAllTimers();
-        jest.resetAllMocks();
+        vi.clearAllTimers();
+        vi.resetAllMocks();
     });
 
     it('Can debounce onChange event as expected', () => {
         render(<RmgDebouncedInput {...mockCallbacks} />);
 
-        jest.useFakeTimers();
+        vi.useFakeTimers();
 
         fireEvent.change(screen.getByRole('combobox'), { target: { value: 'te' } });
-        jest.advanceTimersByTime(200);
+        vi.advanceTimersByTime(200);
 
         fireEvent.change(screen.getByRole('combobox'), { target: { value: 'test' } });
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
 
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
         expect(mockCallbacks.onDebouncedChange).lastCalledWith('test');
@@ -32,13 +32,13 @@ describe('Unit tests for DebouncedInput component', () => {
         const { rerender } = render(<RmgDebouncedInput defaultValue="value-1" {...mockCallbacks} />);
         expect(screen.getByDisplayValue('value-1')).not.toBeNull();
 
-        jest.useFakeTimers();
+        vi.useFakeTimers();
 
         rerender(<RmgDebouncedInput defaultValue="value-2" {...mockCallbacks} />);
         expect(screen.queryByDisplayValue('value-1')).toBeNull();
         expect(screen.getByDisplayValue('value-2')).not.toBeNull();
 
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(0);
     });
 
@@ -53,9 +53,9 @@ describe('Unit tests for DebouncedInput component', () => {
     it('Can set debounce delay to 0 as expected', async () => {
         render(<RmgDebouncedInput delay={0} {...mockCallbacks} />);
 
-        jest.useFakeTimers();
+        vi.useFakeTimers();
         fireEvent.change(screen.getByRole('combobox'), { target: { value: 'value-1' } });
-        jest.advanceTimersByTime(0);
+        vi.advanceTimersByTime(0);
 
         expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
         expect(mockCallbacks.onDebouncedChange).toBeCalledWith('value-1');

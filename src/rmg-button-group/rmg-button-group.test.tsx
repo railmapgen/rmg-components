@@ -1,7 +1,7 @@
-import React from 'react';
 import { render } from '../test-utils';
 import { RmgButtonGroup } from './rmg-button-group';
 import { fireEvent, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const mockSelections = [
     {
@@ -20,12 +20,12 @@ const mockSelections = [
 ];
 
 const mockCallbacks = {
-    onChange: jest.fn(),
+    onChange: vi.fn(),
 };
 
 describe('RmgButtonGroup', () => {
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('Can render single select button group as expected', () => {

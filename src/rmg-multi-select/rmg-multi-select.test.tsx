@@ -1,7 +1,7 @@
-import React from 'react';
 import { render } from '../test-utils';
 import { RmgMultiSelect } from './rmg-multi-select';
 import { fireEvent, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const mockSelections = [
     {
@@ -20,12 +20,12 @@ const mockSelections = [
 ];
 
 const mockCallbacks = {
-    onChange: jest.fn(),
+    onChange: vi.fn(),
 };
 
 describe('RmgMultiSelect', () => {
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('Can handle multi selection as expected', async () => {

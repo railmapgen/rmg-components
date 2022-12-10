@@ -1,7 +1,7 @@
-import React from 'react';
 import { render } from '../../test-utils';
 import { RmgAutoComplete } from './rmg-auto-complete';
 import { act, fireEvent, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const mockData = [
     { id: 'gz', value: 'Guangzhou', additionalValue: '廣州' },
@@ -10,7 +10,7 @@ const mockData = [
 ];
 
 const mockCallbacks = {
-    onChange: jest.fn(),
+    onChange: vi.fn(),
 };
 
 const setup = () =>
@@ -28,7 +28,7 @@ const setup = () =>
 
 describe('RmgAutoComplete - popover implementation', () => {
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('Can render list of items as expected', async () => {
@@ -45,10 +45,10 @@ describe('RmgAutoComplete - popover implementation', () => {
     it('Can filter item as expected', async () => {
         setup();
 
-        jest.useFakeTimers();
+        vi.useFakeTimers();
         fireEvent.change(screen.getByRole('combobox'), { target: { value: 'hong' } });
         await act(async () => {
-            jest.advanceTimersByTime(501);
+            vi.advanceTimersByTime(501);
         });
 
         expect(screen.queryByText('Guangzhou (G)')).not.toBeInTheDocument();
@@ -59,10 +59,10 @@ describe('RmgAutoComplete - popover implementation', () => {
     it('Can filter item by additional value as expected', async () => {
         setup();
 
-        jest.useFakeTimers();
+        vi.useFakeTimers();
         fireEvent.change(screen.getByRole('combobox'), { target: { value: '廣' } });
         await act(async () => {
-            jest.advanceTimersByTime(501);
+            vi.advanceTimersByTime(501);
         });
 
         expect(screen.getByText('Guangzhou (G)')).toBeInTheDocument();

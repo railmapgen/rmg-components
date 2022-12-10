@@ -1,7 +1,7 @@
-import React from 'react';
 import { RmgSelect } from './rmg-select';
 import { render } from '../test-utils';
 import { screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 const mockSelectProps = {
     defaultValue: 'opt1',
@@ -11,14 +11,14 @@ const mockSelectProps = {
         opt2: 'Option 2',
     },
     disabledOptions: ['undefined'],
-    onChange: jest.fn(),
+    onChange: vi.fn(),
 };
 
 const setup = () => render(<RmgSelect {...mockSelectProps} />);
 
 describe('Unit tests for RmgSelect component', () => {
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('Can render select with disabled options as expected', () => {

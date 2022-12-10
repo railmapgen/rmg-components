@@ -1,14 +1,19 @@
 import { TextEncoder } from 'util';
+import ResizeObserver from 'resize-observer-polyfill';
+import { vi } from 'vitest';
 
+vi.stubGlobal('ResizeObserver', ResizeObserver);
+
+// global.window.ResizeObserver = ResizeObserver;
 global.window.matchMedia = query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
 });
 
 class BroadcastChannel {
@@ -16,6 +21,7 @@ class BroadcastChannel {
 
     onmessage() {}
 }
+
 global.BroadcastChannel = BroadcastChannel as any;
 
 const originalFetch = global.fetch;
