@@ -1,3 +1,5 @@
+import './polyfills';
+
 export * from './rmg-ag-grid';
 export * from './rmg-auto-complete';
 export * from './rmg-button-group';
