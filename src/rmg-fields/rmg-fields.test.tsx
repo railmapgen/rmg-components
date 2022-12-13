@@ -1,3 +1,4 @@
+import '../polyfills';
 import { RmgFields, RmgFieldsField } from './rmg-fields';
 import { render } from '../test-utils';
 import { fireEvent, screen } from '@testing-library/react';
@@ -77,17 +78,7 @@ const mockFullWidthTextField: RmgFieldsField = {
 };
 
 describe('RmgFields', () => {
-    beforeEach(() => {
-        // delete window.ResizeObserver;
-        window.ResizeObserver = vi.fn().mockImplementation(() => ({
-            observe: vi.fn(),
-            unobserve: vi.fn(),
-            disconnect: vi.fn(),
-        }));
-    });
-
     afterEach(() => {
-        window.ResizeObserver = ResizeObserver;
         vi.clearAllMocks();
     });
 

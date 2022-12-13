@@ -1,11 +1,9 @@
+import './polyfills';
 import { TextEncoder } from 'util';
-import ResizeObserver from 'resize-observer-polyfill';
 import { vi } from 'vitest';
 
 vi.stubGlobal('TextEncoder', TextEncoder);
-vi.stubGlobal('ResizeObserver', ResizeObserver);
 
-// global.window.ResizeObserver = ResizeObserver;
 global.window.matchMedia = query => ({
     matches: false,
     media: query,
