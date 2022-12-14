@@ -17,6 +17,7 @@ export const Basic = () => {
                 defaultValue={value}
                 min={0}
                 max={10}
+                step={0.1}
                 onThrottledChange={setValue}
                 leftIcon={<ArrowBackIcon />}
                 rightIcon={<ArrowForwardIcon />}

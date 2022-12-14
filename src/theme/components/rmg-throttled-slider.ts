@@ -5,11 +5,11 @@ export const rmgThrottledSliderTheme: ComponentStyleConfig = {
         h: 6,
         alignItems: 'center',
 
-        '& svg:first-of-type': {
+        '& .chakra-button:first-of-type': {
             mr: 1,
         },
 
-        '& svg:last-of-type': {
+        '& .chakra-button:last-of-type': {
             ml: 1,
         },
     },

@@ -1,13 +1,6 @@
-import { ReactElement } from 'react';
-import {
-    Flex,
-    Slider,
-    SliderFilledTrack,
-    SliderProps,
-    SliderThumb,
-    SliderTrack,
-    useStyleConfig,
-} from '@chakra-ui/react';
+import { ReactElement, useState } from 'react';
+import { Flex, IconButton, useStyleConfig } from '@chakra-ui/react';
+import { Slider, SliderFilledTrack, SliderProps, SliderThumb, SliderTrack } from '@chakra-ui/slider';
 import { useThrottle } from '../hook';
 
 export interface RmgThrottledSliderProps extends SliderProps {
@@ -19,25 +12,66 @@ export interface RmgThrottledSliderProps extends SliderProps {
 export function RmgThrottledSlider(props: RmgThrottledSliderProps) {
     const { defaultValue, min, max, step, onThrottledChange, leftIcon, rightIcon } = props;
 
-    const handleChange = useThrottle(
+    const styles = useStyleConfig('RmgThrottledSlider');
+    const [value, setValue] = useState(defaultValue ?? 0);
+
+    const handleThrottledChange = useThrottle(
         onThrottledChange ??
             (() => {
                 // do nothing
             }),
         500
     );
-    const styles = useStyleConfig('RmgThrottledSlider');
+
+    const handleIncrement = () => {
+        const nextValue = Math.min(value + (step ?? 1) * 10, max ?? 100);
+        onThrottledChange?.(nextValue);
+        setValue(nextValue);
+    };
+
+    const handleDecrement = () => {
+        const nextValue = Math.max(value - (step ?? 1) * 10, min ?? 0);
+        onThrottledChange?.(nextValue);
+        setValue(nextValue);
+    };
 
     return (
         <Flex sx={styles}>
-            {leftIcon}
-            <Slider defaultValue={defaultValue} min={min} max={max} step={step ?? 1} onChange={handleChange}>
+            {leftIcon && (
+                <IconButton
+                    size="xs"
+                    variant="ghost"
+                    aria-label="Drag left"
+                    icon={leftIcon}
+                    onClick={handleDecrement}
+                />
+            )}
+
+            <Slider
+                value={value}
+                min={min}
+                max={max}
+                step={step}
+                onChange={val => {
+                    handleThrottledChange(val);
+                    setValue(val);
+                }}
+            >
                 <SliderTrack>
                     <SliderFilledTrack />
                 </SliderTrack>
                 <SliderThumb />
             </Slider>
-            {rightIcon}
+
+            {rightIcon && (
+                <IconButton
+                    size="xs"
+                    variant="ghost"
+                    aria-label="Drag right"
+                    icon={rightIcon}
+                    onClick={handleIncrement}
+                />
+            )}
         </Flex>
     );
 }
