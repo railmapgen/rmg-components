@@ -73,7 +73,7 @@
             "last 1 safari version"
         ]
     },
-    "version": "5.0.0-0",
+    "version": "5.0.0",
     "main": "./dist/index.js",
     "exports": {
         ".": "./dist/index.js",
