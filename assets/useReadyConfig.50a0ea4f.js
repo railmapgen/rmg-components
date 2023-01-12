@@ -1,0 +1,2 @@
+var p=Object.defineProperty;var s=(e,r)=>p(e,"name",{value:r,configurable:!0});import{r as c}from"./index.04f2df3b.js";import{r as o}from"./jsx-runtime.def5eff7.js";const i=s((e,r,t)=>{const[n,m]=o.exports.useState(t!=null?t:r());return o.exports.useEffect(()=>{e.then(()=>{console.debug("[rmg-components] Getter updates finished"),m(r())})},[]),n},"useUpdatingGetter"),x=s(e=>i(c.ready(),e),"useReadyConfig");export{x as u};
+//# sourceMappingURL=useReadyConfig.50a0ea4f.js.map
