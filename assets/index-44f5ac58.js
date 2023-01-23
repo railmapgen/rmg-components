@@ -1,0 +1,2 @@
+var s=Object.defineProperty;var f=(t,u)=>s(t,"name",{value:u,configurable:!0});import{r}from"./index-2a7246bb.js";function R(t,u=[]){const e=r.useRef(t);return r.useEffect(()=>{e.current=t}),r.useCallback((...n)=>{var c;return(c=e.current)==null?void 0:c.call(e,...n)},u)}f(R,"useCallbackRef");function d(t,u){const e=r.useRef(!1),n=r.useRef(!1);r.useEffect(()=>{if(e.current&&n.current)return t();n.current=!0},u),r.useEffect(()=>(e.current=!0,()=>{e.current=!1}),[])}f(d,"useUpdateEffect");export{d as a,R as u};
+//# sourceMappingURL=index-44f5ac58.js.map

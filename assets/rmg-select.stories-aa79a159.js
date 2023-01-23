@@ -1,0 +1,35 @@
+var c=Object.defineProperty;var n=(e,t)=>c(e,"name",{value:t,configurable:!0});import{R as s}from"./rmg-select-4118482b.js";import{r as l}from"./index-2a7246bb.js";import{a as o,j as i}from"./jsx-runtime-ad6454d2.js";import{B as a}from"./chunk-6CSUKJP7-66e6822f.js";import{T as p}from"./chunk-P74GIWPW-6ac636ed.js";import{B as m}from"./chunk-NAA7TEES-810879e0.js";import"./chunk-QEVFQ4EU-9d161fed.js";import"./es.object.get-own-property-descriptor-2f3bcc00.js";import"./chunk-JSSKUSQH-8dbb8353.js";import"./index-348bd907.js";import"./index-7822c6a4.js";import"./emotion-react.browser.esm-608dfa36.js";const k={parameters:{storySource:{source:`import { Box, Button, Text } from '@chakra-ui/react';
+import { RmgSelect } from './rmg-select';
+import { useState } from 'react';
+
+export default {
+    title: 'RmgSelect',
+    component: RmgSelect,
+};
+
+export const Basic = () => {
+    const [selection, setSelection] = useState('undefined');
+
+    const options = {
+        undefined: 'Please select...',
+        opt1: 'Option 1',
+        opt2: 'Option 2',
+    };
+
+    return (
+        <Box>
+            <RmgSelect
+                defaultValue={selection}
+                options={options}
+                disabledOptions={['undefined']}
+                onChange={({ target: { value } }) => setSelection(value)}
+            />
+
+            <Text>Your selection: {selection}</Text>
+
+            <Button onClick={() => setSelection('undefined')}>Reset</Button>
+        </Box>
+    );
+};
+`,locationsMap:{basic:{startLoc:{col:21,line:10},endLoc:{col:1,line:33},startBody:{col:21,line:10},endBody:{col:1,line:33}}}}},title:"RmgSelect",component:s},y=n(()=>{const[e,t]=l.useState("undefined");return o(a,{children:[i(s,{defaultValue:e,options:{undefined:"Please select...",opt1:"Option 1",opt2:"Option 2"},disabledOptions:["undefined"],onChange:({target:{value:r}})=>t(r)}),o(p,{children:["Your selection: ",e]}),i(m,{onClick:()=>t("undefined"),children:"Reset"})]})},"Basic"),_=["Basic"];export{y as Basic,_ as __namedExportsOrder,k as default};
+//# sourceMappingURL=rmg-select.stories-aa79a159.js.map

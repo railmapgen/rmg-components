@@ -1,0 +1,2 @@
+var u=Object.defineProperty;var o=(r,n)=>u(r,"name",{value:n,configurable:!0});import{r as e}from"./index-2a7246bb.js";function i(r,n){if(r!=null){if(typeof r=="function"){r(n);return}try{r.current=n}catch{throw new Error(`Cannot assign value '${n}' to ref '${r}'`)}}}o(i,"assignRef");function a(...r){return e.useMemo(()=>r.every(n=>n==null)?null:n=>{r.forEach(t=>{t&&i(t,n)})},r)}o(a,"useMergeRefs");export{a as u};
+//# sourceMappingURL=chunk-QJA5SDDN-5308f814.js.map
