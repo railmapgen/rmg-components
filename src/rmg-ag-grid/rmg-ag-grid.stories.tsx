@@ -3,9 +3,8 @@ import { AgGridReact } from 'ag-grid-react';
 import { Badge, Box } from '@chakra-ui/react';
 import { ColDef } from 'ag-grid-community';
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 export default {
     title: 'RmgAgGrid',
