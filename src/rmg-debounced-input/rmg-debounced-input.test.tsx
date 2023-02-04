@@ -28,6 +28,17 @@ describe('Unit tests for DebouncedInput component', () => {
         expect(mockCallbacks.onDebouncedChange).lastCalledWith('test');
     });
 
+    it('Can fire onChange event when field is blurred', () => {
+        render(<RmgDebouncedInput {...mockCallbacks} />);
+
+        vi.useFakeTimers();
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'test' } });
+        fireEvent.blur(screen.getByRole('combobox'));
+
+        expect(mockCallbacks.onDebouncedChange).toBeCalledTimes(1);
+        expect(mockCallbacks.onDebouncedChange).lastCalledWith('test');
+    });
+
     it('Can re-render input field with new defaultValue without firing onChange event', () => {
         const { rerender } = render(<RmgDebouncedInput defaultValue="value-1" {...mockCallbacks} />);
         expect(screen.getByDisplayValue('value-1')).not.toBeNull();

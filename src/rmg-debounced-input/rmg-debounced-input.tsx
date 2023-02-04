@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, Ref, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FocusEventHandler, forwardRef, Ref, useEffect, useRef, useState } from 'react';
 import { Input, InputProps, useMergeRefs } from '@chakra-ui/react';
 
 export interface RmgDebouncedInputProps extends InputProps {
@@ -37,6 +37,14 @@ const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInpu
         }, delay ?? 500);
     };
 
+    const handleBlur: FocusEventHandler<HTMLInputElement> = ({ target: { value } }) => {
+        window.clearTimeout(timeoutRef.current);
+        if (validator) {
+            setIsInvalid(!validator(value));
+        }
+        onDebouncedChange?.(value);
+    };
+
     return (
         <>
             <Input
@@ -46,6 +54,7 @@ const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInpu
                 size="sm"
                 h={6}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 isInvalid={isInvalid}
                 {...others}
             />
