@@ -34,15 +34,21 @@ const RmgDebouncedInputInner = (props: RmgDebouncedInputProps, ref: Ref<HTMLInpu
 
         timeoutRef.current = window.setTimeout(() => {
             onDebouncedChange?.(value);
+            timeoutRef.current = undefined;
         }, delay ?? 500);
     };
 
     const handleBlur: FocusEventHandler<HTMLInputElement> = ({ target: { value } }) => {
+        if (timeoutRef.current === undefined) {
+            return;
+        }
+
         window.clearTimeout(timeoutRef.current);
         if (validator) {
             setIsInvalid(!validator(value));
         }
         onDebouncedChange?.(value);
+        timeoutRef.current = undefined;
     };
 
     return (
