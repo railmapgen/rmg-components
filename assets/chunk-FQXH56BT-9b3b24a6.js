@@ -1,0 +1,2 @@
+var l=Object.defineProperty;var e=(s,a)=>l(s,"name",{value:a,configurable:!0});import{k as o,j as t,o as n,g as m,l as d}from"./chunk-QEVFQ4EU-457e66a5.js";import{j as g}from"./jsx-runtime-ad6454d2.js";var f=o(e(function(a,i){const r=t("Badge",a),{className:p,...c}=n(a);return g(m.span,{ref:i,className:d("chakra-badge",a.className),...c,__css:{display:"inline-block",whiteSpace:"nowrap",verticalAlign:"middle",...r}})},"Badge2"));f.displayName="Badge";export{f as B};
+//# sourceMappingURL=chunk-FQXH56BT-9b3b24a6.js.map
