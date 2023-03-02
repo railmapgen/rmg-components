@@ -1,2 +1,0 @@
-var i=Object.defineProperty;var e=(o,r)=>i(o,"name",{value:r,configurable:!0});import{j as m}from"./jsx-runtime-ad6454d2.js";import{u as c,j as d}from"./chunk-QEVFQ4EU-457e66a5.js";import{B as g}from"./chunk-6CSUKJP7-895f77d3.js";const s=e(o=>{const{children:r}=o,{colorMode:t}=c(),a=d("RmgAgGrid");return m(g,{className:t==="light"?"ag-theme-alpine":"ag-theme-alpine-dark",sx:a,children:r})},"RmgAgGrid");try{s.displayName="RmgAgGrid",s.__docgenInfo={description:"",displayName:"RmgAgGrid",props:{}}}catch{}export{s as R};
-//# sourceMappingURL=rmg-ag-grid-31532ec8.js.map
