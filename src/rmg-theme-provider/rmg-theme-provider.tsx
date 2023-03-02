@@ -3,7 +3,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import { getRmgChakraTheme } from '../theme';
 import rmgRuntime from '@railmapgen/rmg-runtime';
 
-export default function RmgThemeProvider(props: PropsWithChildren) {
+export const RmgThemeProvider = (props: PropsWithChildren) => {
     const { children } = props;
 
     return (
@@ -11,7 +11,7 @@ export default function RmgThemeProvider(props: PropsWithChildren) {
             <RmgThemeProviderInner>{children}</RmgThemeProviderInner>
         </ChakraProvider>
     );
-}
+};
 
 const RmgThemeProviderInner = (props: PropsWithChildren) => {
     const { children } = props;

@@ -1,4 +1,4 @@
-import RmgThemeProvider from './rmg-theme-provider';
+import { RmgThemeProvider } from './rmg-theme-provider';
 import { useRmgColourMode } from '../hook/useRmgColourMode';
 import { RmgButtonGroup, RmgButtonGroupSelection } from '../rmg-button-group';
 import rmgRuntime from '@railmapgen/rmg-runtime';
