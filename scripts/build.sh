@@ -11,7 +11,6 @@ git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 # variables
 export APP_NAME=rmg-components
 BRANCH=$(git branch | grep \* | cut -d ' ' -f2 | tr '/' '.')
-UAT_REPO_NAME=rmg-repositories
 
 # npm config
 export NODE_OPTIONS=--openssl-legacy-provider
@@ -31,12 +30,8 @@ else
   # git tag -a "${APP_NAME}-${RMG_VER}" -m "${APP_NAME}-${RMG_VER}"
 fi
 
-
 ### BUILD
-mkdir -p $UAT_REPO_NAME/"$APP_NAME"/
-
 CI='' npm run build
-cp -r storybook-static/ $UAT_REPO_NAME/"$APP_NAME"/"$RMG_VER"/
 
 ### PUSH TAG AND COMMIT
 if [ "$BRANCH" = "master" ]
@@ -44,18 +39,10 @@ then
   git push --atomic origin HEAD "${APP_NAME}-${RMG_VER}"
 fi
 
-### UPLOAD ARTIFACTS
-cd $UAT_REPO_NAME/
-git add .
-git commit -m "Build version $APP_NAME-$RMG_VER"
-git push --force
-
-
 echo "Build Success: $APP_NAME-$RMG_VER"
-echo "::set-output name=RMG_VER::$RMG_VER"
+echo "RMG_VER=$RMG_VER" >> $GITHUB_OUTPUT
 
 # Set up .npmrc for publishing
-cd ../
 cat >> ./.npmrc << EOF
 //registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}
 registry=https://registry.npmjs.org/

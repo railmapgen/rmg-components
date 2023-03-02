@@ -14,21 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
 
-      - name: Clone UAT repo
-        run: git clone --depth 1 https://wongchito:${{ secrets.RMG_BUILD_AND_RELEASE }}@github.com/uat-railmapgen/rmg-repositories.git
-
       - name: Build
-        run: |
-          chmod +x ./scripts/build.sh
-          ./scripts/build.sh
         id: build
+        run: ./scripts/build.sh
+        shell: bash
 
       - name: Publish
         if: ${{ github.ref == 'refs/heads/master' }}
@@ -36,6 +32,14 @@ jobs:
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.RMG_NPM_PUBLISH }}
+
+      - name: Upload artefacts
+        uses: railmapgen/upload-artefacts@main
+        with:
+          app_name: rmg-components
+          version: ${{ steps.build.outputs.RMG_VER }}
+          dist: storybook-static
+          token: ${{ secrets.RMG_BUILD_AND_RELEASE }}
 
       - name: Auto deploy
         if: ${{ github.event.inputs.auto_deploy == 'PRD' || github.event.inputs.auto_deploy == 'UAT' }}
