@@ -1,11 +1,12 @@
 import { extendTheme, theme, ThemeConfig } from '@chakra-ui/react';
 import { Styles } from '@chakra-ui/theme-tools';
 import { components } from './components';
+import rmgRuntime from '@railmapgen/rmg-runtime';
 
-const config: ThemeConfig = {
+const getConfig = (): ThemeConfig => ({
     initialColorMode: 'system',
-    useSystemColorMode: true,
-};
+    useSystemColorMode: rmgRuntime.getColourMode() === 'system',
+});
 
 const colors = {
     primary: {
@@ -22,4 +23,4 @@ const styles: Styles = {
     },
 };
 
-export const rmgChakraTheme = extendTheme({ config, colors, styles, components });
+export const getRmgChakraTheme = () => extendTheme({ config: getConfig(), colors, styles, components });

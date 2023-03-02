@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 
-type ButtonGroupSelection<T> = {
+export type RmgButtonGroupSelection<T> = {
     label: string;
     value: T;
     disabled?: boolean;
 };
 
 type RmgButtonGroupSingleSelectProps<T> = {
-    selections: ButtonGroupSelection<T>[];
+    selections: RmgButtonGroupSelection<T>[];
     defaultValue: T;
     onChange?: (value: T) => void;
     multiSelect?: false;
 };
 
 type RmgButtonGroupMultiSelectProps<T> = {
-    selections: ButtonGroupSelection<T>[];
+    selections: RmgButtonGroupSelection<T>[];
     defaultValue: T[];
     onChange?: (value: T[]) => void;
     multiSelect: true;
