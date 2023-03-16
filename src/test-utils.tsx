@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom';
 import React, { ReactElement, ReactNode } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import { ChakraProvider } from '@chakra-ui/react';
-import { getRmgChakraTheme } from './theme';
+import { RmgThemeProvider } from './rmg-theme-provider';
 
 interface TestingProviderProps {
     children?: ReactNode;
@@ -10,7 +9,7 @@ interface TestingProviderProps {
 
 const TestingProvider = (props: TestingProviderProps) => {
     const { children } = props;
-    return <ChakraProvider theme={getRmgChakraTheme()}>{children}</ChakraProvider>;
+    return <RmgThemeProvider>{children}</RmgThemeProvider>;
 };
 
 const initialOptions: Omit<RenderOptions, 'wrapper'> = {};
