@@ -1,8 +1,0 @@
-import{a as e,j as t}from"./jsx-runtime-670450c2.js";import{R as s}from"./rmg-throttled-slider-103018f9.js";import{r as l}from"./index-f1f749bf.js";import{A as p,a as c}from"./chunk-PK3U2DQU-be8f6b0c.js";import{B as d}from"./chunk-6CSUKJP7-9c438e99.js";import{T as u}from"./chunk-P74GIWPW-98bbe6ad.js";import"./index-0a1c2762.js";import"./index-ff36e217.js";import"./index-6d9c108a.js";import"./chunk-QEVFQ4EU-efd3d6a4.js";import"./_commonjsHelpers-042e6b4d.js";import"./extends-98964cd2.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-3d5299f2.js";import"./index-20979b68.js";import"./getPrototypeOf-624f05c9.js";import"./chunk-3HSDMH4Y-64a8ce19.js";import"./chunk-NAA7TEES-fcf38781.js";import"./emotion-react.browser.esm-a44b8d61.js";import"./chunk-MPFPK3CX-501e08a9.js";import"./chunk-QODHG6BI-63c5c2a0.js";import"./chunk-DKFDJSXF-c0600d2a.js";const q={title:"RmgThrottledSlider",component:s},r=()=>{const[o,n]=l.useState(5);return e(d,{children:[t(s,{defaultValue:o,min:0,max:10,step:.1,onThrottledChange:n,leftIcon:t(p,{}),rightIcon:t(c,{})}),e(u,{children:["Slider value: ",o]})]})};var a,m,i;r.parameters={...r.parameters,docs:{...(a=r.parameters)==null?void 0:a.docs,source:{originalSource:`() => {
-  const [value, setValue] = useState(5);
-  return <Box>
-            <RmgThrottledSlider defaultValue={value} min={0} max={10} step={0.1} onThrottledChange={setValue} leftIcon={<ArrowBackIcon />} rightIcon={<ArrowForwardIcon />} />
-            <Text>Slider value: {value}</Text>
-        </Box>;
-}`,...(i=(m=r.parameters)==null?void 0:m.docs)==null?void 0:i.source}}};const y=["Basic"];export{r as Basic,y as __namedExportsOrder,q as default};
-//# sourceMappingURL=rmg-throttled-slider.stories-83f0c14c.js.map

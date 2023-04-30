@@ -1,2 +1,0 @@
-import{B as c}from"./chunk-NAA7TEES-fcf38781.js";import{l as m}from"./chunk-QEVFQ4EU-efd3d6a4.js";import{r as a}from"./index-f1f749bf.js";import{j as u}from"./jsx-runtime-670450c2.js";var f=m((e,o)=>{const{icon:t,children:l,isRound:n,"aria-label":i,...s}=e,r=t||l,d=a.isValidElement(r)?a.cloneElement(r,{"aria-hidden":!0,focusable:!1}):null;return u(c,{padding:"0",borderRadius:n?"full":void 0,ref:o,"aria-label":i,...s,children:d})});f.displayName="IconButton";export{f as I};
-//# sourceMappingURL=chunk-3HSDMH4Y-64a8ce19.js.map
