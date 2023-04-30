@@ -1,0 +1,11 @@
+import{a as g,j as o}from"./jsx-runtime-670450c2.js";import{R as e}from"./rmg-env-badge-961b5a37.js";import{r as i,R as t}from"./index-20979b68.js";import{u as d}from"./useUpdatingGetter-c44682b0.js";import{B as R}from"./chunk-6CSUKJP7-9c438e99.js";import"./index-f1f749bf.js";import"./_commonjsHelpers-042e6b4d.js";import"./chunk-KVBLLJMP-7614d09d.js";import"./index-0a1c2762.js";import"./index-390de499.js";import"./index-2802deeb.js";import"./index-ff36e217.js";import"./chunk-QEVFQ4EU-efd3d6a4.js";import"./extends-98964cd2.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-3d5299f2.js";import"./index-6d9c108a.js";import"./motion-07dfd05d.js";import"./chunk-DUEJD2BE-5a59a5ca.js";import"./chunk-DKFDJSXF-c0600d2a.js";import"./chunk-FQXH56BT-6847d39d.js";import"./getPrototypeOf-624f05c9.js";const m=r=>d(i.ready(),r),O={title:"RmgEnvBadge",component:e},n=()=>{const r=m(i.getEnv),a=m(i.getAppVersion);return g(R,{children:[o(e,{environment:t.DEV,version:"0.1.0",popoverHeader:"You're on DEV environment!",popoverBody:"Please visit PRD environment!"}),o(e,{environment:t.UAT,version:"0.1.0",popoverHeader:"You're on UAT environment!",popoverBody:"Please visit PRD environment!"}),o(e,{environment:t.PRD,version:"0.1.0"}),o(e,{environment:r,version:a})]})};var s,p,v;n.parameters={...n.parameters,docs:{...(s=n.parameters)==null?void 0:s.docs,source:{originalSource:`() => {
+  const environment = useReadyConfig(rmgRuntime.getEnv);
+  const appVersion = useReadyConfig(rmgRuntime.getAppVersion);
+  return <Box>
+            <RmgEnvBadge environment={RmgEnv.DEV} version="0.1.0" popoverHeader="You're on DEV environment!" popoverBody="Please visit PRD environment!" />
+            <RmgEnvBadge environment={RmgEnv.UAT} version="0.1.0" popoverHeader="You're on UAT environment!" popoverBody="Please visit PRD environment!" />
+            <RmgEnvBadge environment={RmgEnv.PRD} version="0.1.0" />
+            <RmgEnvBadge environment={environment} version={appVersion} />
+        </Box>;
+}`,...(v=(p=n.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};const S=["Basic"];export{n as Basic,S as __namedExportsOrder,O as default};
+//# sourceMappingURL=rmg-env-badge.stories-d7417194.js.map

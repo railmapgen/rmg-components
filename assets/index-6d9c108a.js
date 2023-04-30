@@ -1,0 +1,2 @@
+import{r as u}from"./index-f1f749bf.js";function m(e,t){return`${e} returned \`undefined\`. Seems you forgot to wrap component within ${t}`}function f(e={}){const{name:t,strict:i=!0,hookName:x="useContext",providerName:d="Provider",errorMessage:n}=e,r=u.createContext(void 0);r.displayName=t;function a(){var c;const s=u.useContext(r);if(!s&&i){const o=new Error(n??m(x,d));throw o.name="ContextError",(c=Error.captureStackTrace)==null||c.call(Error,o,a),o}return s}return[r.Provider,a,r]}export{f as c};
+//# sourceMappingURL=index-6d9c108a.js.map

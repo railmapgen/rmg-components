@@ -1,0 +1,2 @@
+import{I as m}from"./chunk-DKFDJSXF-c0600d2a.js";import{l as f}from"./chunk-QEVFQ4EU-efd3d6a4.js";import{r as l}from"./index-f1f749bf.js";import{j as a}from"./jsx-runtime-670450c2.js";function y(r){const{viewBox:e="0 0 24 24",d:i,displayName:n,defaultProps:p={}}=r,o=l.Children.toArray(r.path),t=f((s,c)=>a(m,{ref:c,viewBox:e,...p,...s,children:o.length?o:a("path",{fill:"currentColor",d:i})}));return t.displayName=n,t}export{y as c};
+//# sourceMappingURL=chunk-QODHG6BI-63c5c2a0.js.map

@@ -1,2 +1,0 @@
-var m=Object.defineProperty;var e=(r,s)=>m(r,"name",{value:s,configurable:!0});import{l as d,g as y}from"./chunk-QEVFQ4EU-53e0d211.js";import{j as g}from"./jsx-runtime-ad6454d2.js";var j=d(e(function(s,i){const{direction:a,align:t,justify:l,wrap:o,basis:f,grow:n,shrink:x,...c}=s,p={display:"flex",flexDirection:a,alignItems:t,justifyContent:l,flexWrap:o,flexBasis:f,flexGrow:n,flexShrink:x};return g(y.div,{ref:i,__css:p,...c})},"Flex2"));j.displayName="Flex";export{j as F};
-//# sourceMappingURL=chunk-MPFPK3CX-d7e84ccb.js.map
