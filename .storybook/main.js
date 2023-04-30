@@ -1,7 +1,7 @@
 import { mergeConfig } from 'vite';
 
 const config = {
-    stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+    stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
     staticDirs: ['../public'],
     addons: [
         // '@chakra-ui/storybook-addon',
@@ -15,7 +15,6 @@ const config = {
     },
     features: {
         storyStoreV7: true,
-        emotionAlias: false,
     },
     docs: {
         autodocs: true,
