@@ -1,6 +1,6 @@
-const { mergeConfig } = require('vite')
+import { mergeConfig } from 'vite';
 
-module.exports = {
+const config = {
     stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
     staticDirs: ['../public'],
     addons: [
@@ -9,19 +9,23 @@ module.exports = {
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
     ],
-    framework: '@storybook/react',
-    core: {
-        builder: '@storybook/builder-vite',
+    framework: {
+        name: '@storybook/react-vite',
+        options: {},
     },
     features: {
         storyStoreV7: true,
         emotionAlias: false,
     },
+    docs: {
+        autodocs: true,
+    },
     viteFinal: async config => {
         return mergeConfig(config, {
             // Use the same "resolve" configuration as your app
             // resolve: (await import('../vite.config.ts')).default.resolve,
-            base: '/rmg-components/'
-        })
-    }
+            base: '/rmg-components/',
+        });
+    },
 };
+export default config;
