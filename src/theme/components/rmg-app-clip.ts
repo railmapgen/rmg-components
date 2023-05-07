@@ -2,10 +2,10 @@ import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const rmgAppClipTheme: ComponentStyleConfig = {
     baseStyle: ({ colorMode }) => ({
-        visibility: 'hidden',
+        display: 'none',
 
         '&.show-app-clip': {
-            visibility: 'initial',
+            display: 'block',
         },
 
         '& .rmg-app-clip__overlay': {
