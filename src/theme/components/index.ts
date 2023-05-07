@@ -7,6 +7,7 @@ import { switchTheme as Switch } from './switch';
 
 // rmg components
 import { rmgAgGridTheme as RmgAgGrid } from './rmg-ag-grid';
+import { rmgAppClipTheme as RmgAppClip } from './rmg-app-clip';
 import { rmgCardTheme as RmgCard } from './rmg-card';
 import { rmgDataTableTheme as RmgDataTable } from './rmg-data-table';
 import { rmgEnrichedButtonTheme as RmgEnrichedButton } from './rmg-enriched-button';
@@ -31,6 +32,7 @@ export const components: Record<string, ComponentStyleConfig> = {
     Textarea: Input,
 
     RmgAgGrid,
+    RmgAppClip,
     RmgCard,
     RmgDataTable,
     RmgEnrichedButton,
