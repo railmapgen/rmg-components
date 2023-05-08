@@ -6,5 +6,6 @@ export const rmgWindowHeaderTheme: ComponentStyleConfig = {
         alignItems: 'center',
         zIndex: 15,
         minH: 10,
+        transition: '0.3s ease-in-out',
     },
 };
