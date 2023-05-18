@@ -33,10 +33,42 @@ export const rmgAppClipTheme: ComponentStyleConfig = {
         '& .rmg-app-clip__content': {
             display: 'flex',
             w: '100%',
-            maxW: 'sm',
+            maxW: 'md',
             my: 16,
             bg: colorMode === 'light' ? 'white' : 'gray.700',
             boxShadow: 'lg',
+            borderRadius: 'md',
+            overflow: 'hidden',
         },
     }),
+    sizes: {
+        xs: {
+            '& .rmg-app-clip__content': {
+                maxW: 'xs',
+            },
+        },
+        sm: {
+            '& .rmg-app-clip__content': {
+                maxW: 'sm',
+            },
+        },
+        lg: {
+            '& .rmg-app-clip__content': {
+                maxW: 'lg',
+            },
+        },
+        xl: {
+            '& .rmg-app-clip__content': {
+                maxW: 'xl',
+            },
+        },
+        full: {
+            '& .rmg-app-clip__content': {
+                maxW: '100vw',
+                minH: 'var(--chakra-vh)',
+                my: 0,
+                borderRadius: 0,
+            },
+        },
+    },
 };

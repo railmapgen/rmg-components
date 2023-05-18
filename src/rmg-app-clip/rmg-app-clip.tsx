@@ -1,14 +1,15 @@
-import { Box, BoxProps, Portal, useOutsideClick, useStyleConfig } from '@chakra-ui/react';
+import { Box, BoxProps, ModalProps, Portal, useOutsideClick, useStyleConfig } from '@chakra-ui/react';
 import { useRef } from 'react';
 
 export interface RmgAppClipProps extends BoxProps {
     isOpen: boolean;
     onClose: () => void;
+    size?: ModalProps['size'];
 }
 
 export const RmgAppClip = (props: RmgAppClipProps) => {
-    const { isOpen, onClose, children, sx, ...others } = props;
-    const styles = useStyleConfig('RmgAppClip');
+    const { isOpen, onClose, children, sx, size, ...others } = props;
+    const styles = useStyleConfig('RmgAppClip', { size });
 
     const contentRef = useRef<HTMLDivElement>(null);
 
