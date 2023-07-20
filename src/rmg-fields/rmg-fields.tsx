@@ -3,7 +3,7 @@ import { RmgLabel } from '../rmg-label';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
 import { Flex, InputProps, Switch } from '@chakra-ui/react';
 import { RmgDebouncedTextarea } from '../rmg-debounced-textarea';
-import { RmgSelect } from '../rmg-select';
+import { RmgSelect, RmgSelectProps } from '../rmg-select';
 import { RmgThrottledSlider } from '../rmg-throttled-slider';
 
 type inputField = {
@@ -38,7 +38,7 @@ type sliderField = {
 type selectField<T extends string | number> = {
     type: 'select';
     value?: T;
-    options: Record<T, string>; // { value: displayText }
+    options: RmgSelectProps<T>['options'];
     onChange?: (value: T) => void;
     disabledOptions?: T[];
     isInvalid?: boolean;

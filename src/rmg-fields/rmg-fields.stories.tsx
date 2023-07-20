@@ -13,6 +13,7 @@ export const Basic = () => {
     const [inputValue, setInputValue] = useState('');
     const [numberValue, setNumberValue] = useState('');
     const [selectValue, setSelectValue] = useState('');
+    const [selectWithGroupValue, setSelectWithGroupValue] = useState('en');
     const [intSliderValue, setIntSliderValue] = useState(5);
     const [sliderValue, setSliderValue] = useState(5);
     const [textareaValue, setTextareaValue] = useState('');
@@ -45,6 +46,21 @@ export const Basic = () => {
             disabledOptions: [''],
             value: selectValue,
             onChange: setSelectValue,
+        },
+        {
+            type: 'select',
+            label: 'Select field with optgroup',
+            options: {
+                'Main languages': {
+                    en: 'English',
+                    zh: 'Chinese',
+                },
+                'Other languages': {
+                    ja: 'Japanese',
+                },
+            },
+            value: selectWithGroupValue,
+            onChange: setSelectWithGroupValue,
         },
         {
             type: 'slider',
@@ -95,6 +111,7 @@ export const Basic = () => {
         setInputValue('');
         setNumberValue('');
         setSelectValue('');
+        setSelectWithGroupValue('en');
         setIntSliderValue(5);
         setSliderValue(5);
         setTextareaValue('');
@@ -111,6 +128,7 @@ export const Basic = () => {
                 <Text>Debounced input field: {inputValue}</Text>
                 <Text>Debounced number field: {numberValue}</Text>
                 <Text>Select field: {selectValue}</Text>
+                <Text>Select with group field: {selectWithGroupValue}</Text>
                 <Text>Integer slider field: {intSliderValue}</Text>
                 <Text>Slider field: {sliderValue}</Text>
                 <Text>Debounced multiline field: {<RmgMultiLineString text={textareaValue} delimiter={'\n'} />}</Text>
