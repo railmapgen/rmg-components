@@ -1,0 +1,8 @@
+import{j as r}from"./jsx-runtime-4ca860c5.js";import{R as m}from"./rmg-throttled-slider-796ae003.js";import{r as n}from"./index-61bf1805.js";import{A as l,a as p}from"./chunk-XEKRR764-0cdbadea.js";import{B as c}from"./chunk-PULVB27S-dfb23afe.js";import{T as d}from"./chunk-2OOHT3W5-423ffe97.js";import"./index-dcfef637.js";import"./index-c23131f5.js";import"./index-6830816b.js";import"./chunk-ZJJGQIVY-35f6fb8e.js";import"./_commonjsHelpers-de833af9.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-5b0f5dab.js";import"./index-a7f40554.js";import"./chunk-KRPLQIP4-7a7d7866.js";import"./chunk-6QYXN73V-1abba381.js";import"./chunk-UVUR7MCU-7fc2c9bf.js";import"./emotion-react.browser.esm-3572b68e.js";import"./chunk-DEQZ7DVA-08ba7ba3.js";import"./chunk-2GBDXOMA-4314ad61.js";const F={title:"RmgThrottledSlider",component:m},t=()=>{const[o,i]=n.useState(5);return r.jsxs(c,{children:[r.jsx(m,{defaultValue:o,min:0,max:10,step:.1,onThrottledChange:i,leftIcon:r.jsx(l,{}),rightIcon:r.jsx(p,{})}),r.jsxs(d,{children:["Slider value: ",o]})]})};var e,a,s;t.parameters={...t.parameters,docs:{...(e=t.parameters)==null?void 0:e.docs,source:{originalSource:`() => {
+  const [value, setValue] = useState(5);
+  return <Box>
+            <RmgThrottledSlider defaultValue={value} min={0} max={10} step={0.1} onThrottledChange={setValue} leftIcon={<ArrowBackIcon />} rightIcon={<ArrowForwardIcon />} />
+            <Text>Slider value: {value}</Text>
+        </Box>;
+}`,...(s=(a=t.parameters)==null?void 0:a.docs)==null?void 0:s.source}}};const O=["Basic"];export{t as Basic,O as __namedExportsOrder,F as default};
+//# sourceMappingURL=rmg-throttled-slider.stories-87fed244.js.map
