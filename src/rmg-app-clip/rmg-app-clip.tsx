@@ -19,13 +19,13 @@ export const RmgAppClip = (props: RmgAppClipProps) => {
         <Portal>
             <chakra.div className={isOpen ? 'show-app-clip' : ''} sx={styles} {...others}>
                 <div className="rmg-app-clip__overlay" />
-                <div className="rmg-app-clip__container">
-                    <FocusLock>
+                <FocusLock>
+                    <div className="rmg-app-clip__container">
                         <chakra.section ref={contentRef} role="dialog" className="rmg-app-clip__content" sx={sx}>
                             {children}
                         </chakra.section>
-                    </FocusLock>
-                </div>
+                    </div>
+                </FocusLock>
             </chakra.div>
         </Portal>
     );
