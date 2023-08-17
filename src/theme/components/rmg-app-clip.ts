@@ -1,7 +1,7 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const rmgAppClipTheme: ComponentStyleConfig = {
-    baseStyle: ({ colorMode }) => ({
+    baseStyle: ({ colorMode, zIndex }) => ({
         display: 'none',
 
         '&.show-app-clip': {
@@ -14,7 +14,7 @@ export const rmgAppClipTheme: ComponentStyleConfig = {
             left: 0,
             w: '100vw',
             h: '100vh',
-            zIndex: 1400,
+            zIndex,
             bg: 'blackAlpha.600',
         },
 
@@ -27,7 +27,7 @@ export const rmgAppClipTheme: ComponentStyleConfig = {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'flex-start',
-            zIndex: 1400,
+            zIndex,
         },
 
         '& .rmg-app-clip__content': {
