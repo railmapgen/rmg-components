@@ -21,14 +21,11 @@
         "isolatedModules": true,
         "jsx": "react-jsx",
         "noFallthroughCasesInSwitch": true,
-        "allowUnusedLabels": false
+        "allowUnusedLabels": false,
+        "types": ["vitest/globals"]
     },
     "include": [
         "src/**/*"
-    ],
-    "exclude": [
-        "**/*.stories.tsx",
-        "**/*.test.tsx"
     ],
     "references": [
         {
