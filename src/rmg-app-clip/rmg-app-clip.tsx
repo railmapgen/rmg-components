@@ -1,4 +1,4 @@
-import { BoxProps, chakra, ModalProps, Portal, useOutsideClick, useStyleConfig } from '@chakra-ui/react';
+import { BoxProps, chakra, FocusLock, ModalProps, Portal, useOutsideClick, useStyleConfig } from '@chakra-ui/react';
 import { useRef } from 'react';
 
 export interface RmgAppClipProps extends BoxProps {
@@ -19,11 +19,13 @@ export const RmgAppClip = (props: RmgAppClipProps) => {
         <Portal>
             <chakra.div className={isOpen ? 'show-app-clip' : ''} sx={styles} {...others}>
                 <div className="rmg-app-clip__overlay" />
-                <div className="rmg-app-clip__container">
-                    <chakra.section ref={contentRef} role="dialog" className="rmg-app-clip__content" sx={sx}>
-                        {children}
-                    </chakra.section>
-                </div>
+                <FocusLock>
+                    <div className="rmg-app-clip__container">
+                        <chakra.section ref={contentRef} role="dialog" className="rmg-app-clip__content" sx={sx}>
+                            {children}
+                        </chakra.section>
+                    </div>
+                </FocusLock>
             </chakra.div>
         </Portal>
     );
