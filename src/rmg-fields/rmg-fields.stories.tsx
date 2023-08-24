@@ -3,6 +3,7 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { RmgMultiLineString } from '../rmg-multi-line-string';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { RmgButtonGroup } from '../rmg-button-group';
 
 export default {
     title: 'RmgFields',
@@ -18,6 +19,7 @@ export const Basic = () => {
     const [sliderValue, setSliderValue] = useState(5);
     const [textareaValue, setTextareaValue] = useState('');
     const [switchValue, setSwitchValue] = useState(false);
+    const [fg, setFg] = useState('black');
 
     const fields: RmgFieldsField<string>[] = [
         {
@@ -105,6 +107,20 @@ export const Basic = () => {
             oneLine: true,
             minW: 'full',
         },
+        {
+            type: 'custom',
+            label: 'Foreground colour',
+            component: (
+                <RmgButtonGroup
+                    selections={[
+                        { value: 'black', label: 'Black' },
+                        { value: 'white', label: 'White' },
+                    ]}
+                    defaultValue={fg}
+                    onChange={value => setFg(value)}
+                />
+            ),
+        },
     ];
 
     const handleReset = () => {
@@ -116,6 +132,7 @@ export const Basic = () => {
         setSliderValue(5);
         setTextareaValue('');
         setSwitchValue(false);
+        setFg('black');
     };
 
     return (
@@ -134,6 +151,7 @@ export const Basic = () => {
                 <Text>Debounced multiline field: {<RmgMultiLineString text={textareaValue} delimiter={'\n'} />}</Text>
                 <Text>Switch field: {switchValue.toString()}</Text>
                 <Text>Disabled switch field: false</Text>
+                <Text>Button group field: {fg}</Text>
 
                 <Button onClick={() => handleReset()}>Reset all</Button>
             </Box>

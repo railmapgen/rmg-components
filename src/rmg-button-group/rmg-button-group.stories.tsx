@@ -19,7 +19,7 @@ export const Basic = () => {
 
     return (
         <Flex>
-            <Box w={200}>
+            <Box w={200} mr={2}>
                 <RmgButtonGroup selections={selections} defaultValue={singleSelect} onChange={setSingleSelect} />
                 <RmgButtonGroup
                     selections={selections}

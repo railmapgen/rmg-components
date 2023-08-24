@@ -46,7 +46,7 @@ export function RmgButtonGroup<T extends string | boolean>(props: RmgButtonGroup
     };
 
     return (
-        <ButtonGroup size="xs" isAttached colorScheme="primary" variant="outline">
+        <ButtonGroup size="xs" isAttached colorScheme="primary" variant="outline" minW="100%">
             {selections.map((selection, i) => {
                 const isSelected =
                     (typeof value === 'object' && value.includes(selection.value)) || value === selection.value;
@@ -61,6 +61,7 @@ export function RmgButtonGroup<T extends string | boolean>(props: RmgButtonGroup
                         aria-checked={isSelected}
                         variant={isSelected ? 'solid' : 'outline'}
                         mr={mr}
+                        flex={1}
                         isDisabled={selection.disabled}
                         onClick={() => handleToggle(selection.value)}
                     >
