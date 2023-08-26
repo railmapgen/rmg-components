@@ -15,6 +15,7 @@ type inputField = {
     validator?: (value: string) => boolean;
     debouncedDelay?: number;
     optionList?: string[];
+    isDisabled?: boolean;
 };
 
 type textareaField = {
@@ -22,6 +23,7 @@ type textareaField = {
     value: string;
     placeholder?: string;
     onChange?: (value: string) => void;
+    isDisabled?: boolean;
 };
 
 type sliderField = {
@@ -33,6 +35,7 @@ type sliderField = {
     onChange?: (value: number) => void;
     leftIcon?: ReactElement;
     rightIcon?: ReactElement;
+    isDisabled?: boolean;
 };
 
 type selectField<T extends string | number> = {
@@ -42,6 +45,7 @@ type selectField<T extends string | number> = {
     onChange?: (value: T) => void;
     disabledOptions?: T[];
     isInvalid?: boolean;
+    isDisabled?: boolean;
 };
 
 type switchField = {
@@ -110,6 +114,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             onDebouncedChange={field.onChange}
                                             delay={field.debouncedDelay}
                                             optionList={field.optionList}
+                                            isDisabled={field.isDisabled}
                                         />
                                     );
                                 case 'textarea':
@@ -118,6 +123,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             placeholder={field.placeholder}
                                             defaultValue={field.value}
                                             onDebouncedChange={field.onChange}
+                                            isDisabled={field.isDisabled}
                                         />
                                     );
                                 case 'slider':
@@ -130,6 +136,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             onThrottledChange={field.onChange}
                                             leftIcon={field.leftIcon}
                                             rightIcon={field.rightIcon}
+                                            isDisabled={field.isDisabled}
                                         />
                                     );
                                 case 'select':
@@ -146,6 +153,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             options={field.options}
                                             disabledOptions={field.disabledOptions}
                                             isInvalid={field.isInvalid}
+                                            isDisabled={field.isDisabled}
                                         />
                                     );
                                 case 'switch':
