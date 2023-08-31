@@ -28,13 +28,13 @@ export default function WarningDialog(props: WarningDialogProps) {
         setIsConfirmButtonLoading(true);
 
         // dump
-        const storage = rmgRuntime.getStorageForCurrentApp();
+        const storage = rmgRuntime.storage.getAll();
         const appName = rmgRuntime.getAppName();
         const fileName = `${appName}_BACKUP_${new Date().toISOString()}.json`;
         downloadAs(fileName, 'application/json', JSON.stringify(storage));
 
         // clear
-        rmgRuntime.clearStorageForCurrentApp();
+        rmgRuntime.storage.clear();
 
         setTimeout(() => {
             window.location.reload();
