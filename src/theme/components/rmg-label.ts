@@ -2,6 +2,8 @@ import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const rmgLabelTheme: ComponentStyleConfig = {
     baseStyle: {
+        display: 'flex',
+        flexDirection: 'column',
         m: 1,
         w: 'unset',
 
@@ -15,7 +17,7 @@ export const rmgLabelTheme: ComponentStyleConfig = {
         },
 
         '&.rmg-label__one-line': {
-            display: 'flex',
+            flexDirection: 'row',
             alignItems: 'center',
 
             '& label:first-of-type': {

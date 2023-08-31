@@ -20,6 +20,8 @@ export const Basic = () => {
     const [textareaValue, setTextareaValue] = useState('');
     const [switchValue, setSwitchValue] = useState(false);
     const [fg, setFg] = useState('black');
+    const [bg, setBg] = useState('red');
+    const [direction, setDirection] = useState('right');
 
     const fields: RmgFieldsField<string>[] = [
         {
@@ -121,6 +123,35 @@ export const Basic = () => {
                 />
             ),
         },
+        {
+            type: 'custom',
+            label: 'Background colour',
+            component: (
+                <RmgButtonGroup
+                    selections={[
+                        { value: 'red', label: 'Red' },
+                        { value: 'green', label: 'Green' },
+                    ]}
+                    defaultValue={bg}
+                    onChange={value => setBg(value)}
+                />
+            ),
+        },
+        {
+            type: 'custom',
+            label: 'Direction',
+            component: (
+                <RmgButtonGroup
+                    selections={[
+                        { value: 'left', label: 'Left' },
+                        { value: 'right', label: 'Right' },
+                    ]}
+                    defaultValue={direction}
+                    onChange={value => setDirection(value)}
+                />
+            ),
+            oneLine: true,
+        },
     ];
 
     const handleReset = () => {
@@ -133,6 +164,8 @@ export const Basic = () => {
         setTextareaValue('');
         setSwitchValue(false);
         setFg('black');
+        setBg('red');
+        setDirection('right');
     };
 
     return (
@@ -152,6 +185,8 @@ export const Basic = () => {
                 <Text>Switch field: {switchValue.toString()}</Text>
                 <Text>Disabled switch field: false</Text>
                 <Text>Button group field: {fg}</Text>
+                <Text>Button group field: {bg}</Text>
+                <Text>Button group field: {direction}</Text>
 
                 <Button onClick={() => handleReset()}>Reset all</Button>
             </Box>
