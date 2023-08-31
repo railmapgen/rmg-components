@@ -1,2 +1,0 @@
-import{j as a}from"./jsx-runtime-4ca860c5.js";import{b as i,u as m}from"./chunk-ZJJGQIVY-35f6fb8e.js";import{B as c}from"./chunk-PULVB27S-dfb23afe.js";const r=o=>{const{children:e}=o,{colorMode:s}=i(),t=m("RmgAgGrid");return a.jsx(c,{className:s==="light"?"ag-theme-alpine":"ag-theme-alpine-dark",sx:t,children:e})};try{r.displayName="RmgAgGrid",r.__docgenInfo={description:"",displayName:"RmgAgGrid",props:{}}}catch{}export{r as R};
-//# sourceMappingURL=rmg-ag-grid-5135bf1b.js.map
