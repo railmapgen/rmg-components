@@ -16,6 +16,7 @@ import { rmgLabelTheme as RmgLabel } from './rmg-label';
 import { rmgLineBadgeTheme as RmgLineBadge } from './rmg-line-badge';
 import { rmgLoaderTheme as RmgLoader } from './rmg-loader';
 import { rmgMultiSelectTheme as RmgMultiSelect } from './rmg-multi-select';
+import { rmgOutputTheme as RmgOutput } from './rmg-output';
 import { rmgPageTheme as RmgPage } from './rmg-page';
 import { rmgPageHeaderTheme as RmgPageHeader } from './rmg-page-header';
 import { rmgSidePanelTheme as RmgSidePanel } from './rmg-side-panel';
@@ -41,6 +42,7 @@ export const components: Record<string, ComponentStyleConfig> = {
     RmgLineBadge,
     RmgLoader,
     RmgMultiSelect,
+    RmgOutput,
     RmgPage,
     RmgPageHeader,
     RmgSidePanel,

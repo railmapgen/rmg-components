@@ -125,20 +125,6 @@ export const Basic = () => {
         },
         {
             type: 'custom',
-            label: 'Background colour',
-            component: (
-                <RmgButtonGroup
-                    selections={[
-                        { value: 'red', label: 'Red' },
-                        { value: 'green', label: 'Green' },
-                    ]}
-                    defaultValue={bg}
-                    onChange={value => setBg(value)}
-                />
-            ),
-        },
-        {
-            type: 'custom',
             label: 'Direction',
             component: (
                 <RmgButtonGroup
@@ -151,6 +137,16 @@ export const Basic = () => {
                 />
             ),
             oneLine: true,
+        },
+        {
+            type: 'output',
+            label: 'Output field',
+            value: 'Some static value',
+        },
+        {
+            type: 'output',
+            label: 'Long output field',
+            value: 'Some very long static value which overflows',
         },
     ];
 

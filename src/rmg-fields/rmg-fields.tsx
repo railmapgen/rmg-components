@@ -5,6 +5,7 @@ import { Flex, InputProps, Switch } from '@chakra-ui/react';
 import { RmgDebouncedTextarea } from '../rmg-debounced-textarea';
 import { RmgSelect, RmgSelectProps } from '../rmg-select';
 import { RmgThrottledSlider } from '../rmg-throttled-slider';
+import { RmgOutput } from '../rmg-output';
 
 type inputField = {
     type: 'input';
@@ -16,6 +17,11 @@ type inputField = {
     debouncedDelay?: number;
     optionList?: string[];
     isDisabled?: boolean;
+};
+
+type outputField = {
+    type: 'output';
+    value: ReactNode;
 };
 
 type textareaField = {
@@ -62,6 +68,7 @@ type customField = {
 
 export type RmgFieldsField<T extends string | number = string | number> = (
     | inputField
+    | outputField
     | textareaField
     | sliderField
     | selectField<T>
@@ -117,6 +124,8 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                             isDisabled={field.isDisabled}
                                         />
                                     );
+                                case 'output':
+                                    return <RmgOutput noWrap>{field.value}</RmgOutput>;
                                 case 'textarea':
                                     return (
                                         <RmgDebouncedTextarea

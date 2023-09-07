@@ -18,6 +18,7 @@ export * from './rmg-line-badge';
 export * from './rmg-loader';
 export * from './rmg-multi-line-string';
 export * from './rmg-multi-select';
+export * from './rmg-output';
 export * from './rmg-select';
 export * from './rmg-side-panel';
 export * from './rmg-theme-provider';
