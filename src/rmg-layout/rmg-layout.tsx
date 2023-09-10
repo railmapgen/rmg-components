@@ -6,10 +6,16 @@ export const RmgWindow = (props: FlexProps) => {
     return <Flex className={`rmg-window ${className ?? ''}`} sx={{ ...styles, ...sx }} {...others} />;
 };
 
-export const RmgWindowHeader = (props: FlexProps) => {
-    const { sx, className, ...others } = props;
+export const RmgWindowHeader = (props: { isAppClipHeader?: boolean } & FlexProps) => {
+    const { isAppClipHeader, sx, className, ...others } = props;
     const styles = useStyleConfig('RmgWindowHeader');
-    return <Flex className={`rmg-window__header ${className ?? ''}`} sx={{ ...styles, ...sx }} {...others} />;
+    return (
+        <Flex
+            className={`rmg-window__header ${isAppClipHeader ? 'rmg-window__app-clip-header' : ''} ${className ?? ''}`}
+            sx={{ ...styles, ...sx }}
+            {...others}
+        />
+    );
 };
 
 export const RmgPage = (props: FlexProps) => {
