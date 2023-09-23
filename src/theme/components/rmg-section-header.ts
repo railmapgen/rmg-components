@@ -7,7 +7,7 @@ export const rmgSectionHeaderTheme: ComponentStyleConfig = {
         flexWrap: 'wrap',
         position: 'sticky',
         top: 0,
-        background: 'var(--chakra-colors-chakra-body-bg)',
+        background: 'inherit',
         px: 2,
         py: 1,
         zIndex: 5,

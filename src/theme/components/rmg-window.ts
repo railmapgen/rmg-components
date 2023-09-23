@@ -6,5 +6,6 @@ export const rmgWindowTheme: ComponentStyleConfig = {
         flexDirection: 'column',
         height: '100%',
         overflow: 'hidden',
+        background: 'inherit',
     },
 };

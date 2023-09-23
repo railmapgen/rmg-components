@@ -19,6 +19,7 @@ import { rmgMultiSelectTheme as RmgMultiSelect } from './rmg-multi-select';
 import { rmgOutputTheme as RmgOutput } from './rmg-output';
 import { rmgPageTheme as RmgPage } from './rmg-page';
 import { rmgPageHeaderTheme as RmgPageHeader } from './rmg-page-header';
+import { rmgSectionTheme as RmgSection } from './rmg-section';
 import { rmgSectionHeaderTheme as RmgSectionHeader } from './rmg-section-header';
 import { rmgSidePanelTheme as RmgSidePanel } from './rmg-side-panel';
 import { rmgThrottledSliderTheme as RmgThrottledSlider } from './rmg-throttled-slider';
@@ -46,6 +47,7 @@ export const components: Record<string, ComponentStyleConfig> = {
     RmgOutput,
     RmgPage,
     RmgPageHeader,
+    RmgSection,
     RmgSectionHeader,
     RmgSidePanel,
     RmgThrottledSlider,

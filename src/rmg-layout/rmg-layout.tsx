@@ -1,4 +1,4 @@
-import { chakra, Flex, FlexProps, useStyleConfig } from '@chakra-ui/react';
+import { BoxProps, chakra, Flex, FlexProps, useStyleConfig } from "@chakra-ui/react";
 
 export const RmgWindow = (props: FlexProps) => {
     const { sx, className, ...others } = props;
@@ -28,6 +28,12 @@ export const RmgPageHeader = (props: FlexProps) => {
     const { sx, className, ...others } = props;
     const styles = useStyleConfig('RmgPageHeader');
     return <Flex className={`rmg-page__header ${className ?? ''}`} sx={{ ...styles, ...sx }} {...others} />;
+};
+
+export const RmgSection = (props: BoxProps) => {
+    const { sx, className, ...others } = props;
+    const styles = useStyleConfig('RmgSection');
+    return <chakra.section className={`rmg-section ${className ?? ''}`} sx={{ ...styles, ...sx }} {...others} />;
 };
 
 export const RmgSectionHeader = (props: FlexProps) => {

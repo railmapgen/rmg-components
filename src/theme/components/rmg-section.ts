@@ -1,11 +1,8 @@
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 
-export const rmgPageTheme: ComponentStyleConfig = {
+export const rmgSectionTheme: ComponentStyleConfig = {
     baseStyle: {
         position: 'relative',
-        flexDirection: 'column',
-        flex: 1,
-        overflow: 'hidden',
         background: 'inherit',
     },
 };

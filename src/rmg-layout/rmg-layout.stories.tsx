@@ -1,4 +1,4 @@
-import { RmgPage, RmgPageHeader, RmgSectionHeader, RmgWindow, RmgWindowHeader } from './rmg-layout';
+import { RmgPage, RmgPageHeader, RmgSection, RmgSectionHeader, RmgWindow, RmgWindowHeader } from './rmg-layout';
 import { Box, Heading } from '@chakra-ui/react';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
 import { RmgLabel } from '../rmg-label';
@@ -9,7 +9,7 @@ export default {
 
 export const Basic = () => {
     return (
-        <Box h={400} w={700}>
+        <Box h={400} w={700} background="var(--chakra-colors-chakra-body-bg)">
             <RmgWindow border="1px dashed">
                 <RmgWindowHeader border="1px dashed">
                     <Heading as="h4" size="md">
@@ -24,8 +24,8 @@ export const Basic = () => {
                         </RmgLabel>
                     </RmgPageHeader>
 
-                    <Box overflowY="scroll">
-                        <section>
+                    <Box overflowY="scroll" background="inherit">
+                        <RmgSection>
                             <RmgSectionHeader>
                                 <Heading as="h5" size="sm">
                                     Section 1
@@ -36,9 +36,9 @@ export const Basic = () => {
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </Box>
-                        </section>
+                        </RmgSection>
 
-                        <section>
+                        <RmgSection>
                             <RmgSectionHeader>
                                 <Heading as="h5" size="sm">
                                     Section 2
@@ -63,7 +63,7 @@ export const Basic = () => {
                                 porta. Integer eget nulla sit amet odio commodo pharetra. Fusce vel iaculis nunc, at
                                 pharetra erat.
                             </Box>
-                        </section>
+                        </RmgSection>
                     </Box>
                 </RmgPage>
             </RmgWindow>
