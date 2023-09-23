@@ -62,7 +62,7 @@
         "storybook": "storybook dev -p 6006",
         "build:storybook": "storybook build"
     },
-    "version": "8.2.2",
+    "version": "8.2.3",
     "main": "./dist/index.js",
     "exports": {
         ".": "./dist/index.js",
