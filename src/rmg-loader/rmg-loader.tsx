@@ -3,7 +3,7 @@ import { CircularProgress, CircularProgressProps, Flex, useColorModeValue, useSt
 
 export type RmgLoaderProps = CircularProgressProps;
 
-export const RmgLoader = (props: RmgLoaderProps) => {
+export default function RmgLoader(props: RmgLoaderProps) {
     const { isIndeterminate, value, sx, ...others } = props;
 
     const loaderColour = useColorModeValue('primary.500', 'primary.300');

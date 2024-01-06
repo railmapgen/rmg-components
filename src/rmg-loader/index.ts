@@ -1,1 +1,3 @@
-export * from './rmg-loader';
+import RmgLoader from './rmg-loader';
+
+export { RmgLoader };

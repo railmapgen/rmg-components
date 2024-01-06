@@ -15,17 +15,16 @@
         "forceConsistentCasingInFileNames": true,
         "downlevelIteration": true,
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "declaration": true,
-        "resolveJsonModule": false,
+        "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "react-jsx",
         "noFallthroughCasesInSwitch": true,
-        "allowUnusedLabels": false,
         "types": ["vitest/globals"]
     },
     "include": [
-        "src/**/*"
+        "src"
     ],
     "references": [
         {

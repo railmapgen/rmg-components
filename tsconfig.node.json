@@ -5,5 +5,7 @@
         "moduleResolution": "Node",
         "allowSyntheticDefaultImports": true
     },
-    "include": ["vite.config.ts", ".storybook/main.ts"]
+    "include": [
+        "vite.config.mts"
+    ]
 }

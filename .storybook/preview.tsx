@@ -2,16 +2,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { getRmgChakraTheme } from '../src';
 import { Preview } from '@storybook/react';
 
-const withChakra = (StoryFn: Function) => {
-    return (
-        <ChakraProvider theme={getRmgChakraTheme()}>
-            <div id="story-wrapper">
-                <StoryFn />
-            </div>
-        </ChakraProvider>
-    );
-};
-
 const preview: Preview = {
     parameters: {
         actions: { argTypesRegex: '^on[A-Z].*' },
@@ -25,7 +15,15 @@ const preview: Preview = {
             theme: getRmgChakraTheme(),
         },
     },
-    decorators: [withChakra],
+    decorators: [
+        Story => (
+            <ChakraProvider theme={getRmgChakraTheme()}>
+                <div id="story-wrapper">
+                    <Story />
+                </div>
+            </ChakraProvider>
+        ),
+    ],
 };
 
 export default preview;

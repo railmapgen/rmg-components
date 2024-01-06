@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { RmgLoader } from './rmg-loader';
+import { useEffect, useState } from 'react';
+import RmgLoader from './rmg-loader';
 import { RmgPage } from '../rmg-layout';
 
 export default {

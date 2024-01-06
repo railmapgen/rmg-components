@@ -1,6 +1,5 @@
 import './polyfills';
 import { TextEncoder } from 'util';
-import { vi } from 'vitest';
 
 vi.stubGlobal('TextEncoder', TextEncoder);
 
@@ -15,33 +14,15 @@ global.window.matchMedia = query => ({
     dispatchEvent: vi.fn(),
 });
 
-class BroadcastChannel {
-    postMessage() {
-        // mocked
-    }
-
-    onmessage() {
-        // mocked
-    }
-}
-
-vi.stubGlobal('BroadcastChannel', BroadcastChannel);
-
 const originalFetch = global.fetch;
-global.fetch = (...args) => {
+global.fetch = vi.fn().mockImplementation((...args: any[]) => {
     if (args[0].toString().includes('/info.json')) {
         return Promise.resolve({
             ok: true,
             status: 200,
-            json: () =>
-                Promise.resolve({
-                    component: 'rmg-components',
-                    version: '9.9.9',
-                    environment: 'DEV',
-                    instance: 'localhost',
-                }),
+            json: () => import('../info.json').then(module => module.default),
         }) as any;
     } else {
-        return originalFetch(...args);
+        return originalFetch(args[0], args[1]);
     }
-};
+});
