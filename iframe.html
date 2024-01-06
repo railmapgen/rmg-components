@@ -18,9 +18,11 @@
     window.LOGLEVEL = 'info';
     window.FRAMEWORK_OPTIONS = {};
     window.CHANNEL_OPTIONS = {};
-    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
+    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":false};
     window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(js|jsx|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$"}];
     window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":true};
+
+    
 
     // We do this so that "module && module.hot" etc. in Storybook source code
     // doesn't fail (it will simply be disabled)
@@ -356,10 +358,8 @@
     console.warn('unable to connect to top frame for connecting dev tools');
   }
 </script>
-<script>
-  window.global = window;
-</script>
-  <script type="module" crossorigin src="/rmg-components/assets/iframe-a8d7b819.js"></script>
+
+  <script type="module" crossorigin src="/rmg-components/assets/iframe-YnsWHcT-.js"></script>
 </head>
 
 <body>
@@ -453,8 +453,6 @@
 
   <div id="storybook-root"></div>
   <div id="storybook-docs"></div>
-  
-  
 </body>
 
 </html>
