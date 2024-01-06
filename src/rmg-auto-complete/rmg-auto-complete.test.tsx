@@ -1,6 +1,6 @@
 import { render } from '../test-utils';
 import RmgAutoComplete from './rmg-auto-complete';
-import { act, fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
 const mockData = [
