@@ -1,1 +1,3 @@
-export * from './popover-implement/rmg-auto-complete';
+import RmgAutoComplete from './rmg-auto-complete';
+
+export { RmgAutoComplete };

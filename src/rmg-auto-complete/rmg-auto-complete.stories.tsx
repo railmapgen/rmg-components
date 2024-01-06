@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react';
-import { RmgAutoComplete } from '.';
+import RmgAutoComplete from './rmg-auto-complete';
+import { useState } from 'react';
 
 export default {
     title: 'RmgAutoComplete',
@@ -8,21 +8,26 @@ export default {
 
 export const Basic = () => {
     const data = [
-        { id: 'gz', value: 'Guangzhou', additionalValue: '廣州' },
-        { id: 'hk', value: 'Hong Kong', additionalValue: '香港' },
-        { id: 'sh', value: 'Shanghai', additionalValue: '上海' },
+        { id: 'gz', flag: '🇨🇳', name: { en: 'Guangzhou', zh: '廣州' } },
+        { id: 'hk', flag: '🇭🇰', name: { en: 'Hong Kong', zh: '香港' } },
+        { id: 'london', flag: '🇬🇧', name: { en: 'London', zh: '倫敦' } },
     ];
 
+    const [value, setValue] = useState(data[2]);
+
     return (
-        <Box>
-            <RmgAutoComplete
-                data={data}
-                displayValue={item => item.value + ' (' + item.value[0] + ')'} // Guangzhou (G)
-                predicate={(item, input) =>
-                    item.value.toLowerCase().includes(input.toLowerCase()) ||
-                    item.additionalValue.toLowerCase().includes(input.toLowerCase())
-                }
-            />
-        </Box>
+        <RmgAutoComplete
+            data={data}
+            displayValue={item => `${item.flag} ${item.name.en}`}
+            filter={(query, item) =>
+                item.id.toLowerCase().includes(query.toLowerCase()) ||
+                Object.values(item.name).some(name => name.toLowerCase().includes(query.toLowerCase()))
+            }
+            value={value}
+            onChange={item => {
+                setValue(item);
+                alert(JSON.stringify(item));
+            }}
+        />
     );
 };
