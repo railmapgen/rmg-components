@@ -33,12 +33,20 @@ export default function RmgAutoComplete<T extends { id: string }>(props: RmgAuto
             suggestWhenEmpty
             openOnFocus
         >
-            <AutoCompleteInput variant="flushed" size="sm" />
-            <AutoCompleteList role="menu">
+            <AutoCompleteInput variant="flushed" size="sm" h={6} />
+            <AutoCompleteList role="menu" py={1}>
                 {data.map(item => {
                     const label = displayValue(item);
                     return (
-                        <AutoCompleteItem key={item.id} value={item} label={label} role="menuitem">
+                        <AutoCompleteItem
+                            key={item.id}
+                            value={item}
+                            label={label}
+                            role="menuitem"
+                            fontSize="sm"
+                            p={1}
+                            mx={1}
+                        >
                             {displayHandler ? displayHandler(item) : label}
                         </AutoCompleteItem>
                     );
