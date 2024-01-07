@@ -3,7 +3,12 @@ import RmgAutoComplete from './rmg-auto-complete';
 import { screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-const mockData = [
+type DataType = {
+    id: string;
+    value: string;
+    additionalValue: string;
+};
+const mockData: DataType[] = [
     { id: 'gz', value: 'Guangzhou', additionalValue: '廣州' },
     { id: 'hk', value: 'Hong Kong', additionalValue: '香港' },
     { id: 'sh', value: 'Shanghai', additionalValue: '上海' },
@@ -12,17 +17,17 @@ const mockData = [
 const mockCallbacks = {
     onChange: vi.fn(),
 };
-Element.prototype.scrollIntoView = vi.fn();
+
+const filter = (input: string, item: DataType) =>
+    item.value.toLowerCase().includes(input.toLowerCase()) ||
+    item.additionalValue.toLowerCase().includes(input.toLowerCase());
 
 const setup = () =>
     render(
         <RmgAutoComplete
             data={mockData}
-            displayValue={item => item.value + ' (' + item.value[0] + ')'} // Guangzhou (G)
-            filter={(input, item) =>
-                item.value.toLowerCase().includes(input.toLowerCase()) ||
-                item.additionalValue.toLowerCase().includes(input.toLowerCase())
-            }
+            displayHandler={item => item.value + ' (' + item.value[0] + ')'} // Guangzhou (G)
+            filter={filter}
             {...mockCallbacks}
         />
     );
@@ -73,5 +78,25 @@ describe('RmgAutoComplete', () => {
 
         expect(mockCallbacks.onChange).toBeCalledTimes(1);
         expect(mockCallbacks.onChange).toBeCalledWith(expect.objectContaining({ id: 'gz' }));
+    });
+
+    it('Both autocomplete and input elements are controlled', async () => {
+        const user = userEvent.setup();
+        const { rerender } = render(<RmgAutoComplete data={mockData} filter={filter} {...mockCallbacks} />);
+
+        // initial state
+        const inputEl = screen.getByRole('textbox');
+        expect(inputEl).toHaveDisplayValue('');
+
+        // select Hong Kong
+        await user.type(inputEl, 'hong');
+        await user.click(screen.getByRole('menuitem', { name: 'Hong Kong' }));
+        expect(inputEl).toHaveDisplayValue('Hong Kong');
+        expect(mockCallbacks.onChange).toBeCalledTimes(1);
+
+        // set state Guangzhou
+        rerender(<RmgAutoComplete data={mockData} filter={filter} value="Guangzhou" {...mockCallbacks} />);
+        expect(inputEl).toHaveDisplayValue('Guangzhou');
+        expect(mockCallbacks.onChange).toBeCalledTimes(1);
     });
 });

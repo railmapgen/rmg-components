@@ -15,4 +15,4 @@ export default function RmgLoader(props: RmgLoaderProps) {
             <CircularProgress isIndeterminate={isIndeterminate} value={value} color={loaderColour} {...others} />
         </Flex>
     );
-};
+}

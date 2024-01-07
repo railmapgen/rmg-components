@@ -1,4 +1,4 @@
-import { BoxProps, chakra, Flex, FlexProps, useStyleConfig } from "@chakra-ui/react";
+import { BoxProps, chakra, Flex, FlexProps, useStyleConfig } from '@chakra-ui/react';
 
 export const RmgWindow = (props: FlexProps) => {
     const { sx, className, ...others } = props;

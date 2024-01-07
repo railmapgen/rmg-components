@@ -26,3 +26,4 @@ global.fetch = vi.fn().mockImplementation((...args: any[]) => {
         return originalFetch(args[0], args[1]);
     }
 });
+Element.prototype.scrollIntoView = vi.fn();

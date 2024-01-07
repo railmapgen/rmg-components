@@ -1,5 +1,6 @@
 import RmgAutoComplete from './rmg-auto-complete';
 import { useState } from 'react';
+import { Button, HStack } from '@chakra-ui/react';
 
 export default {
     title: 'RmgAutoComplete',
@@ -11,23 +12,26 @@ export const Basic = () => {
         { id: 'gz', flag: '🇨🇳', name: { en: 'Guangzhou', zh: '廣州' } },
         { id: 'hk', flag: '🇭🇰', name: { en: 'Hong Kong', zh: '香港' } },
         { id: 'london', flag: '🇬🇧', name: { en: 'London', zh: '倫敦' } },
-    ];
+    ].map(item => ({ ...item, value: item.name.en }));
 
-    const [value, setValue] = useState(data[2]);
+    const [selectedItem, setSelectedItem] = useState(data[2]);
 
     return (
-        <RmgAutoComplete
-            data={data}
-            displayValue={item => `${item.flag} ${item.name.en}`}
-            filter={(query, item) =>
-                item.id.toLowerCase().includes(query.toLowerCase()) ||
-                Object.values(item.name).some(name => name.toLowerCase().includes(query.toLowerCase()))
-            }
-            value={value}
-            onChange={item => {
-                setValue(item);
-                alert(JSON.stringify(item));
-            }}
-        />
+        <HStack>
+            <RmgAutoComplete
+                data={data}
+                displayHandler={item => `${item.flag} ${item.name.en}`}
+                filter={(query, item) =>
+                    item.id.toLowerCase().includes(query.toLowerCase()) ||
+                    Object.values(item.name).some(name => name.toLowerCase().includes(query.toLowerCase()))
+                }
+                value={selectedItem.value}
+                onChange={item => {
+                    setSelectedItem(item);
+                    alert(JSON.stringify(item));
+                }}
+            />
+            <Button onClick={() => setSelectedItem(data[0])}>set</Button>
+        </HStack>
     );
 };
