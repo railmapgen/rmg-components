@@ -1,5 +1,6 @@
 import {
     AutoComplete,
+    AutoCompleteChildProps,
     AutoCompleteInput,
     AutoCompleteInputProps,
     AutoCompleteItem,
@@ -53,7 +54,7 @@ export default function RmgAutoComplete<T extends { id: string; value: string }>
             openOnFocus
             {...others}
         >
-            {({ isOpen }) => (
+            {({ isOpen }: AutoCompleteChildProps) => (
                 <>
                     <AutoCompleteInputWrapper
                         variant="flushed"
