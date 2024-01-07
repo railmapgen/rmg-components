@@ -99,4 +99,29 @@ describe('RmgAutoComplete', () => {
         expect(inputEl).toHaveDisplayValue('Guangzhou');
         expect(mockCallbacks.onChange).toBeCalledTimes(1);
     });
+
+    it('Can capture dropdown open state in callbacks', async () => {
+        const mockHandleKeyDown = vi.fn();
+        const user = userEvent.setup();
+        render(
+            <RmgAutoComplete
+                data={mockData}
+                filter={filter}
+                InputPropsByState={isOpen => ({ onKeyDown: e => mockHandleKeyDown(isOpen, e.key) })}
+                {...mockCallbacks}
+            />
+        );
+
+        await user.tab();
+        await user.keyboard('[ArrowDown]');
+
+        // select
+        await user.keyboard('[Enter]');
+        expect(mockCallbacks.onChange).toBeCalledTimes(1);
+        expect(mockHandleKeyDown).lastCalledWith(true, 'Enter');
+
+        // enter after select
+        await user.keyboard('[Enter]');
+        expect(mockHandleKeyDown).lastCalledWith(false, 'Enter');
+    });
 });

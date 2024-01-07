@@ -19,12 +19,24 @@ interface RmgAutoCompleteProps<T> extends Omit<AutoCompleteProps, 'children'> {
     value?: string;
     onChange?: (item: T) => void;
     InputProps?: AutoCompleteInputProps;
+    InputPropsByState?: (isOpen: boolean) => AutoCompleteInputProps;
     ListProps?: AutoCompleteListProps;
     ItemProps?: AutoCompleteItemProps;
 }
 
 export default function RmgAutoComplete<T extends { id: string; value: string }>(props: RmgAutoCompleteProps<T>) {
-    const { data, displayHandler, filter, value, onChange, InputProps, ListProps, ItemProps, ...others } = props;
+    const {
+        data,
+        displayHandler,
+        filter,
+        value,
+        onChange,
+        InputProps,
+        InputPropsByState,
+        ListProps,
+        ItemProps,
+        ...others
+    } = props;
 
     const handleFilter = (query: string, optionValue: string) => {
         if (!filter) return undefined;
@@ -41,32 +53,36 @@ export default function RmgAutoComplete<T extends { id: string; value: string }>
             openOnFocus
             {...others}
         >
-            <AutoCompleteInputWrapper
-                variant="flushed"
-                size="sm"
-                h={6}
-                autoComplete="off"
-                value={value}
-                {...InputProps}
-            />
-            <AutoCompleteList role="menu" py={1} {...ListProps}>
-                {data.map(item => {
-                    return (
-                        <AutoCompleteItem
-                            key={item.id}
-                            value={item}
-                            label={item.value}
-                            role="menuitem"
-                            fontSize="sm"
-                            p={1}
-                            mx={1}
-                            {...ItemProps}
-                        >
-                            {displayHandler ? displayHandler(item) : item.value}
-                        </AutoCompleteItem>
-                    );
-                })}
-            </AutoCompleteList>
+            {({ isOpen }) => (
+                <>
+                    <AutoCompleteInputWrapper
+                        variant="flushed"
+                        size="sm"
+                        h={6}
+                        autoComplete="off"
+                        value={value}
+                        {...(InputPropsByState?.(isOpen) ?? InputProps)}
+                    />
+                    <AutoCompleteList role="menu" py={1} {...ListProps}>
+                        {data.map(item => {
+                            return (
+                                <AutoCompleteItem
+                                    key={item.id}
+                                    value={item}
+                                    label={item.value}
+                                    role="menuitem"
+                                    fontSize="sm"
+                                    p={1}
+                                    mx={1}
+                                    {...ItemProps}
+                                >
+                                    {displayHandler ? displayHandler(item) : item.value}
+                                </AutoCompleteItem>
+                            );
+                        })}
+                    </AutoCompleteList>
+                </>
+            )}
         </AutoComplete>
     );
 }
