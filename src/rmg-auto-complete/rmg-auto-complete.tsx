@@ -13,11 +13,12 @@ import {
 } from '@choc-ui/chakra-autocomplete';
 import { ReactElement, useEffect } from 'react';
 
-interface RmgAutoCompleteProps<T> extends Omit<AutoCompleteProps, 'children'> {
+interface RmgAutoCompleteProps<T extends { id: string; value: string }> extends Omit<AutoCompleteProps, 'children'> {
     data: T[];
     displayHandler?: (item: T) => ReactElement | string | number;
     filter?: (query: string, item: T) => boolean;
-    value?: string;
+    value?: T['value'];
+    defaultValue?: T['value'];
     onChange?: (item: T) => void;
     InputProps?: AutoCompleteInputProps;
     InputPropsByState?: (isOpen: boolean) => AutoCompleteInputProps;
