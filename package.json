@@ -16,7 +16,7 @@
         "@chakra-ui/storybook-addon": "^5.1.0",
         "@emotion/react": "^11.11.3",
         "@emotion/styled": "^11.11.0",
-        "@railmapgen/rmg-runtime": "^9.0.1",
+        "@railmapgen/rmg-runtime": "^10.0.0",
         "@storybook/addon-actions": "^7.6.7",
         "@storybook/addon-essentials": "^7.6.7",
         "@storybook/addon-interactions": "^7.6.7",
@@ -49,7 +49,7 @@
     },
     "peerDependencies": {
         "@chakra-ui/react": "2.x",
-        "@railmapgen/rmg-runtime": ">=8 <10",
+        "@railmapgen/rmg-runtime": ">=8 <11",
         "ag-grid-react": ">=28.1.0",
         "react": ">=18"
     },
