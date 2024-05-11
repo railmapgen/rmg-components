@@ -1,1 +1,0 @@
-import{u as t}from"./chunk-24I2HV4N--9u-gXk1.js";import{r}from"./index-4g5l5LRQ.js";function p(e){const o=r.Children.only(e.children),{getAnchorProps:n}=t();return r.cloneElement(o,n(o.props,o.ref))}p.displayName="PopoverAnchor";export{p as P};
