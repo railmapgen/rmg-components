@@ -22,6 +22,7 @@ type inputField = {
 type outputField = {
     type: 'output';
     value: ReactNode;
+    noWrap?: boolean;
 };
 
 type textareaField = {
@@ -125,7 +126,7 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                                         />
                                     );
                                 case 'output':
-                                    return <RmgOutput noWrap>{field.value}</RmgOutput>;
+                                    return <RmgOutput noWrap={field.noWrap}>{field.value}</RmgOutput>;
                                 case 'textarea':
                                     return (
                                         <RmgDebouncedTextarea

@@ -147,6 +147,12 @@ export const Basic = () => {
             type: 'output',
             label: 'Long output field',
             value: 'Some very long static value which overflows',
+            noWrap: true,
+        },
+        {
+            type: 'output',
+            label: 'Wrapped output field',
+            value: 'Some very very long static value with pretty word wrap',
         },
     ];
 

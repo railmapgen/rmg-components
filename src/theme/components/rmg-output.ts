@@ -9,9 +9,9 @@ const noWrapStyles: SystemStyleObject = {
 
 export const rmgOutputTheme: ComponentStyleConfig = {
     baseStyle: ({ noWrap }) => ({
-        h: 6,
+        minH: 6,
         fontSize: 'sm',
 
-        ...(noWrap ? noWrapStyles : {}),
+        ...(noWrap ? noWrapStyles : { textWrap: 'pretty' }),
     }),
 };
