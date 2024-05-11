@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { Flex, IconButton, useStyleConfig } from '@chakra-ui/react';
 import { Slider, SliderFilledTrack, SliderProps, SliderThumb, SliderTrack } from '@chakra-ui/slider';
 import { useThrottle } from '../hook';
@@ -14,6 +14,12 @@ export function RmgThrottledSlider(props: RmgThrottledSliderProps) {
 
     const styles = useStyleConfig('RmgThrottledSlider');
     const [value, setValue] = useState(defaultValue ?? 0);
+
+    useEffect(() => {
+        if (defaultValue !== undefined && value !== defaultValue) {
+            setValue(defaultValue);
+        }
+    }, [defaultValue]);
 
     const handleThrottledChange = useThrottle(
         onThrottledChange ??
