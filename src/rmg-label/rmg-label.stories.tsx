@@ -1,5 +1,6 @@
 import { RmgLabel } from './rmg-label';
 import { RmgDebouncedInput } from '../rmg-debounced-input';
+import { VStack } from '@chakra-ui/react';
 
 export default {
     title: 'RmgLabel',
@@ -8,8 +9,18 @@ export default {
 
 export const Basic = () => {
     return (
-        <RmgLabel label="Basic input">
-            <RmgDebouncedInput />
-        </RmgLabel>
+        <VStack>
+            <RmgLabel label="Basic input">
+                <RmgDebouncedInput />
+            </RmgLabel>
+
+            <RmgLabel label="Basic input" helper="Input with helper text">
+                <RmgDebouncedInput />
+            </RmgLabel>
+
+            <RmgLabel label="Basic input" errorMessage="Input with error message">
+                <RmgDebouncedInput isInvalid={true} />
+            </RmgLabel>
+        </VStack>
     );
 };

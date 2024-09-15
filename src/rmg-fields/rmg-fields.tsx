@@ -84,12 +84,14 @@ export type RmgFieldsField<T extends string | number = string | number> = (
 
 export interface RmgFieldsProps<T extends string | number> {
     fields: RmgFieldsField<T>[];
+    helper?: string;
+    errorMessage?: string;
     noLabel?: boolean;
     minW?: `${number}px` | number | 'full';
 }
 
 export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
-    const { fields, noLabel, minW } = props;
+    const { fields, noLabel, minW, helper, errorMessage } = props;
 
     return (
         <Flex wrap="wrap">
@@ -109,6 +111,8 @@ export function RmgFields<T extends string | number>(props: RmgFieldsProps<T>) {
                         minW={isMwFull ? undefined : actualMinW}
                         noLabel={noLabel}
                         oneLine={field.oneLine}
+                        helper={helper}
+                        errorMessage={errorMessage}
                     >
                         {(field => {
                             switch (field.type) {
