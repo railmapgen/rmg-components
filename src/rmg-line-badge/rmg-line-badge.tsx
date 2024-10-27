@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { ColourHex, MonoColour, Name } from '../util/constants';
 import { Badge, BadgeProps, useStyleConfig } from '@chakra-ui/react';
 

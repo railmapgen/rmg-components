@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     Badge,
     Box,
@@ -39,7 +39,7 @@ export const RmgMultiSelect = (props: RmgMultiSelectProps) => {
     useOutsideClick({ ref: wrapperRef, handler: () => setIsDropdownOpen(false) });
 
     useEffect(() => {
-        defaultValue.toString() && setValue(defaultValue);
+        if (defaultValue.toString()) setValue(defaultValue);
     }, [defaultValue.toString()]);
 
     const selectedCount = value.filter(val => selections.some(selection => selection.value === val)).length;

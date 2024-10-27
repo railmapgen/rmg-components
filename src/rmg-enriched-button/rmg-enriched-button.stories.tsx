@@ -1,4 +1,3 @@
-import React from 'react';
 import { RmgEnrichedButton } from './rmg-enriched-button';
 import { HStack } from '@chakra-ui/react';
 

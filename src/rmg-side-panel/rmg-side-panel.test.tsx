@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '../test-utils';
 import { RmgSidePanel } from './rmg-side-panel';
 import { screen } from '@testing-library/react';

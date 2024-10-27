@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '../test-utils';
 import { RmgErrorBoundary } from './rmg-error-boundary';
 import { BuggyCounter } from './buggy-counter';

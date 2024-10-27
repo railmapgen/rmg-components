@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, Ref, useEffect, useRef } from 'react';
+import { ChangeEvent, forwardRef, Ref, useEffect, useRef } from 'react';
 import { Textarea, TextareaProps, useMergeRefs } from '@chakra-ui/react';
 
 export interface RmgDebouncedTextareaProps extends TextareaProps {

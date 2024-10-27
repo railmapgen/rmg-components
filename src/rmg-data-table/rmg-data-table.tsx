@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from 'react';
+import { Fragment, ReactElement } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, useStyleConfig } from '@chakra-ui/react';
 
 type valueField<T> = {

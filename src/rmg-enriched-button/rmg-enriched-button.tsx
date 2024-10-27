@@ -1,5 +1,4 @@
 import { Button, ButtonProps, useStyleConfig } from '@chakra-ui/react';
-import React from 'react';
 
 export interface RmgEnrichedButtonProps extends ButtonProps {
     primaryText: string;

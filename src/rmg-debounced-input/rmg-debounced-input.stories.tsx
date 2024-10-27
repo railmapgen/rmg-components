@@ -1,6 +1,6 @@
 import { RmgDebouncedInput } from './rmg-debounced-input';
 import { Box, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RmgLabel } from '../rmg-label';
 
 export default {

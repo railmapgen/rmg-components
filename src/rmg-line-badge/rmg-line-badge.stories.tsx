@@ -2,7 +2,6 @@ import { RmgLineBadge } from './rmg-line-badge';
 import { MonoColour } from '../util/constants';
 import { HStack, IconButton } from '@chakra-ui/react';
 import { EditIcon, SmallCloseIcon } from '@chakra-ui/icons';
-import React from 'react';
 
 export default {
     title: 'RmgLineBadge',

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '../test-utils';
 import { RmgEnvBadge } from './rmg-env-badge';
 import { screen } from '@testing-library/react';

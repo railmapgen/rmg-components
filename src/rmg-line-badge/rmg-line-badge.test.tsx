@@ -1,4 +1,3 @@
-import React from 'react';
 import { RmgLineBadge } from './rmg-line-badge';
 import { MonoColour } from '../util/constants';
 import { render } from '../test-utils';

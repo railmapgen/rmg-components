@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 
 export type RmgButtonGroupSelection<T> = {
@@ -29,7 +29,7 @@ export function RmgButtonGroup<T extends string | boolean>(props: RmgButtonGroup
     const [value, setValue] = useState(defaultValue);
 
     useEffect(() => {
-        defaultValue.toString() && setValue(defaultValue);
+        if (defaultValue.toString()) setValue(defaultValue);
     }, [defaultValue.toString()]);
 
     const handleToggle = (val: T) => {

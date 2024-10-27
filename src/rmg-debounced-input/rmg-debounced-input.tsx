@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEventHandler, forwardRef, Ref, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FocusEventHandler, forwardRef, Ref, useEffect, useRef, useState } from 'react';
 import { Input, InputProps, useMergeRefs } from '@chakra-ui/react';
 
 export interface RmgDebouncedInputProps extends InputProps {

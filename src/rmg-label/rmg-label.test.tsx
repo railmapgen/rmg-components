@@ -1,4 +1,3 @@
-import React from 'react';
 import { RmgLabel } from './rmg-label';
 import { render } from '../test-utils';
 import { screen } from '@testing-library/react';

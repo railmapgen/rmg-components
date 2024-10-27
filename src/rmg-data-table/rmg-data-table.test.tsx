@@ -1,4 +1,3 @@
-import React from 'react';
 import { RmgDataTable, RmgDataTableDataType, RmgDataTableFieldType } from './rmg-data-table';
 import { render } from '../test-utils';
 import { screen, within } from '@testing-library/react';

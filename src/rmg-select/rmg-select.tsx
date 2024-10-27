@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Select, SelectProps } from '@chakra-ui/react';
 
 export interface RmgSelectProps<T extends string | number> extends SelectProps {

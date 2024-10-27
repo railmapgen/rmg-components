@@ -1,5 +1,4 @@
 import { Kbd } from '@chakra-ui/react';
-import React from 'react';
 
 export interface RmgMultiLineStringProps {
     text: string;

@@ -8,7 +8,7 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '@chakra-ui/react';
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { RmgEnv } from '@railmapgen/rmg-runtime';
 
 const getBadgeColour = (env: RmgEnv) => {

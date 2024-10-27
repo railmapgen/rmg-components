@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RmgButtonGroup } from './rmg-button-group';
 import { Box, Flex, Text } from '@chakra-ui/react';
 

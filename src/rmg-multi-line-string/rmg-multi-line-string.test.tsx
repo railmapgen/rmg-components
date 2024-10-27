@@ -1,4 +1,3 @@
-import React from 'react';
 import { RmgMultiLineString } from './rmg-multi-line-string';
 import { render } from '../test-utils';
 import { screen } from '@testing-library/react';
