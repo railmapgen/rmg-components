@@ -4,7 +4,7 @@ import { Preview } from '@storybook/react';
 
 const preview: Preview = {
     parameters: {
-        actions: { argTypesRegex: '^on[A-Z].*' },
+        actions: {},
         controls: {
             matchers: {
                 color: /(background|color)$/i,
@@ -15,6 +15,7 @@ const preview: Preview = {
             theme: getRmgChakraTheme(),
         },
     },
+
     decorators: [
         Story => (
             <ChakraProvider theme={getRmgChakraTheme()}>
@@ -24,6 +25,8 @@ const preview: Preview = {
             </ChakraProvider>
         ),
     ],
+
+    tags: ['autodocs']
 };
 
 export default preview;
