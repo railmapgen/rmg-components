@@ -38,7 +38,11 @@ export default function ErrorDetail(props: ErrorDetailProps) {
 
     const component = rmgRuntime.getAppName();
     const githubIssueLink = (
-        <Link color={linkColour} href={`https://github.com/railmapgen/${component}/issues`} isExternal={true}>
+        <Link
+            color={linkColour}
+            href={`https://github.com/railmapgen/${component === 'rmg-home' ? 'railmapgen.github.io' : component}/issues`}
+            isExternal={true}
+        >
             GitHub Issue
         </Link>
     );
