@@ -42,9 +42,9 @@ describe('RmgAutoComplete', () => {
         setup();
 
         await user.click(screen.getByRole('textbox'));
-        expect(screen.getByRole('menuitem', { name: 'Guangzhou (G)' })).toBeInTheDocument();
-        expect(screen.getByRole('menuitem', { name: 'Hong Kong (H)' })).toBeInTheDocument();
-        expect(screen.getByRole('menuitem', { name: 'Shanghai (S)' })).toBeInTheDocument();
+        expect(screen.getByText('Guangzhou (G)')).toBeInTheDocument();
+        expect(screen.getByText('Hong Kong (H)')).toBeInTheDocument();
+        expect(screen.getByText('Shanghai (S)')).toBeInTheDocument();
     });
 
     it('Can filter item as expected', async () => {

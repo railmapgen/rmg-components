@@ -40,17 +40,32 @@ export default function RmgAutoComplete<T extends { id: string; value: string }>
         ...others
     } = props;
 
+    /**
+     * @param query
+     * @param optionValue - value (ID) of the option
+     * @param optionLabel - label of the option
+     * @description Original usage is to match query to option value or label,
+     * but we map the value to the original item, so we have access to all internal details.
+     */
     const handleFilter = (query: string, optionValue: string) => {
-        if (!filter) return undefined;
+        if (!filter) return true;
         const item = data.find(item => item.id === optionValue);
         return item ? filter(query, item) : false;
+    };
+
+    const handleChange = (value: string, item: Item | Item[]) => {
+        if (Array.isArray(item)) {
+            onChange?.(item[0]?.originalValue);
+        } else {
+            onChange?.(item.originalValue);
+        }
     };
 
     return (
         <AutoComplete
             value={value}
             filter={handleFilter}
-            onChange={(_: string, item: Item) => onChange?.(item.originalValue)}
+            onChange={handleChange}
             suggestWhenEmpty
             openOnFocus
             {...others}

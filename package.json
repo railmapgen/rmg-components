@@ -7,7 +7,7 @@
     },
     "license": "GPL-3.0-only",
     "dependencies": {
-        "@choc-ui/chakra-autocomplete": "5.2.9",
+        "@choc-ui/chakra-autocomplete": "^5.7.0",
         "resize-observer-polyfill": "^1.5.1"
     },
     "devDependencies": {
