@@ -1,0 +1,10 @@
+import{j as e}from"./jsx-runtime-DWbWqHZ-.js";import{R as o}from"./rmg-env-badge-B4OoGpWP.js";import{r as i,R as t}from"./index-Div-JSaP.js";import{u as g}from"./useUpdatingGetter-DneEURiE.js";import{B as d}from"./chunk-PULVB27S-BvTYsj2L.js";import"./index-l2PZgWEW.js";import"./chunk-24I2HV4N-DAWbi5WC.js";import"./index-C1WesdbD.js";import"./index-BJzPjEZr.js";import"./index-D72gjLle.js";import"./index-D5j2VCPL.js";import"./chunk-ZJJGQIVY-G7EJoKQ9.js";import"./extends-CCbyfPlC.js";import"./index-C1GouHpy.js";import"./proxy-COICayAC.js";import"./chunk-RLMGYZLY-CpdZi_sY.js";import"./chunk-37N6GCLA-3sDRhwf3.js";import"./chunk-2GBDXOMA-DSK0xXMw.js";import"./chunk-Z6RXEUPO-Bjsz4aJx.js";const m=r=>g(i.ready(),r),_={title:"RmgEnvBadge",component:o},n=()=>{const r=m(i.getEnv),a=m(i.getAppVersion);return e.jsxs(d,{children:[e.jsx(o,{environment:t.DEV,version:"0.1.0",popoverHeader:"You're on DEV environment!",popoverBody:"Please visit PRD environment!"}),e.jsx(o,{environment:t.UAT,version:"0.1.0",popoverHeader:"You're on UAT environment!",popoverBody:"Please visit PRD environment!"}),e.jsx(o,{environment:t.PRD,version:"0.1.0"}),e.jsx(o,{environment:r,version:a})]})};var s,p,v;n.parameters={...n.parameters,docs:{...(s=n.parameters)==null?void 0:s.docs,source:{originalSource:`() => {
+  const environment = useReadyConfig(rmgRuntime.getEnv);
+  const appVersion = useReadyConfig(rmgRuntime.getAppVersion);
+  return <Box>
+            <RmgEnvBadge environment={RmgEnv.DEV} version="0.1.0" popoverHeader="You're on DEV environment!" popoverBody="Please visit PRD environment!" />
+            <RmgEnvBadge environment={RmgEnv.UAT} version="0.1.0" popoverHeader="You're on UAT environment!" popoverBody="Please visit PRD environment!" />
+            <RmgEnvBadge environment={RmgEnv.PRD} version="0.1.0" />
+            <RmgEnvBadge environment={environment} version={appVersion} />
+        </Box>;
+}`,...(v=(p=n.parameters)==null?void 0:p.docs)==null?void 0:v.source}}};const h=["Basic"];export{n as Basic,h as __namedExportsOrder,_ as default};
