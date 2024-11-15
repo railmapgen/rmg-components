@@ -1,6 +1,14 @@
 import { ReactElement, useEffect, useState } from 'react';
-import { Flex, IconButton, useStyleConfig } from '@chakra-ui/react';
-import { Slider, SliderFilledTrack, SliderProps, SliderThumb, SliderTrack } from '@chakra-ui/slider';
+import {
+    Flex,
+    IconButton,
+    useStyleConfig,
+    Slider,
+    SliderFilledTrack,
+    SliderProps,
+    SliderThumb,
+    SliderTrack,
+} from '@chakra-ui/react';
 import { useThrottle } from '../hook';
 
 export interface RmgThrottledSliderProps extends SliderProps {
