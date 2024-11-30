@@ -9,7 +9,7 @@ const mockCallbacks = {
 };
 
 describe('RmgThrottledSlider', () => {
-    describe.skip('RmgThrottledSlider - actual implementation', () => {
+    describe('RmgThrottledSlider - actual implementation', () => {
         afterEach(() => {
             vi.restoreAllMocks();
             vi.useRealTimers();
@@ -42,7 +42,7 @@ describe('RmgThrottledSlider', () => {
         });
     });
 
-    describe('RmgThrottledSlider - mock slider implementation', () => {
+    describe.skip('RmgThrottledSlider - mock slider implementation', () => {
         it('Can throttle slider event with timeout and handle button event', async () => {
             render(
                 <RmgThrottledSlider
