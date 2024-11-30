@@ -1,1 +1,0 @@
-import{j as r}from"./jsx-runtime-DWbWqHZ-.js";import{r as e}from"./index-l2PZgWEW.js";import{u as s}from"./popover-content-CzLH0bCI.js";function p(n){const o=e.Children.only(n.children),{getAnchorProps:t}=s();return r.jsx(r.Fragment,{children:e.cloneElement(o,t(o.props,o.ref))})}p.displayName="PopoverAnchor";export{p as P};
