@@ -4,27 +4,12 @@ import { RmgThrottledSlider } from './rmg-throttled-slider';
 import { act, fireEvent, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-vi.mock('@chakra-ui/slider', async () => {
-    // const actual = await vi.importActual('@chakra-ui/slider');
-    return {
-        Slider: ({ onChange, children, ...others }: any) => (
-            <div>
-                <input type="range" onChange={({ target: { value } }) => onChange?.(Number(value))} {...others} />
-                {children}
-            </div>
-        ),
-        SliderTrack: () => <></>,
-        SliderFilledTrack: () => <></>,
-        SliderThumb: () => <></>,
-    };
-});
-
 const mockCallbacks = {
     onThrottledChange: vi.fn(),
 };
 
 describe('RmgThrottledSlider', () => {
-    describe.skip('RmgThrottledSlider - actual implementation', () => {
+    describe('RmgThrottledSlider - actual implementation', () => {
         afterEach(() => {
             vi.restoreAllMocks();
             vi.useRealTimers();
@@ -57,7 +42,7 @@ describe('RmgThrottledSlider', () => {
         });
     });
 
-    describe('RmgThrottledSlider - mock slider implementation', () => {
+    describe.skip('RmgThrottledSlider - mock slider implementation', () => {
         it('Can throttle slider event with timeout and handle button event', async () => {
             render(
                 <RmgThrottledSlider
@@ -75,7 +60,7 @@ describe('RmgThrottledSlider', () => {
             fireEvent.click(screen.getByRole('button', { name: 'Drag left' }));
             expect(mockCallbacks.onThrottledChange).toBeCalledTimes(1);
             expect(mockCallbacks.onThrottledChange).lastCalledWith(40);
-            expect(screen.getByRole('slider')).toHaveValue('40');
+            expect(screen.getByRole('slider')).toHaveValue(40);
 
             vi.useFakeTimers();
 
@@ -103,7 +88,7 @@ describe('RmgThrottledSlider', () => {
             fireEvent.click(screen.getByRole('button', { name: 'Drag right' }));
             expect(mockCallbacks.onThrottledChange).toBeCalledTimes(4);
             expect(mockCallbacks.onThrottledChange).lastCalledWith(53);
-            expect(screen.getByRole('slider')).toHaveValue('53');
+            expect(screen.getByRole('slider')).toHaveValue(53);
         });
     });
 });
