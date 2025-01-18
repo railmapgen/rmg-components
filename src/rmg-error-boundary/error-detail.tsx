@@ -71,17 +71,13 @@ export default function ErrorDetail(props: ErrorDetailProps) {
                 <Text>
                     請嘗試重新整理或重新上載設定檔。如果問題仍然存在，請考慮更新你的瀏覽器
                     {allowReset ? <>或{getResetAppLink('重設該應用程式')}</> : ''}
-                    。如需協助或與我們聯絡，請前往 {
-                        githubIssueLink
-                    } 提交一個 Issue 並附以詳細資料。
+                    。如需協助或與我們聯絡，請前往 {githubIssueLink} 提交一個 Issue 並附以詳細資料。
                 </Text>
 
                 <Text>
                     请尝试刷新或者重新上传配置文件。如果问题仍然存在，请考虑更新您的浏览器
                     {allowReset ? <>或者{getResetAppLink('重置本应用程序')}</> : ''}
-                    。如需帮助或者联系我们，请前往 {
-                        githubIssueLink
-                    } 提交一个 Issue 并附上详细信息。
+                    。如需帮助或者联系我们，请前往 {githubIssueLink} 提交一个 Issue 并附上详细信息。
                 </Text>
 
                 <Text as="details">
