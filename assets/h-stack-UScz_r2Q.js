@@ -1,1 +1,0 @@
-import{j as t}from"./jsx-runtime-D_3pcrNB.js";import{S as a}from"./stack-hKhd1sv6.js";import{f as s}from"./use-style-config-CZvBo0tQ.js";const i=s((r,o)=>t.jsx(a,{align:"center",...r,direction:"row",ref:o}));i.displayName="HStack";export{i as H};

@@ -1,6 +1,0 @@
-import{j as t}from"./jsx-runtime-D_3pcrNB.js";import{R as o}from"./rmg-enriched-button-Ccp2Go__.js";import{H as m}from"./h-stack-UScz_r2Q.js";import"./index-YTOF1_EJ.js";import"./use-style-config-CZvBo0tQ.js";import"./button-X5yNzHuh.js";import"./context-CXQEnuw_.js";import"./theming-props-BSFQkWYI.js";import"./emotion-react.browser.esm-CQsZap0v.js";import"./define-styles-BSAHv3yx.js";import"./use-merge-refs-CDN4nSPx.js";import"./attr-sHTFgF0E.js";import"./stack-hKhd1sv6.js";import"./children-DxTy7EQl.js";const E={title:"RmgEnrichedButton",component:o},r=()=>t.jsxs(m,{children:[t.jsx(o,{variant:"solid",colorScheme:"primary",primaryText:"Project 123",secondaryText:"Last modified: 10 mins ago"}),t.jsx(o,{primaryText:"Kwun Tong Line",secondaryText:"by: wongchito"})]});var e,i,n;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`() => {
-  return <HStack>
-            <RmgEnrichedButton variant="solid" colorScheme="primary" primaryText="Project 123" secondaryText="Last modified: 10 mins ago" />
-            <RmgEnrichedButton primaryText="Kwun Tong Line" secondaryText="by: wongchito" />
-        </HStack>;
-}`,...(n=(i=r.parameters)==null?void 0:i.docs)==null?void 0:n.source}}};const f=["Basic"];export{r as Basic,f as __namedExportsOrder,E as default};

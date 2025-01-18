@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime-D_3pcrNB.js";import{r as e}from"./index-YTOF1_EJ.js";import{u as s}from"./popover-content-DXYfETLf.js";function p(n){const o=e.Children.only(n.children),{getAnchorProps:t}=s();return r.jsx(r.Fragment,{children:e.cloneElement(o,t(o.props,o.ref))})}p.displayName="PopoverAnchor";export{p as P};
