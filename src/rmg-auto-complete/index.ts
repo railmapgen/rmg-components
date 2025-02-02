@@ -1,3 +1,1 @@
-import RmgAutoComplete from './rmg-auto-complete';
-
-export { RmgAutoComplete };
+export * from './rmg-auto-complete';
