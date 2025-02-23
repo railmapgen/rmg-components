@@ -50,7 +50,7 @@
     },
     "peerDependencies": {
         "@chakra-ui/react": "2.x",
-        "@railmapgen/rmg-runtime": ">=8 <11",
+        "@railmapgen/rmg-runtime": ">=8",
         "ag-grid-react": ">=28.1.0",
         "react": ">=18"
     },
