@@ -5,6 +5,7 @@ export * from './rmg-app-clip';
 export * from './rmg-auto-complete';
 export * from './rmg-button-group';
 export * from './rmg-card';
+export * from './rmg-circular-slider';
 export * from './rmg-data-table';
 export * from './rmg-debounced-input';
 export * from './rmg-debounced-textarea';
