@@ -41,6 +41,7 @@ export interface RmgCircularSliderProps {
 }
 
 // Convert value to angle (0 at top, clockwise)
+// 0 degrees = top (12 o'clock position)
 const valueToAngle = (value: number, min: number, max: number): number => {
     const range = max - min + 1;
     const normalizedValue = (((value - min) % range) + range) % range;
@@ -61,15 +62,24 @@ const angleToValue = (angle: number, min: number, max: number, step: number): nu
     return value;
 };
 
-// Calculate angle from center to point
+// Calculate angle from center to point (0 at top, clockwise)
 const getAngleFromCenter = (centerX: number, centerY: number, x: number, y: number): number => {
     const dx = x - centerX;
     const dy = y - centerY;
     // atan2 gives angle from positive x-axis, counter-clockwise
-    // We need angle from positive y-axis (top), clockwise
+    // We need angle from negative y-axis (top), clockwise
     let angle = Math.atan2(dx, -dy) * (180 / Math.PI);
     if (angle < 0) angle += 360;
     return angle;
+};
+
+// Convert angle (0 at top, clockwise) to radians for SVG positioning
+const angleToRadians = (angle: number): number => {
+    // Convert to standard math angle (0 at right, counter-clockwise)
+    // then convert to radians
+    // angle 0 (top) -> -90 degrees in standard math
+    // angle 90 (right) -> 0 degrees in standard math
+    return ((angle - 90) * Math.PI) / 180;
 };
 
 // Check if value should snap to a step
@@ -114,22 +124,22 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
     const trackColorToken = useColorModeValue('gray.200', 'gray.600');
     const pointerColorToken = useColorModeValue('blue.500', 'blue.300');
     const snapTickColorToken = useColorModeValue('red.400', 'red.300');
-    const tickColorToken = useColorModeValue('gray.300', 'gray.500');
     const disabledTickColorToken = useColorModeValue('gray.400', 'gray.400');
 
-    const [trackColor, pointerColor, snapTickColor, tickColor, disabledTickColor] = useToken('colors', [
+    const [trackColor, pointerColor, snapTickColor, disabledTickColor] = useToken('colors', [
         trackColorToken,
         pointerColorToken,
         snapTickColorToken,
-        tickColorToken,
         disabledTickColorToken,
     ]);
 
     const centerX = size / 2;
     const centerY = size / 2;
-    const radius = size / 2 - 10;
-    const tickOuterRadius = radius + 5;
-    const tickInnerRadius = radius - 5;
+    const radius = size / 2 - 15; // Leave more margin for outer ticks
+    const trackWidth = 8; // Wider track
+    const innerRadius = radius / 2; // Pointer starts from r/2
+    const tickOuterRadius = radius + 8; // Ticks only on outer ring
+    const tickInnerRadius = radius + 2;
 
     useEffect(() => {
         if (defaultValue !== undefined && value !== defaultValue) {
@@ -212,29 +222,34 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
         }
     }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove]);
 
-    // Calculate pointer position
+    // Calculate pointer position (from r/2 to r)
     const pointerAngle = valueToAngle(value, min, max);
-    const pointerRadians = (pointerAngle - 90) * (Math.PI / 180);
-    const pointerX = centerX + radius * Math.cos(pointerRadians + Math.PI / 2);
-    const pointerY = centerY + radius * Math.sin(pointerRadians + Math.PI / 2);
+    const pointerRadians = angleToRadians(pointerAngle);
+    const pointerOuterX = centerX + radius * Math.cos(pointerRadians);
+    const pointerOuterY = centerY + radius * Math.sin(pointerRadians);
+    const pointerInnerX = centerX + innerRadius * Math.cos(pointerRadians);
+    const pointerInnerY = centerY + innerRadius * Math.sin(pointerRadians);
 
-    // Generate tick marks
+    // Generate tick marks (only on outer ring, light red color)
     const range = max - min + 1;
     const ticks = [];
 
-    // Add snap step ticks (major ticks)
+    // Light tick color token
+    const lightTickColorToken = useColorModeValue('red.200', 'red.700');
+    const [lightTickColor] = useToken('colors', [lightTickColorToken]);
+
+    // Add snap step ticks (major ticks) - only on outer ring
     for (let i = 0; i < range; i += snapStep) {
         const tickValue = min + i;
         const tickAngle = valueToAngle(tickValue, min, max);
-        const tickRadians = (tickAngle - 90) * (Math.PI / 180);
+        const tickRadians = angleToRadians(tickAngle);
 
-        const outerX = centerX + tickOuterRadius * Math.cos(tickRadians + Math.PI / 2);
-        const outerY = centerY + tickOuterRadius * Math.sin(tickRadians + Math.PI / 2);
-        const innerX = centerX + (tickInnerRadius - 3) * Math.cos(tickRadians + Math.PI / 2);
-        const innerY = centerY + (tickInnerRadius - 3) * Math.sin(tickRadians + Math.PI / 2);
+        const outerX = centerX + tickOuterRadius * Math.cos(tickRadians);
+        const outerY = centerY + tickOuterRadius * Math.sin(tickRadians);
+        const innerX = centerX + tickInnerRadius * Math.cos(tickRadians);
+        const innerY = centerY + tickInnerRadius * Math.sin(tickRadians);
 
         const isDisabled = disabledValues.includes(tickValue);
-        const isSnapped = value === tickValue;
 
         ticks.push(
             <line
@@ -243,8 +258,8 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
                 y1={outerY}
                 x2={innerX}
                 y2={innerY}
-                stroke={isDisabled ? disabledTickColor : isSnapped ? snapTickColor : tickColor}
-                strokeWidth={isSnapped ? 2 : 1.5}
+                stroke={isDisabled ? disabledTickColor : lightTickColor}
+                strokeWidth={1.5}
                 strokeLinecap="round"
             />
         );
@@ -252,6 +267,13 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
 
     // Check if current value is snapped
     const isSnappedToStep = value % snapStep === 0 && !disabledValues.includes(value);
+
+    // Text color for center value
+    const textColorToken = useColorModeValue('gray.600', 'gray.300');
+    const [textColor] = useToken('colors', [textColorToken]);
+
+    // Font size based on component size
+    const fontSize = Math.max(10, size / 8);
 
     return (
         <Box sx={styles} display="inline-block">
@@ -287,28 +309,43 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
                     }
                 }}
             >
-                {/* Track circle */}
-                <circle cx={centerX} cy={centerY} r={radius} fill="none" stroke={trackColor} strokeWidth={4} />
+                {/* Track circle - wider stroke */}
+                <circle cx={centerX} cy={centerY} r={radius} fill="none" stroke={trackColor} strokeWidth={trackWidth} />
 
-                {/* Tick marks */}
+                {/* Tick marks - outer ring only */}
                 {ticks}
 
-                {/* Pointer line */}
+                {/* Pointer line - from r/2 to r */}
                 <line
-                    x1={centerX}
-                    y1={centerY}
-                    x2={pointerX}
-                    y2={pointerY}
+                    x1={pointerInnerX}
+                    y1={pointerInnerY}
+                    x2={pointerOuterX}
+                    y2={pointerOuterY}
                     stroke={isSnappedToStep ? snapTickColor : pointerColor}
                     strokeWidth={3}
                     strokeLinecap="round"
                 />
 
-                {/* Pointer circle (knob) */}
-                <circle cx={pointerX} cy={pointerY} r={6} fill={isSnappedToStep ? snapTickColor : pointerColor} />
+                {/* Pointer circle (knob) at outer end */}
+                <circle
+                    cx={pointerOuterX}
+                    cy={pointerOuterY}
+                    r={5}
+                    fill={isSnappedToStep ? snapTickColor : pointerColor}
+                />
 
-                {/* Center dot */}
-                <circle cx={centerX} cy={centerY} r={3} fill={isSnappedToStep ? snapTickColor : pointerColor} />
+                {/* Center value text */}
+                <text
+                    x={centerX}
+                    y={centerY}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fontSize={fontSize}
+                    fill={textColor}
+                    fontWeight="500"
+                >
+                    {value}
+                </text>
             </svg>
         </Box>
     );
