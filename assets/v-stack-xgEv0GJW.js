@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime-D_3pcrNB.js";import{S as a}from"./stack-BndYsCEc.js";import{f as m}from"./use-style-config-Ltp0mO6k.js";const s=m((o,r)=>t.jsx(a,{align:"center",...o,direction:"column",ref:r}));s.displayName="VStack";export{s as V};
