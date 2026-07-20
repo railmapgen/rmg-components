@@ -18,7 +18,7 @@ export interface RmgThrottledSliderProps extends SliderProps {
 }
 
 export function RmgThrottledSlider(props: RmgThrottledSliderProps) {
-    const { defaultValue, min, max, step, onThrottledChange, leftIcon, rightIcon } = props;
+    const { defaultValue, min, max, step, onChange, onThrottledChange, leftIcon, rightIcon, ...sliderProps } = props;
 
     const styles = useStyleConfig('RmgThrottledSlider');
     const [value, setValue] = useState(defaultValue ?? 0);
@@ -62,11 +62,13 @@ export function RmgThrottledSlider(props: RmgThrottledSliderProps) {
             )}
 
             <Slider
+                {...sliderProps}
                 value={value}
                 min={min}
                 max={max}
                 step={step}
                 onChange={val => {
+                    onChange?.(val);
                     handleThrottledChange(val);
                     setValue(val);
                 }}
