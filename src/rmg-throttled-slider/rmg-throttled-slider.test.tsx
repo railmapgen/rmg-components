@@ -40,6 +40,43 @@ describe('RmgThrottledSlider', () => {
             expect(mockCallbacks.onThrottledChange).toBeCalledTimes(2);
             expect(mockCallbacks.onThrottledChange).toBeCalledWith(8);
         });
+
+        it('forwards Slider props and preserves the immediate onChange callback', () => {
+            const onChange = vi.fn();
+            const onChangeEnd = vi.fn();
+            render(
+                <RmgThrottledSlider
+                    aria-label="Width scale"
+                    defaultValue={5}
+                    min={0}
+                    max={10}
+                    onChange={onChange}
+                    onChangeEnd={onChangeEnd}
+                    onThrottledChange={vi.fn()}
+                />
+            );
+
+            const slider = screen.getByRole('slider', { name: 'Width scale' });
+            const sliderRoot = slider.parentElement;
+            expect(sliderRoot).not.toBeNull();
+            vi.spyOn(sliderRoot!, 'getBoundingClientRect').mockReturnValue({
+                bottom: 10,
+                height: 10,
+                left: 0,
+                right: 100,
+                top: 0,
+                width: 100,
+                x: 0,
+                y: 0,
+                toJSON: () => ({}),
+            });
+
+            fireEvent.pointerDown(sliderRoot!, { clientX: 60, clientY: 5, pointerId: 1 });
+            fireEvent.pointerUp(window, { clientX: 60, clientY: 5, pointerId: 1 });
+
+            expect(onChange).toHaveBeenCalledWith(0);
+            expect(onChangeEnd).toHaveBeenCalledWith(0);
+        });
     });
 
     describe.skip('RmgThrottledSlider - mock slider implementation', () => {
