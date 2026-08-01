@@ -8,6 +8,20 @@ const mockCallbacks = {
     onChange: vi.fn(),
 };
 
+const mockSliderBounds = (slider: HTMLElement) => {
+    vi.spyOn(slider, 'getBoundingClientRect').mockReturnValue({
+        bottom: 100,
+        height: 100,
+        left: 0,
+        right: 100,
+        top: 0,
+        width: 100,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+    });
+};
+
 describe('RmgCircularSlider', () => {
     afterEach(() => {
         vi.clearAllMocks();
@@ -50,6 +64,92 @@ describe('RmgCircularSlider', () => {
         fireEvent.keyDown(slider, { key: 'ArrowRight' });
         expect(mockCallbacks.onChange).toBeCalledTimes(1);
         expect(mockCallbacks.onChange).toBeCalledWith(51);
+    });
+
+    it('calls onChangeEnd once after a continuous keyboard interaction', () => {
+        const onChangeEnd = vi.fn();
+        render(
+            <RmgCircularSlider
+                defaultValue={50}
+                snapThreshold={0}
+                onChange={mockCallbacks.onChange}
+                onChangeEnd={onChangeEnd}
+            />
+        );
+
+        const slider = screen.getByRole('slider');
+        fireEvent.keyDown(slider, { key: 'ArrowRight' });
+        fireEvent.keyDown(slider, { key: 'ArrowRight', repeat: true });
+
+        expect(mockCallbacks.onChange).toHaveBeenNthCalledWith(1, 51);
+        expect(mockCallbacks.onChange).toHaveBeenNthCalledWith(2, 52);
+        expect(onChangeEnd).not.toHaveBeenCalled();
+
+        fireEvent.keyUp(slider, { key: 'ArrowRight' });
+        expect(onChangeEnd).toHaveBeenCalledTimes(1);
+        expect(onChangeEnd).toHaveBeenCalledWith(52);
+    });
+
+    it('calls onChangeEnd once with the final mouse drag value', () => {
+        const onChangeEnd = vi.fn();
+        render(
+            <RmgCircularSlider
+                defaultValue={0}
+                snapThreshold={0}
+                onChange={mockCallbacks.onChange}
+                onChangeEnd={onChangeEnd}
+            />
+        );
+
+        const slider = screen.getByRole('slider');
+        mockSliderBounds(slider);
+
+        fireEvent.mouseDown(slider, { clientX: 100, clientY: 50 });
+        fireEvent.mouseMove(window, { clientX: 50, clientY: 100 });
+        fireEvent.mouseUp(window);
+
+        expect(mockCallbacks.onChange).toHaveBeenNthCalledWith(1, 90);
+        expect(mockCallbacks.onChange).toHaveBeenNthCalledWith(2, 180);
+        expect(onChangeEnd).toHaveBeenCalledTimes(1);
+        expect(onChangeEnd).toHaveBeenCalledWith(180);
+    });
+
+    it('calls onChangeEnd once with the final touch drag value', () => {
+        const onChangeEnd = vi.fn();
+        render(
+            <RmgCircularSlider
+                defaultValue={0}
+                snapThreshold={0}
+                onChange={mockCallbacks.onChange}
+                onChangeEnd={onChangeEnd}
+            />
+        );
+
+        const slider = screen.getByRole('slider');
+        mockSliderBounds(slider);
+
+        fireEvent.touchStart(slider, { touches: [{ clientX: 100, clientY: 50 }] });
+        fireEvent.touchMove(window, { touches: [{ clientX: 50, clientY: 100 }] });
+        fireEvent.touchEnd(window);
+
+        expect(mockCallbacks.onChange).toHaveBeenNthCalledWith(1, 90);
+        expect(mockCallbacks.onChange).toHaveBeenNthCalledWith(2, 180);
+        expect(onChangeEnd).toHaveBeenCalledTimes(1);
+        expect(onChangeEnd).toHaveBeenCalledWith(180);
+    });
+
+    it('does not repeat onChange while the pointer stays on the same value', () => {
+        render(<RmgCircularSlider defaultValue={0} snapThreshold={0} {...mockCallbacks} />);
+
+        const slider = screen.getByRole('slider');
+        mockSliderBounds(slider);
+
+        fireEvent.mouseDown(slider, { clientX: 100, clientY: 50 });
+        fireEvent.mouseMove(window, { clientX: 100, clientY: 50 });
+        fireEvent.mouseUp(window);
+
+        expect(mockCallbacks.onChange).toHaveBeenCalledTimes(1);
+        expect(mockCallbacks.onChange).toHaveBeenCalledWith(90);
     });
 
     it('Can handle keyboard navigation with ArrowUp', () => {
@@ -188,8 +288,7 @@ describe('RmgCircularSlider', () => {
         render(<RmgCircularSlider size={150} />);
 
         const slider = screen.getByRole('slider');
-        const svg = slider as SVGSVGElement;
-        expect(svg.getAttribute('width')).toBe('150');
-        expect(svg.getAttribute('height')).toBe('150');
+        expect(slider).toHaveAttribute('width', '150');
+        expect(slider).toHaveAttribute('height', '150');
     });
 });

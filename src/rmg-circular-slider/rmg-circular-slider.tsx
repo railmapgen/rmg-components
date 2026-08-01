@@ -35,6 +35,10 @@ export interface RmgCircularSliderProps {
      */
     onChange?: (value: number) => void;
     /**
+     * Callback when a value-changing pointer or keyboard interaction finishes
+     */
+    onChangeEnd?: (value: number) => void;
+    /**
      * Size of the circular slider in pixels (default: 100)
      */
     size?: number;
@@ -112,6 +116,7 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
         snapThreshold = 3,
         disabledValues = [],
         onChange,
+        onChangeEnd,
         size = 100,
     } = props;
 
@@ -119,6 +124,9 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
     const [value, setValue] = useState(defaultValue);
     const [isDragging, setIsDragging] = useState(false);
     const svgRef = useRef<SVGSVGElement>(null);
+    const valueRef = useRef(defaultValue);
+    const dragChangedRef = useRef(false);
+    const keyboardChangedRef = useRef(false);
 
     // Get color tokens and resolve to actual values
     const trackColorToken = useColorModeValue('gray.200', 'gray.600');
@@ -142,14 +150,27 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
     const tickInnerRadius = radius + 2;
 
     useEffect(() => {
-        if (defaultValue !== undefined && value !== defaultValue) {
+        if (valueRef.current !== defaultValue) {
+            valueRef.current = defaultValue;
             setValue(defaultValue);
         }
     }, [defaultValue]);
 
+    const changeValue = useCallback(
+        (newValue: number) => {
+            if (newValue === valueRef.current) return false;
+
+            valueRef.current = newValue;
+            setValue(newValue);
+            onChange?.(newValue);
+            return true;
+        },
+        [onChange]
+    );
+
     const updateValue = useCallback(
         (clientX: number, clientY: number) => {
-            if (!svgRef.current) return;
+            if (!svgRef.current) return false;
 
             const rect = svgRef.current.getBoundingClientRect();
             const x = clientX - rect.left;
@@ -163,24 +184,24 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
 
             // Check if disabled
             if (disabledValues.includes(newValue)) {
-                return;
+                return false;
             }
 
-            setValue(newValue);
-            onChange?.(newValue);
+            return changeValue(newValue);
         },
-        [centerX, centerY, min, max, step, snapStep, snapThreshold, disabledValues, onChange]
+        [centerX, centerY, min, max, step, snapStep, snapThreshold, disabledValues, changeValue]
     );
 
     const handleMouseDown = (e: React.MouseEvent) => {
+        dragChangedRef.current = false;
         setIsDragging(true);
-        updateValue(e.clientX, e.clientY);
+        dragChangedRef.current = updateValue(e.clientX, e.clientY);
     };
 
     const handleMouseMove = useCallback(
         (e: MouseEvent) => {
-            if (isDragging) {
-                updateValue(e.clientX, e.clientY);
+            if (isDragging && updateValue(e.clientX, e.clientY)) {
+                dragChangedRef.current = true;
             }
         },
         [isDragging, updateValue]
@@ -188,23 +209,62 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
 
     const handleMouseUp = useCallback(() => {
         setIsDragging(false);
-    }, []);
+        if (dragChangedRef.current) {
+            dragChangedRef.current = false;
+            onChangeEnd?.(valueRef.current);
+        }
+    }, [onChangeEnd]);
 
     const handleTouchStart = (e: React.TouchEvent) => {
+        dragChangedRef.current = false;
         setIsDragging(true);
         const touch = e.touches[0];
-        updateValue(touch.clientX, touch.clientY);
+        dragChangedRef.current = updateValue(touch.clientX, touch.clientY);
     };
 
     const handleTouchMove = useCallback(
         (e: TouchEvent) => {
             if (isDragging) {
                 const touch = e.touches[0];
-                updateValue(touch.clientX, touch.clientY);
+                if (updateValue(touch.clientX, touch.clientY)) {
+                    dragChangedRef.current = true;
+                }
             }
         },
         [isDragging, updateValue]
     );
+
+    const handleKeyDown = (e: React.KeyboardEvent<SVGSVGElement>) => {
+        let newValue = valueRef.current;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+            newValue = valueRef.current + step;
+            if (newValue > max) newValue = min;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+            newValue = valueRef.current - step;
+            if (newValue < min) newValue = max;
+        } else {
+            return;
+        }
+        e.preventDefault();
+
+        newValue = getSnappedValue(newValue, min, max, snapStep, snapThreshold);
+        if (!disabledValues.includes(newValue) && changeValue(newValue)) {
+            keyboardChangedRef.current = true;
+        }
+    };
+
+    const handleKeyboardEnd = () => {
+        if (keyboardChangedRef.current) {
+            keyboardChangedRef.current = false;
+            onChangeEnd?.(valueRef.current);
+        }
+    };
+
+    const handleKeyUp = (e: React.KeyboardEvent<SVGSVGElement>) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+            handleKeyboardEnd();
+        }
+    };
 
     useEffect(() => {
         if (isDragging) {
@@ -212,12 +272,14 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
             window.addEventListener('mouseup', handleMouseUp);
             window.addEventListener('touchmove', handleTouchMove);
             window.addEventListener('touchend', handleMouseUp);
+            window.addEventListener('touchcancel', handleMouseUp);
 
             return () => {
                 window.removeEventListener('mousemove', handleMouseMove);
                 window.removeEventListener('mouseup', handleMouseUp);
                 window.removeEventListener('touchmove', handleTouchMove);
                 window.removeEventListener('touchend', handleMouseUp);
+                window.removeEventListener('touchcancel', handleMouseUp);
             };
         }
     }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove]);
@@ -289,25 +351,9 @@ export function RmgCircularSlider(props: RmgCircularSliderProps) {
                 aria-valuemax={max}
                 aria-valuenow={value}
                 tabIndex={0}
-                onKeyDown={e => {
-                    let newValue = value;
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-                        newValue = value + step;
-                        if (newValue > max) newValue = min;
-                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-                        newValue = value - step;
-                        if (newValue < min) newValue = max;
-                    }
-
-                    // Apply snap
-                    newValue = getSnappedValue(newValue, min, max, snapStep, snapThreshold);
-
-                    // Check if disabled
-                    if (!disabledValues.includes(newValue) && newValue !== value) {
-                        setValue(newValue);
-                        onChange?.(newValue);
-                    }
-                }}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
+                onBlur={handleKeyboardEnd}
             >
                 {/* Track circle - wider stroke */}
                 <circle cx={centerX} cy={centerY} r={radius} fill="none" stroke={trackColor} strokeWidth={trackWidth} />
